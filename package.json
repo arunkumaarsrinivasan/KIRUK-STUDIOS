@@ -5,7 +5,7 @@
   "type": "module",
   "description": "Kiruk Studio — scribbles into worlds. Spec-driven creative operating system.",
   "author": "Arun Kumaar Srinivasan <arunkumaar.srinivasan@gmail.com> (@kirukism)",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "scripts": {
     "tokens:build": "node scripts/build-tokens.mjs",
     "tokens:watch": "node scripts/build-tokens.mjs --watch",
