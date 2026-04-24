@@ -1,0 +1,24 @@
+{
+  "$description": "Semantic aliases — Layer 2. Reference core.json only. This is the layer UI code should consume.",
+  "color": {
+    "bg": { "$type": "color", "$value": "{color.void}" },
+    "fg": { "$type": "color", "$value": "{color.scribble-ink}" },
+    "fg-muted": { "$type": "color", "$value": "{color.gaze-dim}" },
+    "surface": { "$type": "color", "$value": "{color.kohl}" },
+    "paper": { "$type": "color", "$value": "{color.paper}" },
+    "accent": { "$type": "color", "$value": "{color.iris-core}", "$description": "Primary accent. Iris." },
+    "accent-alt": { "$type": "color", "$value": "{color.portal-glow}", "$description": "Secondary accent. Portal." },
+    "halo": { "$type": "color", "$value": "{color.halo-warm}" },
+    "border": { "$type": "color", "$value": "{color.kohl}" }
+  },
+  "space": {
+    "inline-xs": { "$type": "dimension", "$value": "{dimension.space.2}" },
+    "inline-sm": { "$type": "dimension", "$value": "{dimension.space.3}" },
+    "inline-md": { "$type": "dimension", "$value": "{dimension.space.4}" },
+    "inline-lg": { "$type": "dimension", "$value": "{dimension.space.5}" },
+    "stack-xs": { "$type": "dimension", "$value": "{dimension.space.3}" },
+    "stack-sm": { "$type": "dimension", "$value": "{dimension.space.4}" },
+    "stack-md": { "$type": "dimension", "$value": "{dimension.space.6}" },
+    "stack-lg": { "$type": "dimension", "$value": "{dimension.space.8}" }
+  }
+}

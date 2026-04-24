@@ -1,0 +1,25 @@
+{
+  "name": "kiruk-studio",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "description": "Kiruk Studio — scribbles into worlds. Spec-driven creative operating system.",
+  "author": "Arun Kumaar Srinivasan <arunkumaar.srinivasan@gmail.com> (@kirukism)",
+  "license": "UNLICENSED",
+  "scripts": {
+    "tokens:build": "node scripts/build-tokens.mjs",
+    "tokens:sync-pen": "node scripts/sync-pen-variables.mjs",
+    "tokens:watch": "node scripts/build-tokens.mjs --watch",
+    "spec:validate": "openspec validate --strict",
+    "spec:list": "openspec list",
+    "idea:promote": "node scripts/promote-idea.mjs",
+    "session:capture": "node scripts/capture-session.mjs"
+  },
+  "devDependencies": {
+    "@fission-ai/openspec": "^0.11.0",
+    "style-dictionary": "^4.3.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
