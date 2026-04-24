@@ -1,0 +1,13 @@
+---
+description: OpenSpec lifecycle and validation when working under openspec/ or ideas/
+globs: openspec/**,ideas/**
+alwaysApply: false
+---
+
+# OpenSpec + idea log
+
+1. Read [openspec/AGENTS.md](openspec/AGENTS.md) for folder layout, proposal template, and validation checklist.
+2. Read [openspec/project.md](openspec/project.md) for domain vocabulary.
+3. Do not edit [openspec/specs](openspec/specs) without a corresponding `openspec/changes/<slug>/` (see **Forbidden** in [openspec/AGENTS.md](openspec/AGENTS.md)).
+4. Before apply: `npm run spec:validate` must pass.
+5. For `ideas/log.ndjson` and capture schema, follow [openspec/specs/idea-capture/spec.md](openspec/specs/idea-capture/spec.md) and [.claude/commands/kiruk-capture.md](.claude/commands/kiruk-capture.md) when logging sessions.

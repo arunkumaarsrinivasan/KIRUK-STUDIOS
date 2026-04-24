@@ -1,6 +1,7 @@
 # CLAUDE.md — Kiruk Studio Operating System
 
 > Authoritative context for Claude Code when working in this repo.
+> The same repository is used from **Cursor** (Chat and Composer): [`.cursor/rules/`](.cursor/rules/) mirrors the intent of this file for default behavior; when in doubt or for full detail, agents should still read this file.
 > If this file and any other instruction conflict, this file wins.
 
 ---

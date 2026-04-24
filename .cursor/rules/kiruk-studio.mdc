@@ -1,0 +1,41 @@
+---
+description: Kiruk Studio OS — spec-first workflow, CLAUDE.md authority, repo map, Kiruk slash-command parity
+alwaysApply: true
+---
+
+# Kiruk Studio (Cursor / Composer)
+
+**Authoritative context:** [CLAUDE.md](CLAUDE.md) is canonical. If any instruction conflicts, follow `CLAUDE.md`. For long or voice-sensitive work, @-mention `CLAUDE.md` and [openspec/project.md](openspec/project.md).
+
+## Spec-first pipeline
+
+1. **Intake** — [ideas/inbox.md](ideas/inbox.md) or the `/kiruk-intake` procedure in [.claude/commands](.claude/commands/).
+2. **Propose** — change at `openspec/changes/<slug>/` with deltas; details in [openspec/AGENTS.md](openspec/AGENTS.md).
+3. **Validate** — `npm run spec:validate` (or `npx openspec validate --strict`).
+4. **Apply** — implement with spec links in artifacts; use `/kiruk-artifact` procedure when generating templates.
+5. **Archive** — move to `openspec/archive/<slug>/`, update [CHANGELOG.md](CHANGELOG.md).
+6. **Capture** — after substantive work, run the `/kiruk-capture` procedure (see below).
+
+## Repo map (short)
+
+- `openspec/` — capabilities, changes, archive.
+- `design-system/tokens/`, `design-system/components/` — source; **never** hand-edit `design-system/build/**` (regenerate: `npm run tokens:build`).
+- `kiruk-templates/`, `kiruk-projects/`, `kiruk-ism/`, `ideas/`, `content/`, `scripts/`.
+
+## Kiruk “slash” workflows (same files as Claude Code)
+
+Cursor has no built-in `/kiruk-*` commands. When the user types `/kiruk-…` or the same intent in natural language, follow the **procedure** in the matching file under `.claude/commands/`:
+
+| Intent | Procedure file |
+|--------|------------------|
+| `/kiruk-intake` — structured universe intake → `kiruk-projects/<slug>/intake.md` | [.claude/commands/kiruk-intake.md](.claude/commands/kiruk-intake.md) |
+| `/kiruk-spec` — intake → spec + draft OpenSpec change | [.claude/commands/kiruk-spec.md](.claude/commands/kiruk-spec.md) |
+| `/kiruk-artifact` — render a client template for a universe | [.claude/commands/kiruk-artifact.md](.claude/commands/kiruk-artifact.md) |
+| `/kiruk-capture` — append session decisions to `ideas/log.ndjson` | [.claude/commands/kiruk-capture.md](.claude/commands/kiruk-capture.md) |
+| `/kiruk-ism-new` — scaffold a new ISM experiment | [.claude/commands/kiruk-ism-new.md](.claude/commands/kiruk-ism-new.md) |
+
+## Non-negotiables (reminder)
+
+No trend-chasing; eye-motif or justify absence; no new design token without a spec delta in [openspec/specs/design-tokens](openspec/specs/design-tokens); do not add `kiruk-ism/` subfolders without the `/kiruk-ism-new` flow.
+
+When working in `openspec/**` or `ideas/**`, the project’s glob-scoped OpenSpec rule applies in addition to this one.
