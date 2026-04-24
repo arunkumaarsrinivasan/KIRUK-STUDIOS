@@ -14,6 +14,7 @@ The OpenSpec workspace is Kiruk Studio's **single source of truth**. Every durab
 | **Portal** | A transition/interaction moment between universes or states. |
 | **Eye-motif test** | Every visual artifact must contain an eye motif or justify absence in its spec. |
 | **Toolbending** | Using a tool in a way it was not designed for, as a core craft discipline. |
+| **Guard** | A recorded prevention for a past mistake: spec scenario, script, rule, or check—see `operational-learning` and [LEARNINGS.md](../LEARNINGS.md). |
 | **Capability** | A spec-governed studio function (e.g. `brand-system`, `template-proposal`). |
 
 ## Capabilities (source of truth = `openspec/specs/`)
@@ -22,6 +23,7 @@ The OpenSpec workspace is Kiruk Studio's **single source of truth**. Every durab
 - `design-tokens` — DTCG JSON source + Style Dictionary outputs
 - `idea-capture` — inbox + log + promoted pipeline
 - `repo-privacy` — secrets hygiene, private client/API data, code review and contribution process
+- `operational-learning` — log mistakes in `LEARNINGS.md`, add guards, strengthen on repeat
 - `ism` — ISM lab registry (names-only placeholder)
 - `template-portfolio` · `template-services` · `template-pitch` · `template-proposal` · `template-contract` · `template-invoice` · `template-onboarding`
 

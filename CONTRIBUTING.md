@@ -2,6 +2,8 @@
 
 This repo is **open for learning**; it is also **strict about what must stay private**. Read [openspec/specs/repo-privacy/spec.md](openspec/specs/repo-privacy/spec.md) before your first meaningful change.
 
+**Mistakes and repeats:** We record material failures and **guards** in [LEARNINGS.md](LEARNINGS.md) (see [openspec/specs/operational-learning/spec.md](openspec/specs/operational-learning/spec.md)). Before reworking an area that previously broke, read recent entries. After fixing a significant repeat-worthy issue, append a new dated section—do not hide repeats by editing old text.
+
 ## Before you open a PR
 
 1. **No secrets** — Never commit `.env`, real API keys, tokens, private client dumps, or PII. Use `.env.example` for variable **names** only. See [AGENTS.md](AGENTS.md) and `.cursor/rules/privacy-secrets.mdc`.

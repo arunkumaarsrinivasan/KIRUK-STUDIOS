@@ -17,6 +17,7 @@ alwaysApply: true
 ## Review mindset
 
 - Read diffs for **accidental** secret strings, path mistakes, and token files.
+- If the change fixes a **repeat** or **material** fault, confirm [LEARNINGS.md](LEARNINGS.md) has a new entry with a concrete **Guard** (see [lessons-learned](.cursor/rules/lessons-learned.mdc)).
 - Prefer **clarity** in commit messages and PR summaries so future you (and strangers) can learn from the story.
 
 Solo work still uses the same checklist; self-review is real review when you run through every box honestly.

@@ -17,6 +17,7 @@
 - [ ] **OpenSpec:** If I changed requirements or behavior, I used `openspec/changes/<slug>/` and/or updated the right `openspec/specs/**/spec.md` with matching scenarios, and I ran `npm run spec:validate` when applicable.
 - [ ] **idea-capture / logs:** If I touched `ideas/log.ndjson` or capture scripts, I did not store raw secrets; redaction rules still apply.
 - [ ] **CHANGELOG:** I added an `## Unreleased` entry in [CHANGELOG.md](../CHANGELOG.md) if this change is user-facing or spec-notable.
+- [ ] **LEARNINGS / repeat risk:** If this PR fixes a **material** mistake or a **repeat** of a past failure, I appended [LEARNINGS.md](../LEARNINGS.md) with Mistake / Root cause / Fix / **Guard** (or N/A is honest).
 - [ ] **Review:** I self-reviewed diffs; I am ready for another pair of eyes if this is non-trivial.
 
 ## How to test

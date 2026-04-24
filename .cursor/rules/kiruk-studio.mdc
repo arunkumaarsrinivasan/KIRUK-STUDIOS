@@ -40,4 +40,6 @@ No trend-chasing; eye-motif or justify absence; no new design token without a sp
 
 **Privacy:** Follow [`.cursor/rules/privacy-secrets.mdc`](.cursor/rules/privacy-secrets.mdc) and [repo-privacy spec](openspec/specs/repo-privacy/spec.md) — no API keys, tokens, or private client data in tracked files. **Review:** [`.cursor/rules/code-review.mdc`](.cursor/rules/code-review.mdc) and the PR template in `.github/`.
 
+**Learning:** Read [LEARNINGS.md](LEARNINGS.md) when the task touches a known pitfall; follow [`.cursor/rules/lessons-learned.mdc`](.cursor/rules/lessons-learned.mdc) and [operational-learning spec](openspec/specs/operational-learning/spec.md) after material mistakes.
+
 When working in `openspec/**` or `ideas/**`, the project’s glob-scoped OpenSpec rule applies in addition to this one.

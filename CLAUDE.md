@@ -84,5 +84,6 @@ From the founder's manifesto (`content/manifesto.md`) + vision doc §1.3:
 
 - After substantive creative work → `/kiruk-capture`.
 - After finishing a task → append a dated entry to `CHANGELOG.md` under `## Unreleased`.
+- After a **material mistake** is fixed (wrong behavior, spec miss, build break, privacy or review slip) → append to `LEARNINGS.md` with **Mistake / Root cause / Fix / Guard** (see `openspec/specs/operational-learning/spec.md`). If the same failure class happens again, add a new entry and strengthen the guard—do not rewrite history.
 - Stale `TASKS.md` entries → update or remove in the same session.
 - Plan change? Edit `ROADMAP.md` and record the "why" in `CHANGELOG.md`.

@@ -1,0 +1,20 @@
+---
+description: Learn from documented mistakes in LEARNINGS.md; strengthen guards on repeat; never hide repeats
+alwaysApply: true
+---
+
+# Learn from mistakes (operational learning)
+
+**Spec:** [openspec/specs/operational-learning/spec.md](openspec/specs/operational-learning/spec.md) · **Log:** [LEARNINGS.md](LEARNINGS.md) at repo root.
+
+## When planning or reviewing work
+
+1. If the user mentions a **past bug**, “don’t repeat that,” or a **known pitfall**, read [LEARNINGS.md](LEARNINGS.md) and apply the **Guard** from the latest relevant entry.
+2. When you **fix** a material mistake (wrong behavior, spec miss, build break, privacy slip, repeated review issue), **append** a new dated section to `LEARNINGS.md` with **Mistake / Root cause / Fix / Guard**. The guard must be concrete (spec + scenario, validation, rule, or script—not “be careful”).
+3. If the user reports the **same failure class** as an existing entry, do **not** delete or rewrite the old log. Add a **new** entry, call out the repeat honestly, and **tighten** prevention (e.g. add a `#### Scenario:` in the right spec, extend the PR template, or add a check).
+4. Prefer linking the **Guard** to `openspec/specs/**` or an existing command so the system enforces the lesson, not only human memory.
+
+## What not to do
+
+- Do not treat `LEARNINGS.md` as scratch space for secrets or client-only data (see [repo-privacy](openspec/specs/repo-privacy/spec.md)).
+- Do not append noise for trivial one-off typos with no repeat risk.

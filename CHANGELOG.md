@@ -9,6 +9,8 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/) with an a
 ## [Unreleased]
 
 ### Added
+- **`operational-learning` capability** — [LEARNINGS.md](LEARNINGS.md) (append-only mistake log with **Mistake / Root cause / Fix / Guard**), [openspec/specs/operational-learning/spec.md](openspec/specs/operational-learning/spec.md), and always-on Cursor rule [`.cursor/rules/lessons-learned.mdc`](.cursor/rules/lessons-learned.mdc). Strengthen prevention on repeat; never rewrite old entries to hide a repeat. Proposal: [openspec/archive/add-operational-learning/proposal.md](openspec/archive/add-operational-learning/proposal.md).
+  - **Why:** make “learn from the mistake, don’t repeat it” a first-class studio practice for humans and AI.
 - **`repo-privacy` capability** — OpenSpec spec for keeping API keys and private client data out of git, optional `kiruk-projects/.../.local-only/` pattern, and code-review expectations. Supporting files: [CONTRIBUTING.md](CONTRIBUTING.md), [`.github/PULL_REQUEST_TEMPLATE.md`](.github/PULL_REQUEST_TEMPLATE.md), [`.env.example`](.env.example), stricter [`.gitignore`](.gitignore), Cursor rules [`.cursor/rules/privacy-secrets.mdc`](.cursor/rules/privacy-secrets.mdc) and [`.cursor/rules/code-review.mdc`](.cursor/rules/code-review.mdc).
   - **Why:** ship an open, transparent process without leaking credentials or other people’s confidential material; give humans and agents the same clear rules and PR checklist.
 

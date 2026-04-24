@@ -43,6 +43,7 @@ npx openspec validate       # gate all specs
 | Read the manifesto | [content/manifesto.md](./content/manifesto.md) |
 | Contribute or review a PR | [CONTRIBUTING.md](./CONTRIBUTING.md), [`.github/PULL_REQUEST_TEMPLATE.md`](./.github/PULL_REQUEST_TEMPLATE.md) |
 | Keep secrets and client data safe | [openspec/specs/repo-privacy/spec.md](./openspec/specs/repo-privacy/spec.md) |
+| Learn from past mistakes (guards) | [LEARNINGS.md](./LEARNINGS.md), [operational-learning spec](./openspec/specs/operational-learning/spec.md) |
 
 ## Spec-first flow
 

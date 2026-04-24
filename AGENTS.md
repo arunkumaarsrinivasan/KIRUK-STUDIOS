@@ -10,6 +10,7 @@ Terse navigation for any AI coding agent (Claude Code, Cursor, etc.) working in 
 4. Read `openspec/project.md` for domain vocabulary and conventions.
 5. Read `openspec/AGENTS.md` for OpenSpec lifecycle rules.
 6. Read `openspec/specs/repo-privacy/spec.md` for **secrets, private data, and review** expectations (pair with [CONTRIBUTING.md](CONTRIBUTING.md) and [`.github/PULL_REQUEST_TEMPLATE.md`](.github/PULL_REQUEST_TEMPLATE.md)).
+7. Read [LEARNINGS.md](LEARNINGS.md) and `openspec/specs/operational-learning/spec.md` for **recorded mistakes and guards** so you do not repeat known failure modes.
 
 ## Cursor & Composer
 
@@ -39,6 +40,7 @@ Terse navigation for any AI coding agent (Claude Code, Cursor, etc.) working in 
 - `design-tokens` — DTCG JSON, Style Dictionary outputs
 - `idea-capture` — inbox → log → promoted pipeline
 - `repo-privacy` — no secrets in git, private client/API data boundaries, PR checklist, [CONTRIBUTING.md](CONTRIBUTING.md)
+- `operational-learning` — append-only [LEARNINGS.md](LEARNINGS.md), concrete **Guard** per entry, strengthen on repeat
 - `ism` — ISM lab (names-only for now; no subproject specs until `/kiruk-ism-new` is run)
 - `template-{portfolio,services,pitch,proposal,contract,invoice,onboarding}` — 7 client docs
 
