@@ -13,6 +13,8 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/) with an a
   - **Why:** ship an open, transparent process without leaking credentials or other people’s confidential material; give humans and agents the same clear rules and PR checklist.
 
 ### Changed
+- **OpenSpec** — `add-repo-privacy-spec` moved from `openspec/changes/` to `openspec/archive/add-repo-privacy-spec/` after apply.
+  - **Why:** match the documented propose → validate → apply → archive lifecycle.
 - **Removed Pencil MCP** from entire studio OS. Design system is now code-only.
   - **Why**: founder explicit decision. All visual primitives live as React SVG in `design-system/components/`.
 - **design-system/components/** added — 6 React SVG components: `EyePrimary`, `EyeIris`, `EyeGaze`, `EyePortal`, `EyeConstellation`, `Scribble`. Colors via CSS custom properties; no hardcoded hex.
