@@ -1,5 +1,4 @@
 {
-  "$description": "Kiruk Studio — core primitive tokens. Layer 1. No aliases. Do not reference from UI code directly; use semantic.json.",
   "color": {
     "void": { "$type": "color", "$value": "#0A0A0B", "$description": "Deep background — the unwritten universe." },
     "scribble-ink": { "$type": "color", "$value": "#F5F3EE", "$description": "Primary foreground — the scribble line on paper." },
@@ -25,9 +24,9 @@
     }
   },
   "fontFamily": {
-    "rational": { "$type": "fontFamily", "$value": "\"Inter\", ui-sans-serif, system-ui, sans-serif", "$description": "Structural face — UI, grids, forms. Swap to locked pick during Phase 1." },
-    "expressive": { "$type": "fontFamily", "$value": "\"Instrument Serif\", Georgia, serif", "$description": "Heading face — manifesto voice, poster moments. Swap to locked pick during Phase 1." },
-    "mono": { "$type": "fontFamily", "$value": "\"JetBrains Mono\", ui-monospace, monospace" }
+    "rational": { "$type": "fontFamily", "$value": "Inter, ui-sans-serif, system-ui, sans-serif", "$description": "Structural face — UI, grids, forms." },
+    "expressive": { "$type": "fontFamily", "$value": "Instrument Serif, Georgia, serif", "$description": "Heading face — manifesto voice." },
+    "mono": { "$type": "fontFamily", "$value": "JetBrains Mono, ui-monospace, monospace" }
   },
   "fontWeight": {
     "regular": { "$type": "fontWeight", "$value": 400 },

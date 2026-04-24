@@ -1,32 +1,16 @@
-# Pen Files
+# pen-files — INACTIVE
 
-Master `.pen` file lives here: `kiruk-design.pen`.
+Kiruk Studio no longer uses Pencil MCP for design.
 
-## Current status
+All brand visuals (Eye marks, Kirukal/Scribble) are React SVG components in:
 
-Bootstrap session scaffolded the Eye/* component library and base tokens in the Pencil editor buffer via MCP. **File is not yet persisted to disk** — Pencil MCP cannot save a new document to a target path from the API; Save-As is a UI-only action.
+```
+design-system/components/
+  eye/         — EyePrimary, EyeIris, EyeGaze, EyePortal, EyeConstellation
+  kirukal/     — Scribble
+  index.ts     — barrel
+```
 
-## Action required
+Design tokens live in `design-system/tokens/` and compile to `design-system/build/`.
 
-1. Open Pencil editor.
-2. If the current buffer is named `pencil-new.pen` (unsaved), **File → Save As** → navigate to this folder → save as `kiruk-design.pen`.
-3. Reopen via `mcp__pencil__open_document("C:\\Users\\arunk\\KIRUKULAM\\KIRUK-STUDIOS\\design-system\\pen-files\\kiruk-design.pen")` to verify.
-
-## Scaffolded contents (in buffer)
-
-Reusable components:
-- `Eye/Primary` — primary eye-mark (sclera + iris + pupil + highlight)
-- `Eye/Iris` — standalone iris (secondary mark)
-- `Eye/Gaze` — horizontal-lid gaze variant (secondary)
-- `Eye/Portal` — concentric portal rings (secondary)
-- `Eye/Constellation` — multi-eye pattern (secondary)
-- `Kirukal/Scribble` — hand-drawn scribble mark
-
-Variables (seeded from `design-system/tokens/semantic.json`):
-- `bg`, `fg`, `paper`, `accent`, `accent-alt`, `halo`, `kohl`, `gaze-dim`, `space-sm`, `space-md`, `space-lg`, `radius-md`
-
-## Hygiene
-
-- Edit only via pencil MCP (`batch_design`, `set_variables`).
-- Do not read/grep the `.pen` file contents directly — binary/encrypted.
-- To re-sync tokens from `design-system/tokens/`, run `npm run tokens:build && npm run tokens:sync-pen`.
+This folder is kept for reference only. Do not add .pen files.

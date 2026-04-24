@@ -35,13 +35,10 @@ Terse navigation for any AI coding agent (Claude Code, Cursor, etc.) working in 
 ## Forbidden paths
 
 - `design-system/build/**` — generated, regenerate via `npm run tokens:build`
-- Direct reads of `*.pen` — use pencil MCP only
 - Any file outside `.claude/commands/` and `.claude/settings.json` inside `.claude/` — local state
 
 ## Tool allowlist
 
 - `npx openspec validate` — spec gate
-- `npm run tokens:build` — regenerate tokens
-- `npm run tokens:sync-pen` — push tokens to `kiruk-design.pen`
+- `npm run tokens:build` — regenerate design-system/build/
 - `/kiruk-intake`, `/kiruk-spec`, `/kiruk-artifact`, `/kiruk-capture`, `/kiruk-ism-new` — slash commands
-- Pencil MCP: `open_document`, `batch_get`, `batch_design`, `set_variables`, `get_variables`, `get_screenshot`

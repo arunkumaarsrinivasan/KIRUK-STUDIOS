@@ -12,10 +12,10 @@ The onboarding doc MUST open with a personalized welcome addressing the client b
 The doc MUST explain the scribble → spec → artifact flow in ≤7 steps with a diagram or ASCII flow.
 
 ### Requirement: Collaboration expectations
-The doc MUST state: response cadence (async default, weekly sync), preferred tools (Loom walkthroughs, Notion, Pencil), and escalation path.
+The doc MUST state: response cadence (async default, weekly sync), preferred tools (Loom walkthroughs, Notion, GitHub), and escalation path.
 
 ### Requirement: Tool stack list
-The doc MUST list the tools the client will see across the engagement (Pencil, Notion, Figma if needed, GitHub, etc.) and what each is used for.
+The doc MUST list the tools the client will see across the engagement (Notion, GitHub, Loom, Figma if needed, etc.) and what each is used for.
 
 ### Requirement: First actions
 The doc MUST end with ≤5 concrete "do these first" actions for the client (e.g., accept Notion invite, review intake, confirm universe codename).

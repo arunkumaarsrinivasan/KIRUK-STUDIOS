@@ -8,7 +8,6 @@
   "license": "UNLICENSED",
   "scripts": {
     "tokens:build": "node scripts/build-tokens.mjs",
-    "tokens:sync-pen": "node scripts/sync-pen-variables.mjs",
     "tokens:watch": "node scripts/build-tokens.mjs --watch",
     "spec:validate": "openspec validate --strict",
     "spec:list": "openspec list",
@@ -18,6 +17,10 @@
   "devDependencies": {
     "@fission-ai/openspec": "^0.11.0",
     "style-dictionary": "^4.3.0"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
   },
   "engines": {
     "node": ">=20"

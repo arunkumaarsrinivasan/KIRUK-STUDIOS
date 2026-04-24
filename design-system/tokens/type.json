@@ -1,5 +1,4 @@
 {
-  "$description": "Typography tokens. Pair: one rational + one expressive face (brand-system spec requirement).",
   "font-rational": { "$type": "fontFamily", "$value": "{fontFamily.rational}" },
   "font-expressive": { "$type": "fontFamily", "$value": "{fontFamily.expressive}" },
   "font-mono": { "$type": "fontFamily", "$value": "{fontFamily.mono}" },
@@ -22,7 +21,7 @@
   },
   "tracking": {
     "tight": { "$type": "dimension", "$value": "-0.02em" },
-    "normal": { "$type": "dimension", "$value": "0" },
+    "normal": { "$type": "dimension", "$value": "0em" },
     "wide": { "$type": "dimension", "$value": "0.08em" }
   }
 }

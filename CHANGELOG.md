@@ -8,6 +8,15 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/) with an a
 
 ## [Unreleased]
 
+### Changed
+- **Removed Pencil MCP** from entire studio OS. Design system is now code-only.
+  - **Why**: founder explicit decision. All visual primitives live as React SVG in `design-system/components/`.
+- **design-system/components/** added — 6 React SVG components: `EyePrimary`, `EyeIris`, `EyeGaze`, `EyePortal`, `EyeConstellation`, `Scribble`. Colors via CSS custom properties; no hardcoded hex.
+- **Token pipeline live** — `npm run tokens:build` emits CSS/Tailwind/TS. Fixed DTCG `usesDtcg: true` + Windows glob.
+- **Token files** — fixed circular `color.paper` alias, removed top-level `$description` collision, restructured motion/components with proper namespacing.
+- **Updated specs**: `brand-system` + `design-tokens` now reference code components, not Pencil files.
+  - **Why**: spec claims must match actual implementation.
+
 ### Added
 - **Studio OS bootstrap** — scaffolded repo structure, root docs, openspec skeleton, planning docs (`VISION-MISSION.md`, `ROADMAP.md`, `TASKS.md`, this file).
   - **Why**: establish spec-first, idea-capturing foundation before any brand/ISM work begins. Vision doc §6 mandates Claude Code as in-house creative engineer with OpenSpec workflow.

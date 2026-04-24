@@ -2,25 +2,25 @@
 
 ## Purpose
 
-The brand-system capability governs Kiruk Studio's own identity — the eye-motif visual language, logo system, color direction, typography pairing, motion rules, and the component library in `design-system/pen-files/kiruk-design.pen` that all other artifacts draw from. It is the source of visual coherence across every universe the studio builds.
+The brand-system capability governs Kiruk Studio's own identity — the eye-motif visual language, logo system, color direction, typography pairing, motion rules, and the React SVG component library in `design-system/components/` that all other artifacts draw from. It is the source of visual coherence across every universe the studio builds.
 
 ## Requirements
 
 ### Requirement: Primary eye-mark
-The studio MUST define exactly one primary eye-mark logo, authored in `kiruk-design.pen` as the component `Eye/Primary`, and exported as SVG to `design-system/build/logos/primary.svg`.
+The studio MUST define exactly one primary eye-mark logo as a React SVG component at `design-system/components/eye/EyePrimary.tsx`, with a static SVG export at `design-system/build/logos/primary.svg`.
 
 #### Scenario: Primary mark referenced by any artifact
 - GIVEN any rendered artifact (template output, website, devlog)
 - WHEN the artifact displays the studio's identity
-- THEN it MUST reference `Eye/Primary` (or a documented derivative) and no other mark
+- THEN it MUST import `EyePrimary` from `design-system/components/eye/EyePrimary` (or a documented derivative) and no other mark
 
 ### Requirement: Secondary eye-marks
-The studio MUST define ≥3 secondary eye-marks for pattern, favicon, and motion use, each authored as `Eye/<Variant>` in `kiruk-design.pen`.
+The studio MUST define ≥3 secondary eye-marks as React SVG components in `design-system/components/eye/`, named `EyeIris`, `EyeGaze`, `EyePortal`, `EyeConstellation`.
 
 #### Scenario: Secondary mark catalog complete
 - GIVEN the brand-system spec is marked v1-locked
-- WHEN `mcp__pencil__batch_get` is run against `Eye/*`
-- THEN ≥4 components return (1 primary + ≥3 secondary)
+- WHEN `design-system/components/eye/` is listed
+- THEN ≥4 component files exist (EyePrimary + ≥3 secondary)
 
 ### Requirement: Palette derived from tokens
 The brand palette MUST be sourced from `design-system/tokens/core.json` and `design-system/tokens/semantic.json`. No hardcoded brand hex values outside these files.
@@ -28,7 +28,7 @@ The brand palette MUST be sourced from `design-system/tokens/core.json` and `des
 #### Scenario: Palette drift detection
 - GIVEN a visual artifact using a brand color
 - WHEN the color is audited against token build output (`design-system/build/css/tokens.css`)
-- THEN every color value resolves to a token name, not a raw hex
+- THEN every color value resolves to a CSS custom property, not a raw hex
 
 ### Requirement: Type pairing
 The brand MUST pair one **rational** typeface (for UI, structure, grids) with one **expressive** typeface (for headings, manifesto voice). Both MUST be declared in `design-system/tokens/type.json`.
@@ -65,8 +65,9 @@ Brand output MUST comply with the five non-negotiables in `CLAUDE.md` §4. A bra
 
 ## Acceptance Artifacts
 
-- `design-system/pen-files/kiruk-design.pen` with `Eye/Primary`, `Eye/Iris`, `Eye/Gaze`, `Eye/Portal`, `Eye/Constellation`, `Kirukal/Scribble`
-- `design-system/build/logos/primary.svg` + `secondary-{1,2,3}.svg`
+- `design-system/components/eye/{EyePrimary,EyeIris,EyeGaze,EyePortal,EyeConstellation}.tsx`
+- `design-system/components/kirukal/Scribble.tsx`
+- `design-system/components/index.ts` (barrel)
+- `design-system/build/logos/primary.svg` + `secondary-{iris,gaze,portal}.svg`
 - `design-system/tokens/{core,semantic,type,motion}.json` complete
 - `content/manifesto.md` referencing the brand
-- Front-matter convention documented here

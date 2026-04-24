@@ -60,7 +60,7 @@ From the founder's manifesto (`content/manifesto.md`) + vision doc §1.3:
 - `kiruk-templates/<name>/` — 7 reusable document templates.
 - `design-system/tokens/` — DTCG JSON, single source for brand tokens.
 - `design-system/build/` — generated, do not hand-edit.
-- `design-system/pen-files/kiruk-design.pen` — master Pencil doc. Edit ONLY via pencil MCP tools.
+- `design-system/components/` — React SVG components for Eye/* marks + Kirukal/Scribble. Edit directly.
 - `ideas/` — inbox + append-only log + promoted stubs.
 - `content/` — manifesto, devlogs, case studies.
 - `scripts/` — node ESM scripts.
@@ -71,7 +71,6 @@ From the founder's manifesto (`content/manifesto.md`) + vision doc §1.3:
 
 ## 6. Forbidden Actions
 
-- Do NOT read or grep `.pen` files directly. Use pencil MCP (`batch_get`, `batch_design`).
 - Do NOT edit files in `design-system/build/` by hand — regenerate via `npm run tokens:build`.
 - Do NOT commit secrets, `.env`, or anything in `.claude/` outside the committed `commands/` + `settings.json`.
 - Do NOT create subfolders under `kiruk-ism/` unless the user explicitly runs `/kiruk-ism-new`. Name-only for now.

@@ -1,35 +1,43 @@
 /**
  * Style Dictionary v4 config.
- * Consumes design-system/tokens/*.json (DTCG format) and emits:
+ * Consumes design-system/tokens/*.json (W3C DTCG format) and emits:
  *   build/css/tokens.css      — CSS custom properties
  *   build/tailwind/tokens.cjs — Tailwind theme extension
  *   build/ts/tokens.ts        — TypeScript exports
- *   build/pen/variables.json  — Pencil MCP variables payload
  *
  * Spec: openspec/specs/design-tokens/spec.md
  */
 const path = require('node:path');
 
+// glob requires forward slashes even on Windows
+const tokensGlob = path
+  .join(__dirname, 'tokens', '**', '*.json')
+  .split(path.sep)
+  .join('/');
+
+const buildBase = path.join(__dirname, 'build').split(path.sep).join('/') + '/';
+
 /** @type {import('style-dictionary').Config} */
 module.exports = {
   log: { warnings: 'warn', verbosity: 'default' },
-  source: [path.join(__dirname, 'tokens/**/*.json')],
-  preprocessors: ['tokens-studio'],
+  // DTCG opt-in: tokens use $type / $value
+  usesDtcg: true,
+  source: [tokensGlob],
   platforms: {
     css: {
       transformGroup: 'css',
-      buildPath: path.join(__dirname, 'build/css/'),
+      buildPath: buildBase + 'css/',
       files: [
         {
           destination: 'tokens.css',
           format: 'css/variables',
-          options: { outputReferences: true }
+          options: { outputReferences: true, selector: ':root' }
         }
       ]
     },
     tailwind: {
       transformGroup: 'js',
-      buildPath: path.join(__dirname, 'build/tailwind/'),
+      buildPath: buildBase + 'tailwind/',
       files: [
         {
           destination: 'tokens.cjs',
@@ -39,21 +47,11 @@ module.exports = {
     },
     ts: {
       transformGroup: 'js',
-      buildPath: path.join(__dirname, 'build/ts/'),
+      buildPath: buildBase + 'ts/',
       files: [
         {
           destination: 'tokens.ts',
           format: 'javascript/es6',
-        }
-      ]
-    },
-    pen: {
-      transformGroup: 'js',
-      buildPath: path.join(__dirname, 'build/pen/'),
-      files: [
-        {
-          destination: 'variables.json',
-          format: 'json/flat',
         }
       ]
     }

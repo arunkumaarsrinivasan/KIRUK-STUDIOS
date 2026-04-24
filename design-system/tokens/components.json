@@ -1,16 +1,17 @@
 {
-  "$description": "Component tokens — Layer 3. Reference semantic.json only. Add entries as brand-system spec adds components.",
-  "button": {
-    "bg": { "$type": "color", "$value": "{color.accent}" },
-    "fg": { "$type": "color", "$value": "{color.bg}" },
-    "radius": { "$type": "dimension", "$value": "{radius.md}" },
-    "padding-x": { "$type": "dimension", "$value": "{space.inline-lg}" },
-    "padding-y": { "$type": "dimension", "$value": "{space.inline-sm}" }
-  },
-  "eye-mark": {
-    "iris-color": { "$type": "color", "$value": "{color.accent}" },
-    "pupil-color": { "$type": "color", "$value": "{color.bg}" },
-    "halo-color": { "$type": "color", "$value": "{color.halo}" },
-    "sclera-color": { "$type": "color", "$value": "{color.paper}" }
+  "component": {
+    "button": {
+      "bg": { "$type": "color", "$value": "{color.accent}" },
+      "fg": { "$type": "color", "$value": "{color.bg}" },
+      "radius": { "$type": "dimension", "$value": "{radius.md}" },
+      "padding-x": { "$type": "dimension", "$value": "{space.inline-lg}" },
+      "padding-y": { "$type": "dimension", "$value": "{space.inline-sm}" }
+    },
+    "eye-mark": {
+      "iris": { "$type": "color", "$value": "{color.accent}" },
+      "pupil": { "$type": "color", "$value": "{color.bg}" },
+      "halo": { "$type": "color", "$value": "{color.halo}" },
+      "sclera": { "$type": "color", "$value": "{color.paper}" }
+    }
   }
 }

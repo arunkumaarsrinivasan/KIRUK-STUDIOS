@@ -12,7 +12,7 @@ Render per `openspec/specs/template-onboarding/spec.md`.
 2. **Welcome, <Universe>** — addressed by universe name
 3. **How we work** — scribble → spec → artifact flow in ≤7 steps, ASCII diagram
 4. **What to expect** — async default, weekly Loom sync, response cadence
-5. **Our tools** — Pencil, Notion, GitHub, Figma (if needed), Loom
+5. **Our tools** — Notion, GitHub, Loom, Figma (if needed)
 6. **Your first actions** — ≤5 concrete tasks (accept Notion invite, review intake, confirm codename, etc.)
 7. **Questions** — contact + escalation path
 

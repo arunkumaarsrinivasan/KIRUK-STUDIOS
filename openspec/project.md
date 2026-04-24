@@ -70,11 +70,12 @@ Before `apply`:
 
 - Node ≥ 20, ESM (`"type": "module"`).
 - Design tokens authored in **W3C DTCG format** (`$type`, `$value`).
-- Token build via **Style Dictionary v4**.
-- Pencil `.pen` files edited **only** via pencil MCP (`batch_design`, `set_variables`).
+- Token build via **Style Dictionary v4** → `design-system/build/`.
+- Brand visuals authored as **React SVG components** in `design-system/components/`.
 - Commit messages: see repo `CHANGELOG.md` style + Conventional Commits (`feat:`, `spec:`, `token:`, `chore:`).
 
 ## Out of scope here
 
 - Financial / tax tracking (lives in Notion workspace per vision §5.2).
 - Personal portfolio (`C:\Users\arunk\KIRUKULAM\kiruk-in`) — referenced for founder voice only, not imported.
+- Design tool files (.pen, .fig, .sketch) — all visual primitives live as code in `design-system/components/`.

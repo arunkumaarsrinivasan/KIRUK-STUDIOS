@@ -27,7 +27,7 @@ Read `openspec/specs/ism/spec.md` first for the registered names and template.
 5. Open (or create) `openspec/changes/ism-$ARGUMENTS-spawn/proposal.md` describing the spawn and its Why.
 6. Append to `TASKS.md` under the current phase: `- [ ] (P1) Ship ism-$ARGUMENTS prototype v1 — spec: openspec/specs/ism-$ARGUMENTS/spec.md`.
 7. Append to `CHANGELOG.md` `## [Unreleased]` → `### Added`: "ISM spawned: $ARGUMENTS. **Why**: <ask user>".
-8. Print: "Spawned ism-$ARGUMENTS. Next: fill design-notes.md, validate the change, start sketching in Pencil."
+8. Print: "Spawned ism-$ARGUMENTS. Next: fill design-notes.md, validate the change, start building in code."
 
 ## Rules
 
