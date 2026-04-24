@@ -10,6 +10,7 @@ This repo is the studio's operating system — a spec-driven, idea-capturing, de
 
 ### Open & transparent
 
+- **Ongoing journey:** Clarity and “beyond imagination” are **not** expected on day one. The studio iterates in the open—rough ideas, multiple passes, dead ends, and wins stay visible in [ideas/](./ideas/) and [CHANGELOG.md](./CHANGELOG.md). [CLAUDE.md](./CLAUDE.md) §2 names this explicitly: imagination and exploration first; **durable** promises live in OpenSpec when an idea is ready to lock.
 - **End-to-end:** [ideas/](./ideas/) (inbox, append-only log, promoted stubs), [openspec/](./openspec/) (capabilities and change history), [CHANGELOG.md](./CHANGELOG.md) for what shipped and why.
 - **No hidden “making of”** beyond private client secrets: if something is safe to version, it should live here so others (and future you) can learn from the path, not just the highlight reel.
 - **Mistakes are part of the artifact:** when something is wrong, fix it in the open and document the correction in the changelog or change proposals when it matters to the system.

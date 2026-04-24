@@ -40,4 +40,4 @@ Runs a structured intake conversation and writes `kiruk-projects/<slug>/intake.m
 
 - Do NOT skip questions to save time.
 - Do NOT fill in blanks the user didn't give you.
-- If the brief smells like trend-chasing or template-cloning, surface it and ask the user to confirm they want Kiruk anyway (reference CLAUDE.md §4).
+- If the brief smells like trend-chasing or template-cloning, surface it and ask the user to confirm they want Kiruk anyway (reference CLAUDE.md §5).

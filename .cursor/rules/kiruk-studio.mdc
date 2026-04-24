@@ -7,6 +7,8 @@ alwaysApply: true
 
 **Authoritative context:** [CLAUDE.md](CLAUDE.md) is canonical. If any instruction conflicts, follow `CLAUDE.md`. For long or voice-sensitive work, @-mention `CLAUDE.md` and [openspec/project.md](openspec/project.md).
 
+**Iteration and expression:** This studio values **many passes** and **unfinished, wild work** in [ideas/inbox.md](ideas/inbox.md). Do not use these rules to force premature clarity or to block imagination—see [CLAUDE.md](CLAUDE.md) §2. OpenSpec is for when something must become **durable**; before that, stay loose, playful, and transparent about detours.
+
 ## Spec-first pipeline
 
 1. **Intake** — [ideas/inbox.md](ideas/inbox.md) or the `/kiruk-intake` procedure in [.claude/commands](.claude/commands/).

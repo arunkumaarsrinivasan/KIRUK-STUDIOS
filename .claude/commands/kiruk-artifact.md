@@ -26,6 +26,6 @@ Read `CLAUDE.md` + the target template's generator at `kiruk-templates/<template
 - [ ] Eye-motif present OR front-matter justifies absence.
 - [ ] Every required section from `openspec/specs/template-<name>/spec.md` present.
 - [ ] Universe-themed phase names (no "Phase 1") for pitch/proposal/invoice.
-- [ ] Voice matches `CLAUDE.md` §2.
+- [ ] Voice matches `CLAUDE.md` §3.
 
 If any check fails, report and do not declare success.

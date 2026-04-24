@@ -40,6 +40,7 @@ In parallel, we run the **ISM Lab** — self-initiated micro-worlds that keep th
 6. **Spec as truth.** If it isn't in `openspec/specs/`, it isn't real.
 7. **Collaboration over solo-brilliance.** 30 voices beat one genius.
 8. **Ship to learn.** Public devlogs. Case studies. ISM launches.
+9. **Journey over first-pass clarity.** The studio does not owe a final, legible product in one step; it iterates—fail, succeed, repeat—until the work earns its form. Specs and process **catch up** to imagination; they do not replace it.
 
 ---
 

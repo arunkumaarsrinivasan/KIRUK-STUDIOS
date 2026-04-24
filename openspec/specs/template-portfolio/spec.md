@@ -25,7 +25,7 @@ The portfolio MUST include a dedicated ISM section once ≥1 ISM is portfolio-el
 Inherits brand-system requirement: eye motif present OR front-matter justifies absence.
 
 ### Requirement: Tone match
-Voice MUST match founder context in `CLAUDE.md` §2: narrative-driven, process-transparent, playful-precise.
+Voice MUST match founder context in `CLAUDE.md` §3: narrative-driven, process-transparent, playful-precise.
 
 #### Scenario: Voice check
 - GIVEN generated portfolio text

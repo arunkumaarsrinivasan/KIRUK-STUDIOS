@@ -9,7 +9,7 @@
 
 ## Active — Phase 0 (OS Bootstrap)
 
-- [~] (P0) Scaffold root docs — spec: CLAUDE.md §5
+- [~] (P0) Scaffold root docs — spec: CLAUDE.md §6
 - [~] (P0) Scaffold openspec skeleton — spec: openspec/project.md
 - [ ] (P0) Author `openspec/specs/brand-system/spec.md` v1
 - [ ] (P0) Author `openspec/specs/design-tokens/spec.md` v1

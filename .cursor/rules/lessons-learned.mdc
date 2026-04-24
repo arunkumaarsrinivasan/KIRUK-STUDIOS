@@ -7,6 +7,8 @@ alwaysApply: true
 
 **Spec:** [openspec/specs/operational-learning/spec.md](openspec/specs/operational-learning/spec.md) · **Log:** [LEARNINGS.md](LEARNINGS.md) at repo root.
 
+**Does not block exploration** — [CLAUDE.md](CLAUDE.md) §2: messy iteration and imagination stay welcome; this file is for **teachable moments**, not to freeze the studio in fear of error.
+
 ## When planning or reviewing work
 
 1. If the user mentions a **past bug**, “don’t repeat that,” or a **known pitfall**, read [LEARNINGS.md](LEARNINGS.md) and apply the **Guard** from the latest relevant entry.

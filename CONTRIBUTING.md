@@ -4,6 +4,8 @@ This repo is **open for learning**; it is also **strict about what must stay pri
 
 **Mistakes and repeats:** We record material failures and **guards** in [LEARNINGS.md](LEARNINGS.md) (see [openspec/specs/operational-learning/spec.md](openspec/specs/operational-learning/spec.md)). Before reworking an area that previously broke, read recent entries. After fixing a significant repeat-worthy issue, append a new dated section—do not hide repeats by editing old text.
 
+**Imagination first:** Messy early work in `ideas/inbox.md` and exploration do not need a full OpenSpec pass—see [CLAUDE.md](CLAUDE.md) §2 and §4. Contribute in the spirit of **iteration**, not first-pass finality.
+
 ## Before you open a PR
 
 1. **No secrets** — Never commit `.env`, real API keys, tokens, private client dumps, or PII. Use `.env.example` for variable **names** only. See [AGENTS.md](AGENTS.md) and `.cursor/rules/privacy-secrets.mdc`.

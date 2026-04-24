@@ -9,6 +9,8 @@ The OpenSpec workspace is Kiruk Studio's **single source of truth**. Every durab
 | Term | Meaning |
 |---|---|
 | **Kirukal** | Scribble (Tamil). Origin state of every Kiruk project. |
+| **Exploration** | Unstructured or semi-structured work in `ideas/inbox.md` and experiments; no OpenSpec gate until promotion. |
+| **Durable / locked** | When an idea must hold for others or for ship—then it flows through `openspec/changes/` and specs. |
 | **Universe** | A single project / world. Each client project = one universe with a codename. |
 | **ISM** | Internal self-initiated experiment series (no subfolders until `/kiruk-ism-new` spawns them). |
 | **Portal** | A transition/interaction moment between universes or states. |

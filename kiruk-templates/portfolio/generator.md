@@ -23,7 +23,7 @@ Produce a markdown document with sections in this order:
 5. **The Studio** — capacity, non-negotiables (short form), contact.
 
 ## Step 3 — Voice
-Match founder tone (CLAUDE.md §2): concrete stories, process-transparent, playful-precise, collaboration-first.
+Match founder tone (CLAUDE.md §3): concrete stories, process-transparent, playful-precise, collaboration-first.
 
 ## Step 4 — Write
 Output to `kiruk-templates/portfolio/output/portfolio-v<next>.md`. Bump `<n>` from previous versions.

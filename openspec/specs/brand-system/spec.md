@@ -56,7 +56,7 @@ Every visual artifact produced by the studio MUST contain a visible eye motif OR
 - OR the artifact front-matter includes a `eye-motif-absent-because:` justification
 
 ### Requirement: Non-negotiables enforced
-Brand output MUST comply with the five non-negotiables in `CLAUDE.md` §4. A brand artifact violating any non-negotiable MUST NOT be archived.
+Brand output MUST comply with the five non-negotiables in `CLAUDE.md` §5. A brand artifact violating any non-negotiable MUST NOT be archived.
 
 #### Scenario: Trend-chase rejection
 - GIVEN a brand-system change proposal

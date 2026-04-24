@@ -8,6 +8,11 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/) with an a
 
 ## [Unreleased]
 
+### Changed
+- **Creative OS docs** — [CLAUDE.md](CLAUDE.md) new §2 *Creative journey*; spec workflow renumbered and clarified as for **durable** work; exploration in inbox stays out of the OpenSpec gate until promotion. [VISION-MISSION.md](VISION-MISSION.md) principle 9, [AGENTS](AGENTS.md) *Creative rhythm*, [README](README.md), [LEARNINGS.md](LEARNINGS.md), [openspec/project.md](openspec/project.md) vocabulary, [kiruk-studio](.cursor/rules/kiruk-studio.mdc) and [lessons-learned](.cursor/rules/lessons-learned.mdc) rules aligned: **imagination and iteration are first-class; rules are scaffolding, not the ceiling.**
+  - **Why:** match the studio’s real process—multiple iterations, fail/succeed, ongoing—and avoid reading specs as a demand for day-one finality.
+- **Section renumbering** in `CLAUDE.md` (Founder → §3 … Session → §8); cross-refs updated in [brand-system](openspec/specs/brand-system/spec.md), [template-portfolio](openspec/specs/template-portfolio/spec.md), generators, [kiruk-intake](.claude/commands/kiruk-intake.md), [kiruk-artifact](.claude/commands/kiruk-artifact.md), [TASKS](TASKS.md), [CHANGELOG](CHANGELOG.md) founder line.
+
 ### Added
 - **`operational-learning` capability** — [LEARNINGS.md](LEARNINGS.md) (append-only mistake log with **Mistake / Root cause / Fix / Guard**), [openspec/specs/operational-learning/spec.md](openspec/specs/operational-learning/spec.md), and always-on Cursor rule [`.cursor/rules/lessons-learned.mdc`](.cursor/rules/lessons-learned.mdc). Strengthen prevention on repeat; never rewrite old entries to hide a repeat. Proposal: [openspec/archive/add-operational-learning/proposal.md](openspec/archive/add-operational-learning/proposal.md).
   - **Why:** make “learn from the mistake, don’t repeat it” a first-class studio practice for humans and AI.
@@ -30,7 +35,7 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/) with an a
   - **Why**: establish spec-first, idea-capturing foundation before any brand/ISM work begins. Vision doc §6 mandates Claude Code as in-house creative engineer with OpenSpec workflow.
 - **Scope refinement** — ISM lab starts as `openspec/specs/ism/spec.md` only; no heroism/kirukism/colorism/nomadism subfolders yet. Founder will spawn them via `/kiruk-ism-new` when ready.
   - **Why**: avoid premature commitment to ISM branches before brand spine is locked.
-- **Founder context** — CLAUDE.md §2 encodes Arun's voice, stack, motifs, recurring themes from `kiruk-in`.
+- **Founder context** — CLAUDE.md §3 encodes Arun's voice, stack, motifs, recurring themes from `kiruk-in`.
   - **Why**: keeps voice-sensitive artifacts (manifestos, case studies) aligned without re-briefing per session.
 
 ### Changed

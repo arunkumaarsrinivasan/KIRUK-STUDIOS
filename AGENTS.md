@@ -20,9 +20,13 @@ Terse navigation for any AI coding agent (Claude Code, Cursor, etc.) working in 
 - **Thick context:** @-mention [`CLAUDE.md`](CLAUDE.md) or `openspec/project.md` in Composer/Chat for full voice and constraints in one shot.
 - **Hooks:** [`.cursor/hooks.json`](.cursor/hooks.json) may register `sessionEnd` → `node scripts/capture-session.mjs`. For **decision-quality** `ideas/log.ndjson` lines, follow [`.claude/commands/kiruk-capture.md`](.claude/commands/kiruk-capture.md) (or ask the agent to), not only the automatic session hook.
 
+## Creative rhythm (read with rules)
+
+**Rules and skills are not a substitute for imagination**—they are guardrails, memory, and safety (privacy, review, learnings). Encourage messy, expressive work in `ideas/inbox.md` and early exploration; only **tighten** into `openspec/` when the user is ready to treat an idea as durable or shippable. See [CLAUDE.md](CLAUDE.md) §2–§4.
+
 ## Core invariant
 
-**Spec-first.** No artifact ships without a matching `openspec/specs/<capability>/spec.md` requirement. Every edit to a spec goes through `openspec/changes/<slug>/` (propose → validate → apply → archive).
+**Spec-first for durable truth.** No **shipped or canonical** artifact without a matching `openspec/specs/<capability>/spec.md` requirement. Every edit to a spec goes through `openspec/changes/<slug>/` (propose → validate → apply → archive). Exploratory kirukal in the inbox is **not** under that gate until promoted.
 
 ## Change protocol
 
