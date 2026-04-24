@@ -13,6 +13,7 @@ This repo is the studio's operating system — a spec-driven, idea-capturing, de
 - **End-to-end:** [ideas/](./ideas/) (inbox, append-only log, promoted stubs), [openspec/](./openspec/) (capabilities and change history), [CHANGELOG.md](./CHANGELOG.md) for what shipped and why.
 - **No hidden “making of”** beyond private client secrets: if something is safe to version, it should live here so others (and future you) can learn from the path, not just the highlight reel.
 - **Mistakes are part of the artifact:** when something is wrong, fix it in the open and document the correction in the changelog or change proposals when it matters to the system.
+- **What stays private:** API keys, credentials, and client-only material are **not** part of the public story—see [openspec/specs/repo-privacy/spec.md](./openspec/specs/repo-privacy/spec.md) and [CONTRIBUTING.md](./CONTRIBUTING.md). Use [`.env.example`](./.env.example) for names only; never commit real secrets.
 
 ## Four pillars
 
@@ -40,6 +41,8 @@ npx openspec validate       # gate all specs
 | Navigate specs | [openspec/project.md](./openspec/project.md) |
 | Dump a raw idea | [ideas/inbox.md](./ideas/inbox.md) |
 | Read the manifesto | [content/manifesto.md](./content/manifesto.md) |
+| Contribute or review a PR | [CONTRIBUTING.md](./CONTRIBUTING.md), [`.github/PULL_REQUEST_TEMPLATE.md`](./.github/PULL_REQUEST_TEMPLATE.md) |
+| Keep secrets and client data safe | [openspec/specs/repo-privacy/spec.md](./openspec/specs/repo-privacy/spec.md) |
 
 ## Spec-first flow
 

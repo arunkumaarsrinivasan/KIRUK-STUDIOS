@@ -1,0 +1,22 @@
+---
+description: PR and change quality — spec alignment, validation, no forbidden paths, review habits
+alwaysApply: true
+---
+
+# Code review and change quality
+
+**Human checklist:** [`.github/PULL_REQUEST_TEMPLATE.md`](.github/PULL_REQUEST_TEMPLATE.md) · **Contributing:** [CONTRIBUTING.md](CONTRIBUTING.md) · **Spec:** [repo-privacy](openspec/specs/repo-privacy/spec.md) (review expectations).
+
+## When proposing edits (including Composer)
+
+1. **Match the spec** — If the change alters a capability, requirement, or public contract, the corresponding `openspec/specs/**/spec.md` (or a change under `openspec/changes/`) should reflect it; do not “quietly” change behavior.
+2. **Run the gate** — After spec or token changes: `npm run spec:validate` and, for tokens, `npm run tokens:build` (never hand-edit `design-system/build/`).
+3. **Tight diffs** — Only change what the task needs; no drive-by renames or unrelated refactors in the same pass.
+4. **Document** — For notable work, add a line to [CHANGELOG.md](CHANGELOG.md) under `## Unreleased` with a short **why**.
+
+## Review mindset
+
+- Read diffs for **accidental** secret strings, path mistakes, and token files.
+- Prefer **clarity** in commit messages and PR summaries so future you (and strangers) can learn from the story.
+
+Solo work still uses the same checklist; self-review is real review when you run through every box honestly.

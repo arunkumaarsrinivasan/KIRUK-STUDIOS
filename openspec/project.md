@@ -21,6 +21,7 @@ The OpenSpec workspace is Kiruk Studio's **single source of truth**. Every durab
 - `brand-system` — identity, eye-marks, palette, type, motion rules
 - `design-tokens` — DTCG JSON source + Style Dictionary outputs
 - `idea-capture` — inbox + log + promoted pipeline
+- `repo-privacy` — secrets hygiene, private client/API data, code review and contribution process
 - `ism` — ISM lab registry (names-only placeholder)
 - `template-portfolio` · `template-services` · `template-pitch` · `template-proposal` · `template-contract` · `template-invoice` · `template-onboarding`
 

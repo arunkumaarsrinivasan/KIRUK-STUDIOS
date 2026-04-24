@@ -8,6 +8,10 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/) with an a
 
 ## [Unreleased]
 
+### Added
+- **`repo-privacy` capability** — OpenSpec spec for keeping API keys and private client data out of git, optional `kiruk-projects/.../.local-only/` pattern, and code-review expectations. Supporting files: [CONTRIBUTING.md](CONTRIBUTING.md), [`.github/PULL_REQUEST_TEMPLATE.md`](.github/PULL_REQUEST_TEMPLATE.md), [`.env.example`](.env.example), stricter [`.gitignore`](.gitignore), Cursor rules [`.cursor/rules/privacy-secrets.mdc`](.cursor/rules/privacy-secrets.mdc) and [`.cursor/rules/code-review.mdc`](.cursor/rules/code-review.mdc).
+  - **Why:** ship an open, transparent process without leaking credentials or other people’s confidential material; give humans and agents the same clear rules and PR checklist.
+
 ### Changed
 - **Removed Pencil MCP** from entire studio OS. Design system is now code-only.
   - **Why**: founder explicit decision. All visual primitives live as React SVG in `design-system/components/`.

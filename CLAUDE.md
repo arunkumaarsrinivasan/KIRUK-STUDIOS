@@ -73,7 +73,9 @@ From the founder's manifesto (`content/manifesto.md`) + vision doc §1.3:
 ## 6. Forbidden Actions
 
 - Do NOT edit files in `design-system/build/` by hand — regenerate via `npm run tokens:build`.
-- Do NOT commit secrets, `.env`, or anything in `.claude/` outside the committed `commands/` + `settings.json`.
+- Do NOT commit secrets, live API keys, tokens, private client dumps, or anything that matches the **repo-privacy** spec’s ignore patterns — use environment variables and `.env.example` for names only; read `openspec/specs/repo-privacy/spec.md`.
+- Do NOT commit or paste real credentials into `ideas/log.ndjson` or other tracked content (see idea-capture redaction + repo-privacy).
+- Do NOT add files under `.claude/` except the committed `commands/` + `settings.json` (rest is local state).
 - Do NOT create subfolders under `kiruk-ism/` unless the user explicitly runs `/kiruk-ism-new`. Name-only for now.
 
 ---

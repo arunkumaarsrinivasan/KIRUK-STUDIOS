@@ -9,6 +9,7 @@ Terse navigation for any AI coding agent (Claude Code, Cursor, etc.) working in 
 3. Read `ROADMAP.md` + `TASKS.md` for current priorities.
 4. Read `openspec/project.md` for domain vocabulary and conventions.
 5. Read `openspec/AGENTS.md` for OpenSpec lifecycle rules.
+6. Read `openspec/specs/repo-privacy/spec.md` for **secrets, private data, and review** expectations (pair with [CONTRIBUTING.md](CONTRIBUTING.md) and [`.github/PULL_REQUEST_TEMPLATE.md`](.github/PULL_REQUEST_TEMPLATE.md)).
 
 ## Cursor & Composer
 
@@ -37,6 +38,7 @@ Terse navigation for any AI coding agent (Claude Code, Cursor, etc.) working in 
 - `brand-system` — eye-motif identity + rules
 - `design-tokens` — DTCG JSON, Style Dictionary outputs
 - `idea-capture` — inbox → log → promoted pipeline
+- `repo-privacy` — no secrets in git, private client/API data boundaries, PR checklist, [CONTRIBUTING.md](CONTRIBUTING.md)
 - `ism` — ISM lab (names-only for now; no subproject specs until `/kiruk-ism-new` is run)
 - `template-{portfolio,services,pitch,proposal,contract,invoice,onboarding}` — 7 client docs
 
@@ -44,6 +46,7 @@ Terse navigation for any AI coding agent (Claude Code, Cursor, etc.) working in 
 
 - `design-system/build/**` — generated, regenerate via `npm run tokens:build`
 - Any file outside `.claude/commands/` and `.claude/settings.json` inside `.claude/` — local state
+- Tracked files containing **live** API keys, tokens, or private client credentials — use env + `.env.example` only; see `repo-privacy` spec
 
 ## Tool allowlist
 

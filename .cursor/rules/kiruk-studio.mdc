@@ -38,4 +38,6 @@ Cursor has no built-in `/kiruk-*` commands. When the user types `/kiruk-…` or 
 
 No trend-chasing; eye-motif or justify absence; no new design token without a spec delta in [openspec/specs/design-tokens](openspec/specs/design-tokens); do not add `kiruk-ism/` subfolders without the `/kiruk-ism-new` flow.
 
+**Privacy:** Follow [`.cursor/rules/privacy-secrets.mdc`](.cursor/rules/privacy-secrets.mdc) and [repo-privacy spec](openspec/specs/repo-privacy/spec.md) — no API keys, tokens, or private client data in tracked files. **Review:** [`.cursor/rules/code-review.mdc`](.cursor/rules/code-review.mdc) and the PR template in `.github/`.
+
 When working in `openspec/**` or `ideas/**`, the project’s glob-scoped OpenSpec rule applies in addition to this one.
