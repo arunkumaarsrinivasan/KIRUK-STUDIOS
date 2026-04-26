@@ -1,4 +1,4 @@
-# Changelog — Kiruk Studio
+# Changelog — Kiruk
 
 All notable changes, decisions, and plan shifts. Every entry answers **why** — not just what.
 
@@ -7,6 +7,14 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/) with an a
 ---
 
 ## [Unreleased]
+
+### Added
+- **Monorepo scaffold** — `pnpm-workspace.yaml` (workspaces: `apps/*`, `packages/*`), `apps/kiruk-web/` stub (Next.js 15, kiruk.studio target), `apps/kiruk-portal/` stub (internal client management). Design system stays at root until `packages/design-system` migration (Phase 2 next).
+  - **Why:** kiruk holds everything — website, client portal, ISM experiments, design system — in one repo, deployed independently. Monorepo is the foundation for that.
+- **Kirukism vocabulary** — `kirukism` (the movement/cult/philosophy), `kirukargals` (external collaborators), `kirukan` (studio co-workers) now encoded in [CLAUDE.md](CLAUDE.md) §1 and §3, [VISION-MISSION.md](VISION-MISSION.md) (new Kirukism section + People table), [CONTRIBUTING.md](CONTRIBUTING.md) (kirukargal framing), [TASKS.md](TASKS.md), and [ROADMAP.md](ROADMAP.md).
+  - **Why:** the studio isn't just a business — it's a movement. kirukism drives why people collaborate, not just what they build. Language encodes intent.
+- **Full monorepo ROADMAP** — [ROADMAP.md](ROADMAP.md) rewritten: 7 phases (OS bootstrap, brand spine, monorepo, website, portal, ISM lab, kirukargal network, open OS) + deployment topology table + continuous tracks.
+  - **Why:** old 4-phase roadmap didn't cover the website, client portal, social pipeline, or kirukargal collaboration model. The studio needs a real plan to see where it's going.
 
 ### Changed
 - **Creative OS docs** — [CLAUDE.md](CLAUDE.md) new §2 *Creative journey*; spec workflow renumbered and clarified as for **durable** work; exploration in inbox stays out of the OpenSpec gate until promotion. [VISION-MISSION.md](VISION-MISSION.md) principle 9, [AGENTS](AGENTS.md) *Creative rhythm*, [README](README.md), [LEARNINGS.md](LEARNINGS.md), [openspec/project.md](openspec/project.md) vocabulary, [kiruk-studio](.cursor/rules/kiruk-studio.mdc) and [lessons-learned](.cursor/rules/lessons-learned.mdc) rules aligned: **imagination and iteration are first-class; rules are scaffolding, not the ceiling.**

@@ -1,12 +1,14 @@
-# Kiruk Studio
+# Kiruk
 
 > *Kirukal* (Tamil: scribble, crazy) → worlds.
 
 **Source:** [github.com/arunkumaarsrinivasan/KIRUK-STUDIOS](https://github.com/arunkumaarsrinivasan/KIRUK-STUDIOS) (public) · License: [MIT](./LICENSE)
 
-Kiruk Studio is a creative studio that turns raw scribbles and wild imagination into never-before-seen products. Everything is an eye. No trend-chasing, no boring work, no shallow branding.
+**Kiruk** is a creative studio fueled by **kirukism** — the movement of turning wild, imaginative scribbles into never-before-seen products and worlds. Everything is an eye. No trend-chasing, no boring work, no shallow branding.
 
-This repo is the studio's operating system — a spec-driven, idea-capturing, design-token-powered creative OS. It is **open for learning and scrutiny**: process, ideas, specs, and experiments are kept in-repo so the story from scribble to shipped work stays visible—wins, detours, and missteps included.
+**Kirukargals** are those who believe in kirukism and co-create here. **Kirukan** are co-workers inside kiruk.
+
+This repo is the studio's **complete operating system and monorepo** — spec-driven, idea-capturing, design-token-powered. It holds everything: ideology, brand, website (`apps/kiruk-web`), client management (`apps/kiruk-portal`), ISM experiments, client universes, templates, and creative infrastructure. Apps deploy independently; the creative OS stays unified. It is **open for learning and scrutiny**: process, ideas, specs, and experiments are kept in-repo so the story from scribble to shipped work stays visible—wins, detours, and missteps included.
 
 ### Open & transparent
 
@@ -35,14 +37,16 @@ npx openspec validate       # gate all specs
 
 | Want to… | Read |
 |---|---|
-| Understand the studio | [VISION-MISSION.md](./VISION-MISSION.md) |
+| Understand kiruk + kirukism | [VISION-MISSION.md](./VISION-MISSION.md) |
 | Know current priorities | [ROADMAP.md](./ROADMAP.md), [TASKS.md](./TASKS.md) |
 | See what changed | [CHANGELOG.md](./CHANGELOG.md) |
 | AI setup (Claude Code, Cursor) | [CLAUDE.md](./CLAUDE.md), [AGENTS.md](./AGENTS.md), [`.cursor/rules/`](./.cursor/rules/) |
 | Navigate specs | [openspec/project.md](./openspec/project.md) |
 | Dump a raw idea | [ideas/inbox.md](./ideas/inbox.md) |
 | Read the manifesto | [content/manifesto.md](./content/manifesto.md) |
-| Contribute or review a PR | [CONTRIBUTING.md](./CONTRIBUTING.md), [`.github/PULL_REQUEST_TEMPLATE.md`](./.github/PULL_REQUEST_TEMPLATE.md) |
+| Contribute as a kirukargal | [CONTRIBUTING.md](./CONTRIBUTING.md), [`.github/PULL_REQUEST_TEMPLATE.md`](./.github/PULL_REQUEST_TEMPLATE.md) |
+| Website app | [apps/kiruk-web/](./apps/kiruk-web/) |
+| Client portal app | [apps/kiruk-portal/](./apps/kiruk-portal/) |
 | Keep secrets and client data safe | [openspec/specs/repo-privacy/spec.md](./openspec/specs/repo-privacy/spec.md) |
 | Learn from past mistakes (guards) | [LEARNINGS.md](./LEARNINGS.md), [operational-learning spec](./openspec/specs/operational-learning/spec.md) |
 

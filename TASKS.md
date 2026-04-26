@@ -1,59 +1,65 @@
-# Tasks — Kiruk Studio
+# Tasks — Kiruk
 
 > Rolling task board. One source of truth for "what now?"
 > When in doubt, match against `ROADMAP.md` phase exit criteria.
 >
 > Format: `- [ ] (priority: P0/P1/P2) <task> — owner: @handle — due: <date> — spec: <path>`
+>
+> **Vocabulary:** kirukargals = collaborators · kirukan = co-workers · kirukism = the movement
 
 ---
 
-## Active — Phase 0 (OS Bootstrap)
+## Active — Phase 2 (Monorepo Scaffold + Kirukism Identity)
 
-- [~] (P0) Scaffold root docs — spec: CLAUDE.md §6
-- [~] (P0) Scaffold openspec skeleton — spec: openspec/project.md
-- [ ] (P0) Author `openspec/specs/brand-system/spec.md` v1
-- [ ] (P0) Author `openspec/specs/design-tokens/spec.md` v1
-- [ ] (P0) Author `openspec/specs/idea-capture/spec.md` v1
-- [ ] (P0) Author `openspec/specs/ism/spec.md` v1 (names-only)
-- [ ] (P0) DTCG tokens: core, semantic, type, motion, components
-- [ ] (P0) Style Dictionary config + `build-tokens.mjs`
-- [ ] (P0) `capture-session.mjs` + `promote-idea.mjs` + `sync-pen-variables.mjs`
-- [ ] (P0) 5 slash commands in `.claude/commands/`
-- [ ] (P0) SessionEnd hook registered via update-config skill
-- [~] (P0) Master `kiruk-design.pen` scaffolded — components exist in Pencil buffer; **user must Save As** `design-system/pen-files/kiruk-design.pen` in Pencil UI. See `design-system/pen-files/README.md`.
-- [ ] (P1) 7 template spec+generator stubs
-- [ ] (P0) Smoke test: `npx openspec validate` returns 0
-- [ ] (P0) Smoke test: `/kiruk-capture` round-trip
+- [x] (P0) `pnpm-workspace.yaml` — workspaces: apps/*, packages/*
+- [x] (P0) `apps/kiruk-web/` stub — package.json + README
+- [x] (P0) `apps/kiruk-portal/` stub — package.json + README
+- [x] (P0) Kirukism vocabulary in CLAUDE.md, VISION-MISSION.md, CONTRIBUTING.md, TASKS.md
+- [x] (P0) Full monorepo ROADMAP.md rewrite (all phases + deploy topology)
+- [ ] (P0) `packages/design-system/` migration — move `design-system/` → `packages/design-system/`, update all imports and specs — spec: openspec/specs/design-tokens/spec.md
+- [ ] (P0) Root `turbo.json` — Turborepo build pipeline
+- [ ] (P0) Update root `package.json` to use pnpm workspaces + turbo
+- [ ] (P1) Smoke test: `pnpm install` from root resolves all workspaces
 
-## Next — Phase 1 (Brand Spine)
+## Next — Phase 3 (kiruk-web)
 
-- [ ] (P0) `content/manifesto.md` v1
-- [ ] (P0) Primary eye-mark in `kiruk-design.pen`
-- [ ] (P1) ≥3 secondary eye-marks
-- [ ] (P0) Lock core palette
-- [ ] (P0) Lock type pairing
-- [ ] (P1) Define 4 motion motifs
-- [ ] (P1) Brand-system spec → v1-locked
+- [ ] (P0) Next.js 15 scaffold in `apps/kiruk-web/` (App Router, Turbopack, TS, Tailwind)
+- [ ] (P0) Import `@kiruk/design-system` as workspace package in kiruk-web
+- [ ] (P0) Home route with Eye motif hero (EyePrimary + EyeConstellation)
+- [ ] (P1) `/kirukism` route — manifesto + movement page
+- [ ] (P1) `/ism` route — ISM series index
+- [ ] (P1) `/services` route
+- [ ] (P1) `/about` route
+- [ ] (P1) `/devlog` route pulling from `content/devlogs/`
+- [ ] (P2) Contact form → kirukargal intake
+- [ ] (P0) Vercel deploy config + domain kiruk.studio
 
-## Later — Phase 2+
+## Later — Phase 4+ (portal, ISM, kirukargals)
 
-See `ROADMAP.md`.
+See `ROADMAP.md` Phases 4–7.
 
 ---
 
 ## Backlog / Ideas (not yet triaged)
 
-- [ ] Notion workspace sync script
-- [ ] kiruk.studio website Next.js scaffold
-- [ ] First ISM experiment picker (which name first?)
-- [ ] Case study rewrite: HP Print AI observability
+- [ ] Social media pipeline spec (`openspec/specs/content-pipeline/spec.md`)
+- [ ] `content/social/` output folder for devlog → social post conversion
+- [ ] `/kiruk-collab-intake` slash command for kirukargal proposals
+- [ ] First ISM experiment: which name from registry? (heroism / kirukism-series / colorism / nomadism)
+- [ ] Case study rewrite: HP Print AI AX work
 - [ ] Devlog template + first entry
+- [ ] Notion workspace sync script (if needed alongside portal)
+- [ ] `kiruk-creative-os/` package extraction (Year 2)
 
 ---
 
 ## Done (most recent first)
 
-_(empty — will populate after Phase 0 completion)_
+- [x] 2026-04-26 Kirukism vocabulary — ROADMAP, CLAUDE.md, VISION-MISSION.md, CONTRIBUTING.md
+- [x] 2026-04-26 Monorepo scaffold — pnpm-workspace.yaml, apps/kiruk-web, apps/kiruk-portal stubs
+- [x] 2026-04-XX Phase 1 brand spine — manifesto v1, Eye SVG components, token pipeline
+- [x] 2026-04-XX Code-first design system — removed Pencil, React SVG Eye/* + Scribble, Style Dictionary
+- [x] 2026-04-XX Phase 0 OS Bootstrap — all root docs, OpenSpec, specs, templates, scripts, slash commands
 
 ---
 

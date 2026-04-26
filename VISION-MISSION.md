@@ -2,16 +2,35 @@
 
 > Living document. Update whenever the studio's north star shifts.
 > Every update MUST be logged in `CHANGELOG.md` with a "why".
+>
+> **Vocabulary:** `kiruk` = the studio · `kirukism` = the movement/cult/philosophy driving it · `kirukargals` = collaborators who believe in the vision · `kirukan` = co-workers inside kiruk.
 
 ---
 
 ## Vision
 
-**Kiruk Studio exists to turn scribbles into worlds.**
+**Kiruk exists to turn scribbles into worlds.**
 
 Not interfaces that follow trends. Not identities that look like last year's winners. Kiruk builds products, brands, and experiences that did not exist yet — each rooted in a specific universe, each threaded with the eye motif, each carrying visible fingerprints of the kirukal it came from.
 
-In ten years: Kiruk Studio is known globally as the studio founders go to when their idea is "too weird for a normal agency." A studio that ships with other studios, runs a public ISM lab, and teaches its spec-driven creative OS openly.
+In ten years: Kiruk is known globally as the studio founders go to when their idea is "too weird for a normal agency." It is also a living movement — kirukism — with kirukargals across disciplines co-creating, experimenting, and shipping openly. A studio that ships with other studios, runs a public ISM lab, and teaches its spec-driven creative OS openly.
+
+---
+
+## Kirukism
+
+Kirukism is the cult, the philosophy, and the fuel. It is not a trend, not a process framework, not a brand aesthetic. It is **the belief that the most interesting things in the world come from scribbling without permission and building without a template.**
+
+Kirukism values:
+- Innovation over convention.
+- Crazy ideas over safe briefs.
+- Openness over secrecy.
+- Collaboration with rebellious and weird minds over solo genius.
+- Honest iteration over polished highlights.
+
+**Kirukargals** are those who carry this. They collaborate, co-create, contribute to universes. They are not clients; they are believers in the work.
+
+**Kirukan** are co-workers inside kiruk — people building the studio alongside Arun.
 
 ---
 
@@ -64,11 +83,23 @@ Polymath, tool-bending founders who want a world that doesn't exist yet. Budget 
 
 ---
 
+## People
+
+| Role | Who | Responsibility |
+|---|---|---|
+| **Founder** | Arun Kumaar Srinivasan | vision, direction, final say |
+| **Kirukan** | studio co-workers | build alongside Arun inside kiruk |
+| **Kirukargals** | external collaborators | co-create on specific universes / experiments |
+| **Clients** | founders, makers | bring the brief; kiruk builds the world |
+
+---
+
 ## Capacity
 
 - Max **2–3 active client projects** at a time.
 - ≥1 **active ISM experiment** always in motion (when capacity allows).
 - Weekly devlog cadence (public-facing).
+- ≥1 kirukargal collaboration active per quarter (Year 2+).
 
 ---
 

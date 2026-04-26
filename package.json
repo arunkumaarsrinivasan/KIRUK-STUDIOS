@@ -1,28 +1,34 @@
 {
-  "name": "kiruk-studio",
+  "name": "kiruk",
   "version": "0.0.1",
   "private": true,
   "type": "module",
-  "description": "Kiruk Studio — scribbles into worlds. Spec-driven creative operating system.",
+  "description": "Kiruk — scribbles into worlds. Spec-driven creative OS, monorepo for the kirukism movement.",
   "author": "Arun Kumaar Srinivasan <arunkumaar.srinivasan@gmail.com> (@kirukism)",
   "license": "MIT",
+  "packageManager": "pnpm@9.0.0",
   "scripts": {
     "tokens:build": "node scripts/build-tokens.mjs",
     "tokens:watch": "node scripts/build-tokens.mjs --watch",
     "spec:validate": "openspec validate --strict",
     "spec:list": "openspec list",
     "idea:promote": "node scripts/promote-idea.mjs",
-    "session:capture": "node scripts/capture-session.mjs"
+    "session:capture": "node scripts/capture-session.mjs",
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "lint": "turbo lint"
   },
   "devDependencies": {
     "@fission-ai/openspec": "^0.11.0",
-    "style-dictionary": "^4.3.0"
+    "style-dictionary": "^4.3.0",
+    "turbo": "^2.0.0"
   },
   "peerDependencies": {
     "react": ">=18",
     "react-dom": ">=18"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=20",
+    "pnpm": ">=9"
   }
 }
