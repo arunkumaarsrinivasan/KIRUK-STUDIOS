@@ -27,6 +27,6 @@ Vercel. Domain: kiruk.studio.
 
 ## Related
 
-- Design system: `../../design-system/` (will migrate to `../../packages/design-system/`)
+- Design system: `../../packages/design-system/` (workspace package `@kiruk/design-system`)
 - Content: `../../content/devlogs/`, `../../content/case-studies/`
 - Specs: `../../openspec/specs/`

@@ -16,7 +16,7 @@ Terse navigation for any AI coding agent (Claude Code, Cursor, etc.) working in 
 
 - **Project rules:** [`.cursor/rules/`](.cursor/rules/) (`.mdc` files) supplies the same baseline defaults in Cursor **Chat** and **Composer** as `CLAUDE.md` does in Claude Code: always-on studio OS plus a **glob-scoped** rule for `openspec/**` and `ideas/**`. Ensure project rules are enabled in Cursor (Rules for AI) so they attach to new conversations.
 - **Kiruk workflows in Cursor:** There is no built-in `/kiruk-*` menu. Use the same procedures as Claude Code: open the matching file under [`.claude/commands/`](.claude/commands/) (e.g. [`.claude/commands/kiruk-capture.md`](.claude/commands/kiruk-capture.md)) or @-mention it, or type the slash name in chat; the model follows that Markdown spec.
-- **NPM scripts (repo root):** `npm run spec:validate` — OpenSpec gate; `npm run tokens:build` — regenerate `design-system/build/`; `npm run spec:list` — list changes; `npm run idea:promote` — promote an idea; `npm run session:capture` — run the session capture script manually (Claude `SessionEnd` and optional Cursor `sessionEnd` also invoke [`scripts/capture-session.mjs`](scripts/capture-session.mjs), which expects a Claude-style transcript when present, so **entries may be sparse in Cursor** unless you also run the **`/kiruk-capture` procedure** after substantive work).
+- **NPM scripts (repo root):** `npm run spec:validate` — OpenSpec gate; `npm run tokens:build` — regenerate `packages/design-system/build/`; `npm run spec:list` — list changes; `npm run idea:promote` — promote an idea; `npm run session:capture` — run the session capture script manually (Claude `SessionEnd` and optional Cursor `sessionEnd` also invoke [`scripts/capture-session.mjs`](scripts/capture-session.mjs), which expects a Claude-style transcript when present, so **entries may be sparse in Cursor** unless you also run the **`/kiruk-capture` procedure** after substantive work).
 - **Thick context:** @-mention [`CLAUDE.md`](CLAUDE.md) or `openspec/project.md` in Composer/Chat for full voice and constraints in one shot.
 - **Hooks:** [`.cursor/hooks.json`](.cursor/hooks.json) may register `sessionEnd` → `node scripts/capture-session.mjs`. For **decision-quality** `ideas/log.ndjson` lines, follow [`.claude/commands/kiruk-capture.md`](.claude/commands/kiruk-capture.md) (or ask the agent to), not only the automatic session hook.
 
@@ -50,13 +50,13 @@ Terse navigation for any AI coding agent (Claude Code, Cursor, etc.) working in 
 
 ## Forbidden paths
 
-- `design-system/build/**` — generated, regenerate via `npm run tokens:build`
+- `packages/design-system/build/**` — generated, regenerate via `npm run tokens:build`
 - Any file outside `.claude/commands/` and `.claude/settings.json` inside `.claude/` — local state
 - Tracked files containing **live** API keys, tokens, or private client credentials — use env + `.env.example` only; see `repo-privacy` spec
 
 ## Tool allowlist
 
 - `npx openspec validate` / `npm run spec:validate` — spec gate
-- `npm run tokens:build` — regenerate design-system/build/
+- `npm run tokens:build` — regenerate packages/design-system/build/
 - `npm run session:capture` — manual `capture-session.mjs` (optional; see Cursor & Composer)
 - `/kiruk-intake`, `/kiruk-spec`, `/kiruk-artifact`, `/kiruk-capture`, `/kiruk-ism-new` — in Claude Code as slash commands; in Cursor, use the same definitions under `.claude/commands/`

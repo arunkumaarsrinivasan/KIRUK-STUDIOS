@@ -30,7 +30,7 @@ If yes — welcome. If no — this might not be the right project for you. That 
 1. **No secrets** — Never commit `.env`, real API keys, tokens, private client dumps, or PII. Use `.env.example` for variable **names** only. See [AGENTS.md](AGENTS.md) and `.cursor/rules/privacy-secrets.mdc`.
 2. **Spec-first** — Substantive behavior or contract changes belong in `openspec/changes/<slug>/` with validation. See [openspec/AGENTS.md](openspec/AGENTS.md).
 3. **Validate** — When you touch specs, run `npm run spec:validate` (or `npx openspec validate --strict`).
-4. **Design tokens** — Do not hand-edit `design-system/build/`; run `npm run tokens:build`.
+4. **Design tokens** — Do not hand-edit `packages/design-system/build/`; run `npm run tokens:build`.
 5. **Changelog** — Add a line under `## Unreleased` in [CHANGELOG.md](CHANGELOG.md) when the change is user-visible or spec-relevant.
 
 ---

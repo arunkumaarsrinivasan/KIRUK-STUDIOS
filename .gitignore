@@ -8,7 +8,7 @@ node_modules/
 Thumbs.db
 
 # generated design-system artifacts
-design-system/build/
+packages/design-system/build/
 
 # editor / local state
 .vscode/

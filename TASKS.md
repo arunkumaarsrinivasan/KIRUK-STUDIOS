@@ -16,7 +16,7 @@
 - [x] (P0) `apps/kiruk-portal/` stub — package.json + README
 - [x] (P0) Kirukism vocabulary in CLAUDE.md, VISION-MISSION.md, CONTRIBUTING.md, TASKS.md
 - [x] (P0) Full monorepo ROADMAP.md rewrite (all phases + deploy topology)
-- [ ] (P0) `packages/design-system/` migration — move `design-system/` → `packages/design-system/`, update all imports and specs — spec: openspec/specs/design-tokens/spec.md
+- [x] (P0) `packages/design-system/` migration — moved `design-system/` → `packages/design-system/`, all path refs updated — spec: openspec/specs/design-tokens/spec.md
 - [ ] (P0) Root `turbo.json` — Turborepo build pipeline
 - [ ] (P0) Update root `package.json` to use pnpm workspaces + turbo
 - [ ] (P1) Smoke test: `pnpm install` from root resolves all workspaces

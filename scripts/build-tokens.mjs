@@ -2,7 +2,7 @@
 /**
  * build-tokens.mjs — Style Dictionary v4 runner.
  *
- * Reads design-system/tokens/*.json (DTCG) and emits build/{css,tailwind,ts,pen}/.
+ * Reads packages/design-system/tokens/*.json (DTCG) and emits build/{css,tailwind,ts}/.
  *
  * Spec: openspec/specs/design-tokens/spec.md
  * Run:  npm run tokens:build
@@ -15,7 +15,7 @@ const require = createRequire(import.meta.url);
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(__dirname, '..');
 
-const configPath = path.join(repoRoot, 'design-system/style-dictionary.config.cjs');
+const configPath = path.join(repoRoot, 'packages/design-system/style-dictionary.config.cjs');
 
 async function main() {
   let StyleDictionary;
@@ -33,7 +33,7 @@ async function main() {
     const sd = new StyleDictionary(config);
     await sd.hasInitialized;
     await sd.buildAllPlatforms();
-    console.log('[build-tokens] ✓ built all platforms → design-system/build/');
+    console.log('[build-tokens] ✓ built all platforms → packages/design-system/build/');
   } catch (err) {
     console.error('[build-tokens] build failed:', err);
     process.exit(1);

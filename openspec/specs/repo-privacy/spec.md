@@ -43,7 +43,7 @@ Automated and manual capture paths MUST continue to redact common secret pattern
 
 ### Requirement: Code review before merge to main
 
-Non-trivial changes to `openspec/specs/`, `design-system/`, or `scripts/` affecting build or capture MUST be reviewed: at least one **checklist** pass (PR template or self-review) confirming spec touch, no forbidden paths edited by hand, and `npm run spec:validate` where applicable. Solo founders MAY self-review but MUST complete the same checklist with honesty.
+Non-trivial changes to `openspec/specs/`, `packages/design-system/`, or `scripts/` affecting build or capture MUST be reviewed: at least one **checklist** pass (PR template or self-review) confirming spec touch, no forbidden paths edited by hand, and `npm run spec:validate` where applicable. Solo founders MAY self-review but MUST complete the same checklist with honesty.
 
 #### Scenario: PR lists spec and security checks
 - GIVEN a pull request changes a capability or adds tokens

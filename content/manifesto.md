@@ -3,7 +3,7 @@ title: The Kiruk Manifesto
 version: 1.0
 status: locked
 spec-link: openspec/specs/brand-system/spec.md
-eye-motif-absent-because: text-only artifact — brand application is in visual renderings (design-system/components/)
+eye-motif-absent-because: text-only artifact — brand application is in visual renderings (packages/design-system/components/)
 ---
 
 # The Kiruk Manifesto

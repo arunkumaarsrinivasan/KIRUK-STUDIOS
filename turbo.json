@@ -8,8 +8,8 @@
       "outputs": [".next/**", "!.next/cache/**", "dist/**"]
     },
     "tokens:build": {
-      "inputs": ["design-system/tokens/**", "design-system/style-dictionary.config.cjs"],
-      "outputs": ["design-system/build/**"],
+      "inputs": ["packages/design-system/tokens/**", "packages/design-system/style-dictionary.config.cjs"],
+      "outputs": ["packages/design-system/build/**"],
       "cache": true
     },
     "dev": {

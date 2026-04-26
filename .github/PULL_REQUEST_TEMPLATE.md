@@ -13,7 +13,7 @@
 ## Checklist (author)
 
 - [ ] **Secrets:** No new real API keys, tokens, `.env` contents, or private client data in this PR. Only placeholders in `.env.example` / docs.
-- [ ] **Generated paths:** I did not hand-edit `design-system/build/`; if tokens changed, I ran `npm run tokens:build`.
+- [ ] **Generated paths:** I did not hand-edit `packages/design-system/build/`; if tokens changed, I ran `npm run tokens:build`.
 - [ ] **OpenSpec:** If I changed requirements or behavior, I used `openspec/changes/<slug>/` and/or updated the right `openspec/specs/**/spec.md` with matching scenarios, and I ran `npm run spec:validate` when applicable.
 - [ ] **idea-capture / logs:** If I touched `ideas/log.ndjson` or capture scripts, I did not store raw secrets; redaction rules still apply.
 - [ ] **CHANGELOG:** I added an `## Unreleased` entry in [CHANGELOG.md](../CHANGELOG.md) if this change is user-facing or spec-notable.

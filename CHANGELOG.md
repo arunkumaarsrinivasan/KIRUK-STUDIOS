@@ -31,8 +31,8 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/) with an a
 - **OpenSpec** — `add-repo-privacy-spec` moved from `openspec/changes/` to `openspec/archive/add-repo-privacy-spec/` after apply.
   - **Why:** match the documented propose → validate → apply → archive lifecycle.
 - **Removed Pencil MCP** from entire studio OS. Design system is now code-only.
-  - **Why**: founder explicit decision. All visual primitives live as React SVG in `design-system/components/`.
-- **design-system/components/** added — 6 React SVG components: `EyePrimary`, `EyeIris`, `EyeGaze`, `EyePortal`, `EyeConstellation`, `Scribble`. Colors via CSS custom properties; no hardcoded hex.
+  - **Why**: founder explicit decision. All visual primitives live as React SVG in `packages/design-system/components/`.
+- **packages/design-system/components/** added — 6 React SVG components: `EyePrimary`, `EyeIris`, `EyeGaze`, `EyePortal`, `EyeConstellation`, `Scribble`. Colors via CSS custom properties; no hardcoded hex.
 - **Token pipeline live** — `npm run tokens:build` emits CSS/Tailwind/TS. Fixed DTCG `usesDtcg: true` + Windows glob.
 - **Token files** — fixed circular `color.paper` alias, removed top-level `$description` collision, restructured motion/components with proper namespacing.
 - **Updated specs**: `brand-system` + `design-tokens` now reference code components, not Pencil files.
@@ -57,8 +57,8 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/) with an a
   - **Why**: founder explicit preference; ensures brand spine is purposeful, not inherited.
 - **Explicit planning layer** — `VISION-MISSION.md` + `ROADMAP.md` + `TASKS.md` + `CHANGELOG.md` as top-level readable state.
   - **Why**: founder wants visibility into "what's happening" and ability to change plans without archaeology.
-- **Pen file deferred save** — Pencil MCP cannot create a new file at a target path from API; Save-As is UI-only. Components scaffolded in the session buffer; founder to Save-As to `design-system/pen-files/kiruk-design.pen`.
-  - **Why**: Pencil MCP limitation. Documented in `design-system/pen-files/README.md`.
+- **Pen file deferred save** — Pencil MCP cannot create a new file at a target path from API; Save-As is UI-only. Components scaffolded in the session buffer; founder to Save-As to `packages/design-system/pen-files/kiruk-design.pen`.
+  - **Why**: Pencil MCP limitation. Documented in `packages/design-system/pen-files/README.md`.
 
 ---
 

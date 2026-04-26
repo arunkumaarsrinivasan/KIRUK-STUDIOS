@@ -29,7 +29,7 @@ This repo is the studio's **complete operating system and monorepo** — spec-dr
 
 ```bash
 npm install
-npm run tokens:build        # regenerate design-system/build/
+npm run tokens:build        # regenerate packages/design-system/build/
 npx openspec validate       # gate all specs
 ```
 

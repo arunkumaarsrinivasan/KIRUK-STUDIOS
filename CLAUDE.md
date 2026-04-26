@@ -86,9 +86,9 @@ From the founder's manifesto (`content/manifesto.md`) + vision doc §1.3:
 - `kiruk-ism/` — ISM lab placeholder. **Currently no subprojects.** Add via `/kiruk-ism-new <name>` only.
 - `kiruk-projects/<universe>/` — client projects. One folder per universe.
 - `kiruk-templates/<name>/` — 7 reusable document templates.
-- `design-system/tokens/` — DTCG JSON, single source for brand tokens.
-- `design-system/build/` — generated, do not hand-edit.
-- `design-system/components/` — React SVG components for Eye/* marks + Kirukal/Scribble. Edit directly.
+- `packages/design-system/tokens/` — DTCG JSON, single source for brand tokens.
+- `packages/design-system/build/` — generated, do not hand-edit.
+- `packages/design-system/components/` — React SVG components for Eye/* marks + Kirukal/Scribble. Edit directly.
 - `ideas/` — inbox + append-only log + promoted stubs.
 - `content/` — manifesto, devlogs, case studies.
 - `scripts/` — node ESM scripts.
@@ -99,7 +99,7 @@ From the founder's manifesto (`content/manifesto.md`) + vision doc §1.3:
 
 ## 7. Forbidden Actions
 
-- Do NOT edit files in `design-system/build/` by hand — regenerate via `npm run tokens:build`.
+- Do NOT edit files in `packages/design-system/build/` by hand — regenerate via `npm run tokens:build`.
 - Do NOT commit secrets, live API keys, tokens, private client dumps, or anything that matches the **repo-privacy** spec’s ignore patterns — use environment variables and `.env.example` for names only; read `openspec/specs/repo-privacy/spec.md`.
 - Do NOT commit or paste real credentials into `ideas/log.ndjson` or other tracked content (see idea-capture redaction + repo-privacy).
 - Do NOT add files under `.claude/` except the committed `commands/` + `settings.json` (rest is local state).
