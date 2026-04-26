@@ -51,7 +51,7 @@ One monorepo. Everything that is kiruk lives here:
 
 ---
 
-## Phase 2 — Monorepo Scaffold + Kirukism Identity (now)
+## Phase 2 — Monorepo Scaffold + Kirukism Identity [x DONE]
 
 **Goal**: Shape the repo as a true monorepo and encode kirukism as the studio's core identity.
 
@@ -60,13 +60,9 @@ One monorepo. Everything that is kiruk lives here:
 - [x] `apps/kiruk-portal/` — client portal stub with package.json, README
 - [x] Kirukism vocabulary in CLAUDE.md, VISION-MISSION.md, CONTRIBUTING.md
 - [x] Full monorepo ROADMAP (this file)
-- [ ] `packages/design-system/` migration — move `design-system/` to `packages/design-system/`, update all import paths and specs
-  - **Why now:** apps need to import shared components via workspace package (`@kiruk/design-system`)
-- [ ] Root `turbo.json` — Turborepo build pipeline for parallel app builds
-- [ ] Update `package.json` to use pnpm workspaces + turbo
-- [ ] Smoke test: `pnpm install` + `pnpm run tokens:build` works from root
-
-**Exit criteria**: `pnpm install` from root resolves all workspaces; `apps/kiruk-web` can reference `@kiruk/design-system` components.
+- [x] `packages/design-system/` migration — moved `design-system/` → `packages/design-system/` as `@kiruk/design-system`
+- [x] Root `turbo.json` — Turborepo build pipeline
+- [x] `package.json` updated — pnpm@9, turbo scripts
 
 ---
 
@@ -74,18 +70,22 @@ One monorepo. Everything that is kiruk lives here:
 
 **Goal**: Studio public face. Deployed from `apps/kiruk-web/`. Independent deploy → Vercel.
 
-- [ ] Next.js 15 App Router scaffold (Turbopack, TypeScript, Tailwind)
-- [ ] `@kiruk/design-system` imported as workspace package
-- [ ] Routes: `/` (home), `/kirukism` (manifesto + movement), `/ism` (ISM series), `/services`, `/about`
-- [ ] Eye motif composition on home — EyePrimary + EyeConstellation as hero
-- [ ] Token-driven theming: CSS vars from `design-system/build/css/tokens.css`
-- [ ] Devlog index route pulling from `content/devlogs/`
-- [ ] Case studies route pulling from `content/case-studies/`
-- [ ] Contact → kirukargal intake form (captures `ideas/inbox.md` style)
-- [ ] Deployment config: `vercel.json` / `next.config.ts`
+> 🔒 **BLOCKED — needs founder direction first.**
+> Answer decisions in [`FOUNDER_DECISIONS.md`](FOUNDER_DECISIONS.md) before any code goes in here.
+> Required locks: **B1, B2, B3, B4, B5, W1, W2, W3, W4, W5, W6, W7**
+
+- [ ] **[needs B1–B5 locked]** Brand pass — final logo, palette, type confirmed in tokens
+- [ ] **[needs W1–W3 locked]** Next.js 15 App Router scaffold + homepage hero built
+- [ ] **[needs W2 locked]** Route structure finalized and stubbed
+- [ ] `@kiruk/design-system` imported as workspace package in kiruk-web
+- [ ] Token-driven theming: CSS vars from `packages/design-system/build/css/tokens.css`
+- [ ] **[needs W4 locked]** Devlog index pulling from `content/devlogs/`
+- [ ] Case studies pulling from `content/case-studies/`
+- [ ] **[needs W5 locked]** Contact / "work with kiruk" CTA wired
+- [ ] **[needs W7 locked]** Deployment config: `vercel.json` / `next.config.ts`
 - [ ] Domain: kiruk.studio pointed at Vercel
 
-**Exit**: site live at kiruk.studio; home, ISM, services, about render; devlog loop working.
+**Exit**: site live at kiruk.studio; all locked routes render; devlog loop working.
 
 ---
 
@@ -93,7 +93,10 @@ One monorepo. Everything that is kiruk lives here:
 
 **Goal**: Client universe tracking, deliverable management, invoicing — internal-facing. Deployed from `apps/kiruk-portal/`. Separate deploy (Railway / Vercel / self-hosted).
 
-- [ ] Next.js 15 App Router scaffold (auth via NextAuth or Clerk)
+> 🔒 **BLOCKED — needs founder direction first.**
+> Required locks: **P1, P2, P3** in [`FOUNDER_DECISIONS.md`](FOUNDER_DECISIONS.md)
+
+- [ ] **[needs P2 locked]** Next.js 15 App Router scaffold + auth
 - [ ] Universe dashboard: list active client projects, status, phase
 - [ ] `/kiruk-intake` slash command output → portal intake form (mirrors `kiruk-projects/<universe>/intake.md`)
 - [ ] Deliverable tracker: spec → draft → review → shipped state machine
@@ -110,11 +113,14 @@ One monorepo. Everything that is kiruk lives here:
 
 **Goal**: First ISM experiment shipped publicly; devlog + social pipeline running.
 
-- [ ] Run `/kiruk-ism-new <name>` — founder picks first ISM from registry (heroism / kirukism-series / colorism / nomadism)
-- [ ] Build ISM experiment #1 in `kiruk-ism/<name>/` — interactive prototype (Three.js / Framer Motion / Rive)
+> 🔒 **BLOCKED — needs founder direction first.**
+> Required locks: **I1, I2, I3, S1, S2** in [`FOUNDER_DECISIONS.md`](FOUNDER_DECISIONS.md)
+
+- [ ] **[needs I1+I2 locked]** Run `/kiruk-ism-new <name>` — scaffold first real ISM
+- [ ] **[needs I2 locked]** Build ISM experiment #1 — interactive prototype
 - [ ] ISM devlog entry #1 in `content/devlogs/`
-- [ ] ISM page on kiruk-web goes live
-- [ ] Social pipeline: devlog entry → LinkedIn thread + Instagram carousel → `content/social/` output folder
+- [ ] **[needs I3 locked]** ISM page on kiruk-web or standalone URL
+- [ ] **[needs S1+S2 locked]** Social pipeline: devlog → platform posts → `content/social/`
 - [ ] Establish devlog cadence: every 2 weeks minimum
 
 **Exit**: ≥1 ISM shipped publicly with devlog; devlog rhythm established; ≥4 social posts from content pipeline.

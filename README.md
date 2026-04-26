@@ -39,6 +39,7 @@ npx openspec validate       # gate all specs
 |---|---|
 | Understand kiruk + kirukism | [VISION-MISSION.md](./VISION-MISSION.md) |
 | Know current priorities | [ROADMAP.md](./ROADMAP.md), [TASKS.md](./TASKS.md) |
+| **Give input to unblock next phases** | [FOUNDER_DECISIONS.md](./FOUNDER_DECISIONS.md) |
 | See what changed | [CHANGELOG.md](./CHANGELOG.md) |
 | AI setup (Claude Code, Cursor) | [CLAUDE.md](./CLAUDE.md), [AGENTS.md](./AGENTS.md), [`.cursor/rules/`](./.cursor/rules/) |
 | Navigate specs | [openspec/project.md](./openspec/project.md) |

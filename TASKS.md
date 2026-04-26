@@ -9,6 +9,17 @@
 
 ---
 
+## Active — Founder input needed (unblocks Phases 3–5)
+
+- [ ] (P0) Answer `FOUNDER_DECISIONS.md` **B1–B5** — brand locks (logo, wordmark, palette, type, dark/light)
+- [ ] (P0) Answer `FOUNDER_DECISIONS.md` **W1–W7** — website direction (feeling, routes, hero, CTA)
+- [ ] (P0) Answer `FOUNDER_DECISIONS.md` **I1–I3** — first ISM experiment (which one, concept, format)
+- [ ] (P1) Answer `FOUNDER_DECISIONS.md` **S1–S2** — social platforms + content format
+- [ ] (P1) Answer `FOUNDER_DECISIONS.md` **P1–P3** — portal users, auth, universe lifecycle
+- [ ] (P1) Answer `FOUNDER_DECISIONS.md` **M1–M2** — tagline + public kirukargal def
+
+---
+
 ## Active — Phase 2 (Monorepo Scaffold + Kirukism Identity)
 
 - [x] (P0) `pnpm-workspace.yaml` — workspaces: apps/*, packages/*
