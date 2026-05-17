@@ -22,13 +22,29 @@ Phase names MUST be universe-themed (e.g., "Portal Opening" not "Phase 1").
 - THEN `/Phase [0-9]/` does not occur without justification
 
 ### Requirement: Input contract
-The generator MUST read fields from `kiruk-projects/<universe>/spec.md` and its intake. Missing fields MUST block generation with a clear error.
+The generator MUST read fields from `kiruk-projects/<universe>/spec.md` and its `intake.md`. Missing required fields MUST block generation with a clear error message naming the missing field.
+
+#### Scenario: Missing field blocks generation
+- GIVEN a universe folder where `intake.md` lacks the `goal` field
+- WHEN the proposal generator runs
+- THEN generation halts with an error naming `goal`
+- AND no partial proposal file is written
 
 ### Requirement: Spec-link footer
-The proposal MUST end with a footer referencing the source spec path.
+The proposal MUST end with a footer referencing the source spec path under `openspec/specs/<universe>/spec.md`.
+
+#### Scenario: Footer present
+- GIVEN a rendered proposal
+- WHEN the last section is read
+- THEN it contains a link to the source universe spec
 
 ### Requirement: Eye-motif test
-Inherits brand-system.
+The proposal MUST satisfy `brand-system`'s eye-motif test: an eye motif is present OR absence is justified in front-matter.
+
+#### Scenario: Eye-motif present or justified
+- GIVEN a rendered proposal
+- WHEN the eye-motif test runs
+- THEN at least one eye motif is found OR front-matter contains `eye-motif: none — justified: <reason>`
 
 ## Acceptance Artifacts
 - `kiruk-templates/proposal/spec.md`

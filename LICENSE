@@ -1,21 +1,25 @@
-MIT License
+# Kiruk — Dual License
 
-Copyright (c) 2026 Arun Kumaar Srinivasan
+This repository is split between two licenses to reflect its dual nature
+as both a software project and a creative-studio knowledge base.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+  - Source code, scripts, configuration, and generated build artifacts
+    are licensed under the **MIT License**. See [`LICENSE-CODE`](./LICENSE-CODE).
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+  - Non-code content — manifesto, devlogs, case studies, capability specs
+    (as prose), vision/mission docs, scribble images, templates — is licensed
+    under the **Creative Commons Attribution 4.0 International (CC BY 4.0)**
+    License. See [`LICENSE-CONTENT`](./LICENSE-CONTENT).
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+If a file's licensing is ambiguous, the rule is:
+
+  - File contains executable code, configuration, or schema → MIT.
+  - File is human-language prose, design intent, or a creative artifact → CC BY 4.0.
+
+The names "kiruk", "kirukism", "kirukargal", "kirukan" and the eye-motif
+identity system are the studio's voice and identity. Neither license grants
+the right to call a derivative work "kiruk" or to operate under the kirukism
+brand. See [`GOVERNANCE.md`](./GOVERNANCE.md) → Forking for the spirit of
+this constraint.
+
+Copyright (c) 2026 Arun Kumaar Srinivasan and kiruk contributors.

@@ -1,0 +1,51 @@
+name: Idea (kirukal)
+description: A weird/interesting idea worth capturing. No commitment to ship.
+title: "[idea] "
+labels: ["type:idea", "kirukal"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Ideas are first-class citizens in kiruk. Rough is fine — see `ideas/inbox.md` and [CLAUDE.md §2](../blob/main/CLAUDE.md).
+
+        If you'd rather not open a public issue, drop the idea directly into [`ideas/inbox.md`](../blob/main/ideas/inbox.md) — same value.
+
+  - type: textarea
+    id: idea
+    attributes:
+      label: The idea
+      description: One paragraph is enough. Describe the world / experiment / product / interaction.
+    validations:
+      required: true
+
+  - type: input
+    id: scribble
+    attributes:
+      label: Scribble (optional but encouraged)
+      description: Path to a sketch (paper photo / tablet / whiteboard) attached to this issue, OR write "[textual]" with a one-line reason.
+      placeholder: "[textual] — voice memo at 2am"
+    validations:
+      required: false
+
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What kind?
+      options:
+        - Universe (client world)
+        - ISM experiment
+        - In-house product (tool / micro-app / extension / saas / toy)
+        - Spec capability
+        - Toolbending technique
+        - Devlog topic
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: why
+    attributes:
+      label: Why kirukism cares
+      description: How does this push something interesting, weird, or new? Reject if trend-chasing.
+    validations:
+      required: false

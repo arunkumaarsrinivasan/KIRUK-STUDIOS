@@ -1,0 +1,40 @@
+* text=auto eol=lf
+
+# Force LF on text files even on Windows checkout
+*.md       text eol=lf
+*.mdx      text eol=lf
+*.json     text eol=lf
+*.jsonc    text eol=lf
+*.yml      text eol=lf
+*.yaml     text eol=lf
+*.js       text eol=lf
+*.mjs      text eol=lf
+*.cjs      text eol=lf
+*.ts       text eol=lf
+*.tsx      text eol=lf
+*.css      text eol=lf
+*.scss     text eol=lf
+*.html     text eol=lf
+*.svg      text eol=lf
+
+# Binary — never normalize
+*.png      binary
+*.jpg      binary
+*.jpeg     binary
+*.heic     binary
+*.gif      binary
+*.webp     binary
+*.pdf      binary
+*.woff     binary
+*.woff2    binary
+*.ttf      binary
+*.otf      binary
+*.zip      binary
+*.mp4      binary
+*.mov      binary
+*.mp3      binary
+
+# Generated — exclude from language stats
+packages/design-system/build/** linguist-generated=true
+content/devlogs/*/*.json        linguist-generated=true
+.brand-ci/**                    linguist-generated=true

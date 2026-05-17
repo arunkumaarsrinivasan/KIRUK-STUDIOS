@@ -22,10 +22,20 @@ Milestone/phase names MUST be universe-themed, not "Phase 1/2/3".
 - THEN no occurrence of `/Phase [0-9]/` unless explicitly justified in front-matter
 
 ### Requirement: Client brief reference
-The pitch MUST cite the source intake at `kiruk-projects/<universe>/intake.md`.
+The pitch MUST cite the source intake file at `kiruk-projects/<universe>/intake.md` in a visible footer or sidebar.
+
+#### Scenario: Intake citation present
+- GIVEN a rendered pitch output
+- WHEN the document is scanned for the intake path
+- THEN a reference to `kiruk-projects/<universe>/intake.md` is present
 
 ### Requirement: Eye-motif test
-Inherits brand-system eye-motif test.
+The pitch output MUST satisfy `brand-system`'s eye-motif test: an eye motif is present OR absence is justified in front-matter.
+
+#### Scenario: Eye-motif present or justified
+- GIVEN a rendered pitch output
+- WHEN the eye-motif test runs
+- THEN at least one eye motif is found OR the front-matter contains `eye-motif: none — justified: <reason>`
 
 ## Acceptance Artifacts
 - `kiruk-templates/pitch/spec.md`

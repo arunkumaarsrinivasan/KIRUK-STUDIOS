@@ -33,3 +33,21 @@ service-account*.json
 secrets/
 **/local-only/
 kiruk-projects/**/.local-only/
+
+# build tooling caches
+.turbo/
+.next/
+.cache/
+dist/
+build/
+coverage/
+
+# brand-CI generated reports (see brand-consistency-ci spec)
+.brand-ci/
+
+# raw high-res scribble scans (see pen-and-paper spec) — committed downsampled copy lives next to it
+**/scribble/.raw/
+
+# tool-installer artifacts
+*.tgz
+.pnpm-store/

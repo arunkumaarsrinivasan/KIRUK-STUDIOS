@@ -1,0 +1,65 @@
+name: Bug report
+description: Something in this repo or a deployed kiruk app is broken.
+title: "[bug] "
+labels: ["type:bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report. Please confirm the issue is not a security one — if it is, follow [`SECURITY.md`](../blob/main/SECURITY.md) instead.
+
+  - type: input
+    id: where
+    attributes:
+      label: Where
+      description: File path, app URL, or capability spec affected.
+      placeholder: "apps/kiruk-web/src/page.tsx OR openspec/specs/design-tokens/spec.md"
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behaviour
+      description: What did you expect to happen?
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behaviour
+      description: What actually happened? Include error output if any.
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      description: Minimal sequence to trigger the bug.
+      placeholder: |
+        1. pnpm install
+        2. pnpm tokens:build
+        3. ...
+    validations:
+      required: true
+
+  - type: input
+    id: env
+    attributes:
+      label: Environment
+      description: OS, Node version, pnpm version (from `pnpm doctor` if available).
+      placeholder: "macOS 14.5, Node 20.10, pnpm 9.1"
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Pre-flight
+      options:
+        - label: I checked existing issues for duplicates.
+          required: true
+        - label: This is not a security issue (those go via SECURITY.md).
+          required: true

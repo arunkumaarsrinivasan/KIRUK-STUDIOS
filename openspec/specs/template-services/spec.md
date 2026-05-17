@@ -22,10 +22,21 @@ Each pillar MUST include ≥1 concrete narrative example (anonymized if needed),
 - THEN ≥1 paragraph describes a real or plausible universe scenario
 
 ### Requirement: Disqualified clients section
-The services doc MUST include a "not for you if…" section citing the non-negotiables.
+The services doc MUST include a "not for you if…" section citing the non-negotiables from `VISION-MISSION.md`.
+
+#### Scenario: Disqualifier section present
+- GIVEN a rendered services output
+- WHEN section headings are scanned
+- THEN a "not for you if…" (or equivalently named) section exists
+- AND it cites the trend-chasing / boring-work / shallow-branding non-negotiables
 
 ### Requirement: Capacity stated
-The services doc MUST state max 2–3 active client projects (from `VISION-MISSION.md`).
+The services doc MUST state the active client capacity (max 2–3 universes) as defined in `VISION-MISSION.md`.
+
+#### Scenario: Capacity line present
+- GIVEN a rendered services output
+- WHEN the capacity statement is searched
+- THEN the doc explicitly names "2–3 active client projects" (or current capacity from VISION-MISSION)
 
 ## Acceptance Artifacts
 - `kiruk-templates/services/spec.md`

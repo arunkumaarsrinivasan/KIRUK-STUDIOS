@@ -17,6 +17,22 @@
 
 ---
 
+## STRATEGY — locked 2026-05-18 (governs all downstream phases)
+
+### ST1 — Studio model
+`[x]` **Lab-led, services follow.** ISM + in-house products are the front door. Client services chase the work, not the other way around. Encoded in VISION-MISSION + `openspec/specs/products/spec.md`.
+
+### ST2 — Transparency
+`[x]` **Process + decisions public; numbers + client internals private.** Devlogs, sketches, dead ends, code, specs all open. Revenue, MRR, contracts, customer data closed. Story drops (quarterly, qualitative) are the only public revenue surface. Encoded in `openspec/specs/build-in-public/spec.md`.
+
+### ST3 — In-house product types (allowed surface)
+`[x]` Creative tools for makers · consumer micro-apps / toys · AI-augmented creative SaaS · browser extensions · any digital surface. Each product picks one tier at creation: `tool` | `micro-app` | `extension` | `saas` | `toy`. Encoded in `openspec/specs/products/spec.md`.
+
+### ST4 — Automation focus (all four streams active)
+`[x]` Content pipeline (devlog → social), client lifecycle (intake → invoice), idea capture + promotion, brand consistency CI. All four governed by their own specs. Implementation choice pending (see AU1, AU2 below).
+
+---
+
 ## BRAND — blocks Phase 3 + all visual work
 
 ### B1 — Primary eye mark: final design?
@@ -290,9 +306,73 @@ What's the public language — inviting, specific, weird enough to filter?
 
 ---
 
+## PRODUCTS — blocks Phase 3.5
+
+### PR1 — First product: name, tier, what it does
+`[ ]`
+The studio is lab-led; a first product launch is part of the front-door story. Pick ONE to start. Tier choices: `tool` (creative tool for makers) · `micro-app` (consumer utility) · `extension` (browser extension) · `saas` (subscription) · `toy` (delight-first interactive).
+
+Rough thoughts welcome — slug, name, one-line concept, tier, target audience.
+
+→ **Your answer:**
+
+---
+
+### PR2 — Deploy target for first product
+`[ ]`
+Once PR1 is named — where does it live?
+- Standalone web: Vercel / Netlify / Cloudflare Pages
+- Browser extension: Chrome Web Store / Firefox Add-ons
+- Mobile: iOS / Android / web-app-with-install
+- CLI / npm package
+- Other
+
+→ **Your answer:**
+
+---
+
+### PR3 — Success metric for first product
+`[ ]`
+One measurable thing that tells you the product is working. Examples: "100 weekly active users in 90 days", "10 paid subscribers in 6 months", "1000 downloads", "qualitative: 5 strangers reach out unprompted". One sentence is enough.
+
+→ **Your answer:**
+
+---
+
+## AUTOMATION — blocks Phase 4.5
+
+### AU1 — Content pipeline implementation
+`[ ]`
+Spec is locked (`openspec/specs/content-pipeline/spec.md`). Pick the runner:
+- Custom Node script in `scripts/generate-derivatives.mjs` (most control, you maintain it)
+- n8n self-hosted (visual workflow, more flexible, more setup)
+- GitHub Actions workflow (free CI, less interactive)
+- Other / hybrid
+
+→ **Your answer:**
+
+---
+
+### AU2 — Brand-CI runner
+`[ ]`
+Spec is locked (`openspec/specs/brand-consistency-ci/spec.md`). Pick the runner:
+- GitHub Actions (runs on every PR, blocks merge)
+- Husky pre-commit hooks (runs locally before each commit)
+- Custom node script run manually + by CI
+- Both Husky (local) + Actions (PR gate)
+
+→ **Your answer:**
+
+---
+
 ## Locked decisions (archive)
 
-_(Move items here with date when `[x]` and built against.)_
+| Date | Section | Decision |
+|---|---|---|
+| 2026-05-18 | ST1 | Lab-led, services follow |
+| 2026-05-18 | ST2 | Process + decisions transparent; numbers + client internals private |
+| 2026-05-18 | ST3 | Product surface: tools, micro-apps, extensions, SaaS, toys (5 tiers) |
+| 2026-05-18 | ST4 | All four automation streams active |
 
 ---
 
@@ -300,3 +380,8 @@ _(Move items here with date when `[x]` and built against.)_
 
 Next time you open this file, answer at least one `[ ]`.
 Start with whatever feels clearest — doesn't have to be in order.
+
+**Highest-leverage open questions right now:**
+- **PR1** (first product) — unlocks the whole product track and gives the lab-led front door a real artifact.
+- **B1–B5** (brand locks) — still blocks website build.
+- **AU1 + AU2** (automation runners) — unlocks the spine that makes solopreneur scale possible.

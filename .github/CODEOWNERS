@@ -1,0 +1,32 @@
+# Kiruk CODEOWNERS — every PR auto-requests review from the listed owner(s).
+# As the kirukargal network grows, add owners per domain (e.g. design-system → design-team).
+
+# Default — founder reviews everything
+*                               @arunkumaarsrinivasan
+
+# Spec system — founder must approve all capability changes
+/openspec/                      @arunkumaarsrinivasan
+/CLAUDE.md                      @arunkumaarsrinivasan
+/AGENTS.md                      @arunkumaarsrinivasan
+/VISION-MISSION.md              @arunkumaarsrinivasan
+/ROADMAP.md                     @arunkumaarsrinivasan
+/FOUNDER_DECISIONS.md           @arunkumaarsrinivasan
+/GOVERNANCE.md                  @arunkumaarsrinivasan
+/CODE_OF_CONDUCT.md             @arunkumaarsrinivasan
+/SECURITY.md                    @arunkumaarsrinivasan
+/LICENSE                        @arunkumaarsrinivasan
+/LICENSE-CODE                   @arunkumaarsrinivasan
+/LICENSE-CONTENT                @arunkumaarsrinivasan
+
+# Design system + tokens
+/packages/design-system/        @arunkumaarsrinivasan
+
+# Apps
+/apps/                          @arunkumaarsrinivasan
+
+# Content (manifesto, devlogs, case studies) — public-facing voice
+/content/                       @arunkumaarsrinivasan
+
+# Automation surface
+/scripts/                       @arunkumaarsrinivasan
+/.github/                       @arunkumaarsrinivasan

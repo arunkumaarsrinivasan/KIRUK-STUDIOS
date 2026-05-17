@@ -1,0 +1,71 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.0.0/schema.json",
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true
+  },
+  "files": {
+    "ignoreUnknown": true,
+    "includes": [
+      "**/*.{js,cjs,mjs,jsx,ts,tsx,json,jsonc}",
+      "!**/node_modules",
+      "!**/.next",
+      "!**/.astro",
+      "!**/.turbo",
+      "!**/dist",
+      "!**/build",
+      "!**/coverage",
+      "!**/.brand-ci",
+      "!packages/design-system/build",
+      "!ideas/log.ndjson"
+    ]
+  },
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineWidth": 100,
+    "lineEnding": "lf"
+  },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "single",
+      "jsxQuoteStyle": "double",
+      "semicolons": "always",
+      "trailingCommas": "all",
+      "arrowParentheses": "always",
+      "bracketSpacing": true
+    }
+  },
+  "json": {
+    "formatter": {
+      "trailingCommas": "none"
+    }
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "correctness": {
+        "noUnusedVariables": "warn",
+        "noUnusedImports": "warn",
+        "useExhaustiveDependencies": "warn"
+      },
+      "suspicious": {
+        "noExplicitAny": "warn",
+        "noConsole": "off"
+      },
+      "style": {
+        "useImportType": "warn",
+        "useNodejsImportProtocol": "error"
+      },
+      "performance": {
+        "noDelete": "warn"
+      },
+      "complexity": {
+        "noBannedTypes": "warn"
+      }
+    }
+  }
+}

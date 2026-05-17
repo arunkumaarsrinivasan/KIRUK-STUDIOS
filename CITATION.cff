@@ -1,0 +1,38 @@
+cff-version: 1.2.0
+title: "Kiruk — Spec-driven Creative OS"
+abstract: >
+  Kiruk is an open-source creative studio operating system: a monorepo holding
+  vision, brand, design tokens, ISM lab experiments, in-house digital products,
+  client universes, and an end-to-end spec-driven workflow from scribble to ship.
+type: software
+authors:
+  - given-names: Arun Kumaar
+    family-names: Srinivasan
+    alias: kirukism
+    email: praveenmanikandan2000@gmail.com
+    affiliation: kiruk studio
+    city: Bangalore
+    country: IN
+repository-code: "https://github.com/arunkumaarsrinivasan/KIRUK-STUDIOS"
+url: "https://kiruk.studio"
+keywords:
+  - creative-studio
+  - design-system
+  - openspec
+  - monorepo
+  - kirukism
+  - design-tokens
+  - build-in-public
+  - creative-os
+license: MIT
+license-url: "https://opensource.org/licenses/MIT"
+date-released: 2026-04-24
+version: "0.0.1"
+preferred-citation:
+  type: software
+  title: "Kiruk Studio Operating System"
+  authors:
+    - given-names: Arun Kumaar
+      family-names: Srinivasan
+  year: 2026
+  url: "https://github.com/arunkumaarsrinivasan/KIRUK-STUDIOS"

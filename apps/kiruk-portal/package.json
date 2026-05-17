@@ -2,25 +2,35 @@
   "name": "@kiruk/portal",
   "version": "0.0.1",
   "private": true,
+  "type": "module",
   "description": "kiruk portal — internal client management, universe tracking, deliverables.",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "next": "^15.0.0",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "tailwindcss": "^4.0.0",
+    "@tailwindcss/postcss": "^4.0.0",
+    "motion": "^11.15.0",
+    "zod": "^3.23.0",
+    "zustand": "^5.0.0",
+    "drizzle-orm": "^0.36.0",
+    "better-auth": "^1.0.0",
+    "hono": "^4.6.0"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
-    "typescript": "^5.0.0"
+    "drizzle-kit": "^0.28.0",
+    "typescript": "^5.7.0"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=22"
   }
 }

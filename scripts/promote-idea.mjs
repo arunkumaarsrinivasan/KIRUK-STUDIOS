@@ -47,9 +47,26 @@ if (fs.existsSync(changeDir)) {
 const ideaBody = fs.readFileSync(sourcePath, 'utf8');
 const now = new Date().toISOString();
 
+// Pen-and-paper gate: idea must reference a scribble before graduating to a proposal.
+// Accept either an explicit `scribble:` front-matter line in the idea, OR a CLI flag override,
+// OR the literal `[textual]` marker.
+const scribbleFlag = process.argv.find((a) => a.startsWith('--scribble='));
+const scribbleFromIdea = (ideaBody.match(/^\s*scribble\s*:\s*(.+)$/im) || [])[1];
+const scribble = (scribbleFlag ? scribbleFlag.split('=')[1] : scribbleFromIdea || '').trim();
+
+if (!scribble) {
+  console.error(`[promote-idea] ✗ blocked: no scribble reference found.`);
+  console.error('  pen-and-paper spec requires every promoted idea to carry a sketch path');
+  console.error('  or a "[textual]" marker. Add a "scribble: <path-or-[textual]>" line to');
+  console.error(`  ideas/promoted/${slug}.md, or rerun with --scribble=<path-or-[textual]>.`);
+  console.error('  See openspec/specs/pen-and-paper/spec.md.');
+  process.exit(2);
+}
+
 const proposal = `# Proposal: ${slug}
 
 > Promoted from \`ideas/promoted/${slug}.md\` on ${now}.
+> Scribble: ${scribble}
 
 ## Why
 

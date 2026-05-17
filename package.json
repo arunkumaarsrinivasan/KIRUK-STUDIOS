@@ -4,31 +4,75 @@
   "private": true,
   "type": "module",
   "description": "Kiruk — scribbles into worlds. Spec-driven creative OS, monorepo for the kirukism movement.",
+  "homepage": "https://kiruk.studio",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/arunkumaarsrinivasan/KIRUK-STUDIOS.git"
+  },
+  "bugs": {
+    "url": "https://github.com/arunkumaarsrinivasan/KIRUK-STUDIOS/issues"
+  },
   "author": "Arun Kumaar Srinivasan <arunkumaar.srinivasan@gmail.com> (@kirukism)",
-  "license": "MIT",
-  "packageManager": "pnpm@9.0.0",
+  "license": "SEE LICENSE IN LICENSE",
+  "keywords": [
+    "kiruk",
+    "kirukism",
+    "creative-studio",
+    "creative-os",
+    "design-system",
+    "openspec",
+    "monorepo",
+    "design-tokens",
+    "build-in-public"
+  ],
+  "packageManager": "pnpm@10.0.0",
   "scripts": {
     "tokens:build": "node scripts/build-tokens.mjs",
     "tokens:watch": "node scripts/build-tokens.mjs --watch",
-    "spec:validate": "openspec validate --strict",
+    "spec:validate": "openspec validate --all --strict",
     "spec:list": "openspec list",
     "idea:promote": "node scripts/promote-idea.mjs",
     "session:capture": "node scripts/capture-session.mjs",
+    "doctor": "node scripts/doctor.mjs",
+    "lint": "biome lint .",
+    "lint:fix": "biome lint --write .",
+    "format": "biome format . && prettier --check \"**/*.{md,mdx}\"",
+    "format:fix": "biome format --write . && prettier --write \"**/*.{md,mdx}\"",
+    "typecheck": "turbo run typecheck",
+    "test": "turbo run test",
+    "size": "size-limit",
     "dev": "turbo dev",
     "build": "turbo build",
-    "lint": "turbo lint"
+    "prepare": "husky"
   },
   "devDependencies": {
+    "@biomejs/biome": "^2.0.0",
+    "@commitlint/cli": "^19.0.0",
+    "@commitlint/config-conventional": "^19.0.0",
     "@fission-ai/openspec": "^0.11.0",
+    "@size-limit/preset-app": "^11.0.0",
+    "husky": "^9.0.0",
+    "lint-staged": "^16.0.0",
+    "prettier": "^3.3.0",
+    "size-limit": "^11.0.0",
     "style-dictionary": "^4.3.0",
-    "turbo": "^2.0.0"
+    "turbo": "^2.0.0",
+    "typescript": "^5.7.0"
   },
   "peerDependencies": {
-    "react": ">=18",
-    "react-dom": ">=18"
+    "react": ">=19",
+    "react-dom": ">=19"
   },
   "engines": {
-    "node": ">=20",
-    "pnpm": ">=9"
+    "node": ">=22",
+    "pnpm": ">=10"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,json,jsonc}": [
+      "biome check --write --no-errors-on-unmatched"
+    ],
+    "*.{md,mdx}": [
+      "prettier --write"
+    ]
   }
 }

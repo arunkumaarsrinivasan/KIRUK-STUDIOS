@@ -27,10 +27,17 @@ The OpenSpec workspace is Kiruk Studio's **single source of truth**. Every durab
 
 - `brand-system` — identity, eye-marks, palette, type, motion rules
 - `design-tokens` — DTCG JSON source + Style Dictionary outputs
-- `idea-capture` — inbox + log + promoted pipeline
+- `idea-capture` — inbox + log + promoted pipeline (with `scribble` field)
 - `repo-privacy` — secrets hygiene, private client/API data, code review and contribution process
 - `operational-learning` — log mistakes in `LEARNINGS.md`, add guards, strengthen on repeat
-- `ism` — ISM lab registry (names-only placeholder)
+- `ism` — ISM lab registry (names-only placeholder; cross-links to `products` on graduation)
+- `products` — in-house digital product line (tools, micro-apps, extensions, SaaS, toys) + registry
+- `build-in-public` — open/closed boundary, devlog cadence, redaction rules, story-drop format
+- `content-pipeline` — canonical devlog → platform derivatives (IG, LinkedIn, X, video) contract
+- `client-lifecycle` — universe state machine (lead → archived), slash-command surface, artifacts per state
+- `pen-and-paper` — scribble-first ritual: every universe/ISM/product begins with a sketch
+- `brand-consistency-ci` — automated gates: eye-motif coverage, token discipline, scribble presence, redaction scan
+- `tech-stack` — locked tooling/runtime/framework envelope + per-route performance budgets + successor watch list
 - `template-portfolio` · `template-services` · `template-pitch` · `template-proposal` · `template-contract` · `template-invoice` · `template-onboarding`
 
 ## Lifecycle
@@ -77,11 +84,14 @@ Before `apply`:
 
 ## Tech conventions
 
-- Node ≥ 20, ESM (`"type": "module"`).
+- **Source of truth:** [`openspec/specs/tech-stack/spec.md`](specs/tech-stack/spec.md) — the locked 2026 envelope. Read it before adding any tool, framework, or library.
+- Node ≥ 22 LTS, ESM (`"type": "module"`), pnpm 10.
 - Design tokens authored in **W3C DTCG format** (`$type`, `$value`).
 - Token build via **Style Dictionary v4** → `packages/design-system/build/`.
 - Brand visuals authored as **React SVG components** in `packages/design-system/components/`.
-- Commit messages: see repo `CHANGELOG.md` style + Conventional Commits (`feat:`, `spec:`, `token:`, `chore:`).
+- Lint + format: **Biome 2** for JS/TS/JSON, Prettier 3 for MD/MDX.
+- Commit messages: **Conventional Commits** enforced by commitlint (`feat:`, `fix:`, `spec:`, `token:`, `chore:`, `docs:`, `perf:`, etc.).
+- Pre-commit hygiene: Husky 9 + lint-staged 16.
 
 ## Out of scope here
 

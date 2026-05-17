@@ -1,0 +1,59 @@
+name: OpenSpec proposal draft
+description: Pre-write a capability spec change before opening a PR.
+title: "[spec] "
+labels: ["type:proposal", "openspec"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this when you want to *discuss* a spec change before authoring the proposal under `openspec/changes/<slug>/`. For already-drafted proposals, open a PR instead.
+
+        Read first: [`openspec/AGENTS.md`](../blob/main/openspec/AGENTS.md) + [`openspec/project.md`](../blob/main/openspec/project.md).
+
+  - type: input
+    id: slug
+    attributes:
+      label: Proposed slug
+      description: kebab-case identifier; will become `openspec/changes/<slug>/`.
+      placeholder: "add-content-pipeline"
+    validations:
+      required: true
+
+  - type: textarea
+    id: why
+    attributes:
+      label: Why
+      description: 1–3 sentences. What problem or opportunity does this address?
+    validations:
+      required: true
+
+  - type: textarea
+    id: changes
+    attributes:
+      label: What changes
+      description: Capabilities added / modified / removed; bullet list.
+      placeholder: |
+        - Added: `<capability>` at `openspec/specs/<cap>/spec.md`
+        - Modified: Requirement X in `openspec/specs/<other-cap>/spec.md`
+    validations:
+      required: true
+
+  - type: textarea
+    id: impact
+    attributes:
+      label: Impact
+      description: Specs touched, artifacts to regenerate, downstream templates/commands affected.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Pre-flight
+      options:
+        - label: I read `openspec/AGENTS.md` and `openspec/project.md`.
+          required: true
+        - label: This change includes at least one new `### Requirement:` with a `#### Scenario:` block.
+          required: true
+        - label: If visual artifacts are affected, the eye-motif rule is respected or justified.
+          required: true

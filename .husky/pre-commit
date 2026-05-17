@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+# pre-commit — runs lint-staged on changed files.
+# Governed by openspec/specs/tech-stack/spec.md → "Pre-commit hygiene enforced".
+
+pnpm exec lint-staged

@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+# commit-msg — enforces Conventional Commits via commitlint.
+# Governed by openspec/specs/tech-stack/spec.md → "Pre-commit hygiene enforced".
+
+pnpm exec commitlint --edit "$1"

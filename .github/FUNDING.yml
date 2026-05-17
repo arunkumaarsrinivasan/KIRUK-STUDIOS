@@ -1,0 +1,11 @@
+# Kiruk funding surface — declare sponsorship channels here as they open.
+# Leave commented-out entries until each channel is actually live.
+
+# github: [arunkumaarsrinivasan]
+# ko_fi: kirukism
+# patreon: kirukism
+# open_collective: kiruk
+# buy_me_a_coffee: kirukism
+
+custom:
+  - "https://kiruk.studio/work-with-us"

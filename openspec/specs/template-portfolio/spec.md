@@ -22,7 +22,13 @@ The portfolio MUST include a dedicated ISM section once ≥1 ISM is portfolio-el
 - THEN an ISM section renders before the services section
 
 ### Requirement: Eye-motif test
-Inherits brand-system requirement: eye motif present OR front-matter justifies absence.
+The portfolio output MUST satisfy `brand-system`'s eye-motif requirement: an eye motif is present in at least one visual artifact OR the absence is justified in the document's front-matter.
+
+#### Scenario: Eye-motif present or justified
+- GIVEN a rendered portfolio output
+- WHEN the eye-motif test runs against it
+- THEN at least one eye-motif element is found OR the front-matter contains `eye-motif: none — justified: <reason>`
+- AND the test passes
 
 ### Requirement: Tone match
 Voice MUST match founder context in `CLAUDE.md` §3: narrative-driven, process-transparent, playful-precise.

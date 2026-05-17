@@ -94,6 +94,9 @@ function main() {
   const source = process.argv.includes('--manual') ? 'manual' : 'session-end';
 
   const { assistantTurns, userTurns } = parseTranscript(tp);
+  const scribbleArg = process.argv.find((a) => a.startsWith('--scribble='));
+  const scribble = scribbleArg ? scribbleArg.split('=')[1] : null;
+
   const entry = {
     ts: new Date().toISOString(),
     source,
@@ -102,12 +105,16 @@ function main() {
     user_intent: condense(userTurns, 200),
     decisions: extractDecisions(assistantTurns),
     files_touched: [],
+    scribble,
     transcript_path: tp || null,
   };
 
   fs.mkdirSync(path.dirname(logPath), { recursive: true });
   fs.appendFileSync(logPath, JSON.stringify(entry) + '\n');
   console.log('[capture-session] appended', source, 'entry to ideas/log.ndjson');
+  if (scribble === null) {
+    console.log('[capture-session] note: scribble:null → fine for exploration, required before promotion (pen-and-paper spec).');
+  }
 }
 
 main();

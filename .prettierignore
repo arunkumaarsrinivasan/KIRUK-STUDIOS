@@ -1,0 +1,10 @@
+node_modules
+packages/design-system/build
+.turbo
+.next
+dist
+build
+coverage
+.brand-ci
+ideas/log.ndjson
+**/scribble/.raw
