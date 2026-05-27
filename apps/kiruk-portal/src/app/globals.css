@@ -96,3 +96,108 @@ body {
   background: var(--ink);
   color: var(--paper);
 }
+
+/* ────────────────────────────────────────────────────────────────
+   ABSURDLY layer — brutalist absurdism for the onboarding/tests.
+   Graph-paper grid, big shapes, inverted blocks, dashed = secondary,
+   conceptual mechanics. Mono B&W. (Distinct from kiruk-web pencil hero.)
+   ──────────────────────────────────────────────────────────────── */
+:root {
+  --grid: #ebebeb;
+  --font-brutal: 'Arial', 'Helvetica Neue', system-ui, sans-serif;
+}
+
+.grid-paper {
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+.brutal {
+  font-family: var(--font-brutal);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 0.92;
+  text-transform: none;
+}
+
+.ink-block {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.dashed {
+  border: 2px dashed var(--ink);
+}
+
+/* big circular arrow button (splash / step nav) */
+.arrow-btn {
+  display: grid;
+  place-items: center;
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 9999px;
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 1.5rem;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.arrow-btn:hover {
+  transform: scale(1.06) rotate(-4deg);
+}
+.arrow-btn:disabled {
+  opacity: 0.25;
+  cursor: not-allowed;
+}
+
+/* the absurd face mark */
+.face-mark {
+  display: inline-grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: 6px;
+}
+
+/* page dots */
+.dots {
+  display: flex;
+  gap: 0.4rem;
+}
+.dot {
+  width: 1.6rem;
+  height: 0.45rem;
+  border: 1.5px solid var(--ink);
+}
+.dot.on {
+  background: var(--ink);
+}
+
+/* pick tile — invert on select */
+.pick {
+  border: 2px solid var(--ink);
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-brutal);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  transition:
+    transform 0.18s ease,
+    background 0.18s ease,
+    color 0.18s ease;
+  cursor: pointer;
+}
+.pick:hover {
+  transform: translateY(-2px) rotate(-1deg);
+}
+.pick.on {
+  background: var(--ink);
+  color: var(--paper);
+  transform: rotate(1deg) scale(1.02);
+}
