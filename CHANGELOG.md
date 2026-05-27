@@ -10,7 +10,7 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/) with an a
 
 ### Added
 
-- **`kiruk-portal` — onboarding rebuilt as immersive interactions, in the sketch style.** The prior tests read like an old-style form. Rebuilt every step as a scene you act on — personality = **pick-to-select tiles** that ink-in on choose + a "THE READ" archetype block; vibe = **chunky pointer-drag gauges** (poles scale with value); embedded scribble; scene-per-step nav with a circle → button + progress dots.
+- **`kiruk-portal` — onboarding rebuilt as immersive interactions, in the sketch style.** The prior tests read like an old-style form. Rebuilt every step as a scene you act on, not a question list — personality = a **drag-compass** (drag the `me` token toward whichever of the 5 archetypes pulls you; nearest = live read, ink-trail follows — one gesture replaces the whole quiz); vibe = **chunky pointer-drag gauges** (poles scale with value); embedded scribble; scene-per-step nav with a circle → button + progress dots.
   - **Correction:** a first pass wrongly adopted the founder's **Absurdly** Figma as the _design system_ (brutalist grotesque + graph grid). Absurdly is the reference for **interaction patterns only** — the look stays kiruk's **hand-drawn pencil/sketch** system. Re-skinned: faint notebook ruling, hand display headings, hand-font tiles, outline marks. (Also caught a `.invert` collision with Tailwind's invert filter utility → `.ink-block`.)
   - **Why:** immersive, conceptual interaction is the brand — but it must wear kiruk's sketch skin, not a borrowed brutalist one.
 
