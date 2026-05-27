@@ -98,29 +98,24 @@ body {
 }
 
 /* ────────────────────────────────────────────────────────────────
-   ABSURDLY layer — brutalist absurdism for the onboarding/tests.
-   Graph-paper grid, big shapes, inverted blocks, dashed = secondary,
-   conceptual mechanics. Mono B&W. (Distinct from kiruk-web pencil hero.)
+   INTERACTION layer — kiruk SKETCH skin.
+   Absurdly (founder Figma) is the reference for INTERACTION patterns only
+   (scene-per-step, pick-to-select, drag gauges) — NOT the visual style.
+   The look is kiruk's hand-drawn pencil/sketch system. Light paper, hand fonts.
    ──────────────────────────────────────────────────────────────── */
-:root {
-  --grid: #ebebeb;
-  --font-brutal: 'Arial', 'Helvetica Neue', system-ui, sans-serif;
-}
 
+/* soft paper ground with faint ruled notebook lines (not a hard grid) */
 .grid-paper {
   background-color: var(--paper);
-  background-image:
-    linear-gradient(var(--grid) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
-  background-size: 56px 56px;
+  background-image: linear-gradient(transparent 31px, var(--rule) 32px);
+  background-size: 100% 32px;
 }
 
+/* big hand-drawn heading (was brutal grotesque — now the display hand face) */
 .brutal {
-  font-family: var(--font-brutal);
-  font-weight: 800;
-  letter-spacing: -0.035em;
-  line-height: 0.92;
-  text-transform: none;
+  font-family: var(--font-display);
+  letter-spacing: 0;
+  line-height: 0.98;
 }
 
 .ink-block {
@@ -132,61 +127,70 @@ body {
   border: 2px dashed var(--ink);
 }
 
-/* big circular arrow button (splash / step nav) */
+/* hand-drawn outline circle step button */
 .arrow-btn {
   display: grid;
   place-items: center;
-  width: 4.5rem;
-  height: 4.5rem;
+  width: 4rem;
+  height: 4rem;
   border-radius: 9999px;
-  background: var(--ink);
-  color: var(--paper);
-  font-size: 1.5rem;
-  border: none;
+  background: var(--paper);
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  font-size: 1.4rem;
   cursor: pointer;
-  transition: transform 0.2s ease;
+  transform: rotate(-2deg);
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    color 0.2s ease;
 }
 .arrow-btn:hover {
-  transform: scale(1.06) rotate(-4deg);
+  transform: rotate(0deg) scale(1.05);
+  background: var(--ink);
+  color: var(--paper);
 }
 .arrow-btn:disabled {
   opacity: 0.25;
   cursor: not-allowed;
 }
 
-/* the absurd face mark */
+/* eye / face mark — hand outline */
 .face-mark {
   display: inline-grid;
   place-items: center;
   width: 2.25rem;
   height: 2.25rem;
-  background: var(--ink);
-  color: var(--paper);
-  border-radius: 6px;
+  border: 2px solid var(--ink);
+  border-radius: 9999px;
+  color: var(--ink);
+  transform: rotate(-3deg);
 }
 
-/* page dots */
+/* progress dots — hand-drawn pebbles */
 .dots {
   display: flex;
   gap: 0.4rem;
 }
 .dot {
-  width: 1.6rem;
-  height: 0.45rem;
+  width: 0.55rem;
+  height: 0.55rem;
   border: 1.5px solid var(--ink);
+  border-radius: 9999px;
+  transform: rotate(8deg);
 }
 .dot.on {
   background: var(--ink);
 }
 
-/* pick tile — invert on select */
+/* pick tile — sketch box, inks in on select */
 .pick {
   border: 2px solid var(--ink);
+  border-radius: 12px;
   background: var(--paper);
   color: var(--ink);
-  font-family: var(--font-brutal);
-  font-weight: 700;
-  letter-spacing: -0.02em;
+  font-family: var(--font-hand);
+  transform: rotate(-0.6deg);
   transition:
     transform 0.18s ease,
     background 0.18s ease,
@@ -194,10 +198,11 @@ body {
   cursor: pointer;
 }
 .pick:hover {
-  transform: translateY(-2px) rotate(-1deg);
+  transform: rotate(0.6deg) translateY(-2px);
+  background: var(--rule);
 }
 .pick.on {
   background: var(--ink);
   color: var(--paper);
-  transform: rotate(1deg) scale(1.02);
+  transform: rotate(1.2deg) scale(1.03);
 }
