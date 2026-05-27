@@ -9,23 +9,23 @@
 
 ---
 
-## Active — Founder input needed (unblocks Phases 3–5)
+## Active — Founder input (most answered 2026-05-26)
 
-- [x] (P0) 2026-05-18 — Strategy locks ST1–ST4 (lab-led, transparency boundary, product surface, automation streams) — see `FOUNDER_DECISIONS.md`
-- [ ] (P0) Answer `FOUNDER_DECISIONS.md` **PR1–PR3** — first in-house product (name, deploy target, success metric) — unblocks Phase 3.5
-- [ ] (P0) Answer `FOUNDER_DECISIONS.md` **B1–B5** — brand locks (logo, wordmark, palette, type, dark/light)
-- [ ] (P0) Answer `FOUNDER_DECISIONS.md` **W1–W7** — website direction (feeling, routes, hero, CTA)
-- [ ] (P0) Answer `FOUNDER_DECISIONS.md` **AU1–AU2** — automation runners (content pipeline, brand-CI) — unblocks Phase 4.5
-- [ ] (P0) Answer `FOUNDER_DECISIONS.md` **I1–I3** — first ISM experiment (which one, concept, format)
-- [ ] (P1) Answer `FOUNDER_DECISIONS.md` **S1–S2** — social platforms + content format
-- [ ] (P1) Answer `FOUNDER_DECISIONS.md` **P1–P3** — portal users, auth, universe lifecycle
-- [ ] (P1) Answer `FOUNDER_DECISIONS.md` **M1–M2** — tagline + public kirukargal def
+- [x] (P0) 2026-05-18 — Strategy locks ST1–ST4 (lab-led, transparency boundary, product surface, automation streams)
+- [x] (P0) 2026-05-26 — **B1–B5** brand (eye-mark placeholder, custom wordmark, B&W+absurd-assets, hand+sans, light-only)
+- [x] (P0) 2026-05-26 — **W1–W7** website (POV desk + 2.5D hands, desk-object nav, note-on-desk contact, just-Arun, kiruk.in/studio)
+- [x] (P0) 2026-05-26 — **AU2** brand-CI runner = Husky + Actions
+- [x] (P1) 2026-05-26 — **S1–S2** all platforms, full production · **P1–P3** client read-view, Better-Auth, full record · **M1–M2** tagline meaning + kirukargal def
+- [ ] (P0) **I1–I2** — first ISM (which one + concept) — STILL OPEN, unblocks Phase 5
+- [ ] (P0) **PR1–PR3** — first product (name, deploy, metric) — STILL OPEN, unblocks Phase 3.5
+- [ ] (P0) **AU1** — content-pipeline runner — STILL OPEN, unblocks Phase 4.5
+- [ ] (P1) I3 done (ISM ships as page on studio site)
 
 ---
 
 ## Active — Phase 2 (Monorepo Scaffold + Kirukism Identity)
 
-- [x] (P0) `pnpm-workspace.yaml` — workspaces: apps/*, packages/*
+- [x] (P0) `pnpm-workspace.yaml` — workspaces: apps/_, packages/_
 - [x] (P0) `apps/kiruk-web/` stub — package.json + README
 - [x] (P0) `apps/kiruk-portal/` stub — package.json + README
 - [x] (P0) Kirukism vocabulary in CLAUDE.md, VISION-MISSION.md, CONTRIBUTING.md, TASKS.md
@@ -35,18 +35,18 @@
 - [ ] (P0) Update root `package.json` to use pnpm workspaces + turbo
 - [ ] (P1) Smoke test: `pnpm install` from root resolves all workspaces
 
-## Next — Phase 3 (kiruk-web)
+## Active — Phase 3 (kiruk-web) [~ in progress]
 
-- [ ] (P0) Next.js 15 scaffold in `apps/kiruk-web/` (App Router, Turbopack, TS, Tailwind)
-- [ ] (P0) Import `@kiruk/design-system` as workspace package in kiruk-web
-- [ ] (P0) Home route with Eye motif hero (EyePrimary + EyeConstellation)
-- [ ] (P1) `/kirukism` route — manifesto + movement page
-- [ ] (P1) `/ism` route — ISM series index
-- [ ] (P1) `/services` route
-- [ ] (P1) `/about` route
-- [ ] (P1) `/devlog` route pulling from `content/devlogs/`
-- [ ] (P2) Contact form → kirukargal intake
-- [ ] (P0) Vercel deploy config + domain kiruk.studio
+- [x] (P0) Astro 5 scaffold (not Next.js) — config, layout, Tailwind v4, /studio base
+- [x] (P0) Sketch design system in-app — fonts, sketch CSS, primitives (SketchNav/Button), eye CustomCursor
+- [x] (P0) Home route — cursor pencil field + KIRUK wordmark + handwritten copy + sketch nav
+- [ ] (P0) **Fix pencil-stroke feel** (smoke → real graphite strokes)
+- [ ] (P0) **POV desk + 2.5D hands** hero (W1) — phase after launch
+- [ ] (P0) Promote sketch primitives → `@kiruk/design-system` (currently app-local)
+- [ ] (P1) Build routes: `/kirukism` `/ism` `/products` `/services` `/about` `/devlog`
+- [ ] (P1) `/devlog` via Velite from `content/devlogs/`
+- [ ] (P2) "Leave a note on the desk" contact (W5)
+- [ ] (P0) Vercel deploy under kiruk.in/studio
 
 ## Later — Phase 4+ (portal, ISM, kirukargals)
 
@@ -85,6 +85,10 @@ See `ROADMAP.md` Phases 4–7.
 
 ## Done (most recent first)
 
+- [x] 2026-05-26 `adopt-sketch-direction` OpenSpec change applied + archived — mono tokens (paper/ink/pencil + absurd assets), hand+sans fonts, light-only, drawn-eye/placeholder CI tolerance, dropped 14-day devlog floor, kiruk.in/studio base path. Validates 23/23
+- [x] 2026-05-26 Founder-decisions session — all B/W/S/P/M + AU2 answered, recorded in FOUNDER_DECISIONS.md
+- [x] 2026-05-26 kiruk-web sketch foundation — Astro 5, ported kiruk.in hand fonts, sketch CSS system + primitives, pencil cursor field hero, eye cursor, bottom nav, /studio base
+- [x] 2026-05-26 Repo tidy — removed npm package-lock (pnpm-only), gitignore .astro/.vercel/\*.tsbuildinfo, fixed CLAUDE.md Astro/Next, moved vision plan into docs/
 - [x] 2026-05-18 Foundation hardening for OSS launch — config infra, OSS compliance docs (CoC, Security, Governance, CITATION.cff, FUNDING, CODEOWNERS, issue templates), dual license split (MIT code + CC-BY 4.0 content), CI workflows (openspec/tokens/doctor), knowledge layer (GLOSSARY, docs/, spec template), pen-and-paper wired into scripts, README rewrite with badges + nav diagram
 - [x] 2026-05-18 Strategy locks ST1–ST4: lab-led, transparency boundary, full product surface, all 4 automation streams active
 - [x] 2026-05-18 OpenSpec proposal `expand-studio-model` authored + validated — 6 new capabilities (products, build-in-public, content-pipeline, client-lifecycle, pen-and-paper, brand-consistency-ci), 2 modified (idea-capture, ism)
@@ -95,7 +99,7 @@ See `ROADMAP.md` Phases 4–7.
 - [x] 2026-04-26 Kirukism vocabulary — ROADMAP, CLAUDE.md, VISION-MISSION.md, CONTRIBUTING.md
 - [x] 2026-04-26 Monorepo scaffold — pnpm-workspace.yaml, apps/kiruk-web, apps/kiruk-portal stubs
 - [x] 2026-04-XX Phase 1 brand spine — manifesto v1, Eye SVG components, token pipeline
-- [x] 2026-04-XX Code-first design system — removed Pencil, React SVG Eye/* + Scribble, Style Dictionary
+- [x] 2026-04-XX Code-first design system — removed Pencil, React SVG Eye/\* + Scribble, Style Dictionary
 - [x] 2026-04-XX Phase 0 OS Bootstrap — all root docs, OpenSpec, specs, templates, scripts, slash commands
 
 ---

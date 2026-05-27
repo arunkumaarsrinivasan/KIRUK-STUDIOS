@@ -10,6 +10,7 @@
 ## What this repo holds
 
 One monorepo. Everything that is kiruk lives here:
+
 - Ideology, vision, mission, brand
 - `apps/kiruk-web` — public studio website (deploys independently)
 - `apps/kiruk-portal` — client management, universe tracking, deliverables (deploys independently)
@@ -57,8 +58,8 @@ One monorepo. Everything that is kiruk lives here:
 
 **Goal**: Shape the repo as a true monorepo and encode kirukism as the studio's core identity.
 
-- [x] `pnpm-workspace.yaml` — workspaces: apps/*, packages/*
-- [x] `apps/kiruk-web/` — Next.js 15 stub with package.json, README
+- [x] `pnpm-workspace.yaml` — workspaces: apps/_, packages/_
+- [x] `apps/kiruk-web/` — stub with package.json, README (framework later switched Next.js → **Astro 5** per tech-stack lock)
 - [x] `apps/kiruk-portal/` — client portal stub with package.json, README
 - [x] Kirukism vocabulary in CLAUDE.md, VISION-MISSION.md, CONTRIBUTING.md
 - [x] Full monorepo ROADMAP (this file)
@@ -68,28 +69,28 @@ One monorepo. Everything that is kiruk lives here:
 
 ---
 
-## Phase 3 — kiruk-web v0 (website)
+## Phase 3 — kiruk-web v0 (website) [~ IN PROGRESS]
 
 **Goal**: Studio public face — lab-led front door. Deployed from `apps/kiruk-web/`. Independent deploy → Vercel.
 
-> **Stack lock:** Astro 5 + React 19 islands + Tailwind v4 + Motion v11 + GSAP 3 + Three.js r170+ + R3F 9 + Velite for MDX content. See [`openspec/specs/tech-stack/spec.md`](openspec/specs/tech-stack/spec.md) for the full envelope and per-route JS budgets.
+> **Stack lock:** Astro 5 + React 19 islands + Tailwind v4 + Motion v11 + GSAP 3 + Three.js r170+ + R3F 9 + Velite for MDX content. See [`openspec/specs/tech-stack/spec.md`](openspec/specs/tech-stack/spec.md).
 
-> 🔒 **BLOCKED — needs founder direction first.**
-> Answer decisions in [`FOUNDER_DECISIONS.md`](FOUNDER_DECISIONS.md) before any code goes in here.
-> Required locks: **B1, B2, B3, B4, B5, W1, W2, W3, W4, W5, W6, W7**
+> ✅ **Unblocked 2026-05-26** — brand + website decisions answered in [`FOUNDER_DECISIONS.md`](FOUNDER_DECISIONS.md) (B1–B5, W1–W7) and applied via the `adopt-sketch-direction` OpenSpec change. Direction: hand-drawn **black-&-white sketch**, POV designer's-desk hero, ship under **kiruk.in/studio**.
 
-- [ ] **[needs B1–B5 locked]** Brand pass — final logo, palette, type confirmed in tokens
-- [ ] **[needs W1–W3 locked]** Astro 5 scaffold (`pnpm create astro@latest`) + homepage hero with R3F island built
-- [ ] **[needs W2 locked]** Route structure finalized and stubbed
-- [ ] `@kiruk/design-system` imported as workspace package in kiruk-web
-- [ ] Token-driven theming: CSS vars from `packages/design-system/build/css/tokens.css` via Tailwind v4 `@tailwindcss/vite`
-- [ ] **[needs W4 locked]** Devlog index pulling from `content/devlogs/`
+- [x] Brand pass — mono token palette (paper/ink/pencil + absurd-asset color) + hand & body-sans fonts confirmed in tokens
+- [x] Astro 5 scaffold + sketch design system (fonts, sketch CSS, primitives) + home hero (cursor pencil field + KIRUK wordmark)
+- [x] Eye cursor + bottom sketch nav; `/studio` base path wired (`src/lib/base.ts`)
+- [~] `@kiruk/design-system` consumed — currently app-local CSS vars; promote primitives into the package next
+- [ ] **Fix pencil-stroke feel** — current field reads like smoke; rework to stamped graphite strokes
+- [ ] **POV desk + 2.5D hands** hero (W1/W3) — the full concept; phase after launch
+- [ ] Route structure built out — `/kirukism`, `/ism`, `/products`, `/services`, `/about`, `/devlog` (only `/` exists)
+- [ ] Devlog index pulling from `content/devlogs/` (Velite)
 - [ ] Case studies pulling from `content/case-studies/`
-- [ ] **[needs W5 locked]** Contact / "work with kiruk" CTA wired
-- [ ] **[needs W7 locked]** Deployment config: `vercel.json` / `next.config.ts`
-- [ ] Domain: kiruk.studio pointed at Vercel
+- [ ] "Leave a note on the desk" contact flow (W5) wired
+- [ ] Deploy: Vercel under `kiruk.in/studio` base
+- [ ] Domain: dedicated kiruk domain later (W7)
 
-**Exit**: site live at kiruk.studio; all locked routes render; devlog loop working.
+**Exit**: site live at kiruk.in/studio; routes render; devlog loop working.
 
 ---
 
@@ -209,15 +210,15 @@ One monorepo. Everything that is kiruk lives here:
 
 ## Deployment topology
 
-| App / Artifact | Deploy target | Trigger |
-|---|---|---|
-| `apps/kiruk-web` | Vercel (kiruk.studio) | push to `main` |
-| `apps/kiruk-portal` | Railway or Vercel (portal.kiruk.studio) | push to `main` |
-| `kiruk-ism/<name>` | Vercel or Netlify (per experiment) | manual or ISM branch |
-| `kiruk-projects/_products/<slug>` | Per product (web → Vercel, extension → Chrome Web Store, etc.) | per product config |
-| Design tokens | npm (private or public `@kiruk/design-system`) | on release tag |
-| Content / devlogs | Consumed by kiruk-web at build time | static MDX in repo |
-| Brand-CI report | Build artifact on every CI run | every PR + push |
+| App / Artifact                    | Deploy target                                                  | Trigger              |
+| --------------------------------- | -------------------------------------------------------------- | -------------------- |
+| `apps/kiruk-web`                  | Vercel (kiruk.in/studio; dedicated domain later)               | push to `main`       |
+| `apps/kiruk-portal`               | Railway or Vercel (portal.kiruk.studio)                        | push to `main`       |
+| `kiruk-ism/<name>`                | Vercel or Netlify (per experiment)                             | manual or ISM branch |
+| `kiruk-projects/_products/<slug>` | Per product (web → Vercel, extension → Chrome Web Store, etc.) | per product config   |
+| Design tokens                     | npm (private or public `@kiruk/design-system`)                 | on release tag       |
+| Content / devlogs                 | Consumed by kiruk-web at build time                            | static MDX in repo   |
+| Brand-CI report                   | Build artifact on every CI run                                 | every PR + push      |
 
 ---
 

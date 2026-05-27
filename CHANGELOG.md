@@ -9,6 +9,31 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/) with an a
 ## [Unreleased]
 
 ### Added
+
+- **Founder-decisions session (2026-05-26) + `adopt-sketch-direction` OpenSpec proposal.** Walked all open `FOUNDER_DECISIONS.md` questions (B1–B5, W1–W7, I1–I3, S1–S2, P1–P3, M1–M2, PR1–PR3, AU1–AU2) as a guided interview; recorded every answer inline + a locked-decisions log + a "Spec impacts to action" section.
+  - **Headline decisions:** identity unchanged (creative studio); palette = white paper + black stroke with **absurd color reserved for assets** (blend digital↔paper); type = hand faces for display/voice + clean sans body; light-only; homepage = **POV product-designer's desk with 2.5D interactive hands** (left/right hands react to side + activity); desk objects = nav; "leave a note on the desk" = contact; ship under `kiruk.in/studio`; portal = Arun + client read-view on Better-Auth; brand-CI = Husky + Actions; devlog cadence = "publish when real."
+  - **Spec realignment APPLIED + archived:** `adopt-sketch-direction` ([openspec/archive/adopt-sketch-direction/](openspec/archive/adopt-sketch-direction/)) — deltas merged into `design-tokens` (mono base + absurd-asset boundary + hand/sans fonts), `brand-system` (hand+sans type pairing, placeholder eye-mark, light-only), `build-in-public` (dropped the 14-day devlog floor), `tech-stack` (kiruk.in/studio base path), `brand-consistency-ci` (drawn-eye + placeholder tolerance). **Validates strict** (23/23) and `pnpm doctor` green.
+    - **Applied to code:** rewrote `packages/design-system/tokens/{core,semantic,components,type}.json` to the B&W paper/ink/pencil-ramp base + `color.absurd.*` asset group + hand & body-sans font families; regenerated `build/` via `pnpm tokens:build`; updated `EyePrimary.tsx` to mono token vars; `apps/kiruk-web` now ships under `/studio` base (`astro.config.mjs` + `src/lib/base.ts` href helper + base-aware nav/CTA/favicon); `scripts/doctor.mjs` devlog cadence relaxed to informational; refactored `CustomCursor.tsx` SVG fills + `favicon.svg` to mono. Verified in-browser at `/studio` — renders, eye cursor, base-prefixed links, zero console errors.
+  - **Founder feedback captured:** the cross-hatch hero reads like **smoke, not pencil** — to be reworked into stamped pencil strokes and folded into the desk/hands concept (build phase, post-spec).
+  - **Why:** the founder changed the visual direction; per CLAUDE.md §4 + non-neg #5 durable palette/brand/cadence changes must go through OpenSpec, not quiet edits. This realigns the specs so the upcoming UI rework is legitimate.
+
+- **Sketch design-language foundation for `kiruk-web` (UI rework, slice 1 of "entire UI rework").** Adopted the hand-drawn "sketch studio" language from the existing kiruk.in site (reference at `C:\Users\arunk\Downloads\kiruk-in`) into the studio web app, black & white only.
+  - **Fonts:** ported Bridges Not Walls (KIRUK wordmark), Left Hand (handwriting body/nav), Magnetic Drawing (display) into [apps/kiruk-web/src/assets/fonts](apps/kiruk-web/src/assets/fonts), wired via `@font-face` + CSS vars (`--font-wordmark` / `--font-hand` / `--font-display`); studio-own Kirukal + Kirukulam copied for later use. **LICENSE GATE:** the three third-party faces need web-embedding license confirmation before this repo ships publicly (noted in [global.css](apps/kiruk-web/src/styles/global.css)).
+  - **Sketch CSS system:** curated monochrome port into [global.css](apps/kiruk-web/src/styles/global.css) — `sketch-border`, `sketch-button`, `paper-texture`, `notebook-bg`, `wireframe-bg`, `scribbled-*` type voices, `torn-paper`, `jitter`/`wobble`/`draw` keyframes, reduced-motion guard.
+  - **Sketch primitives:** [SketchNav.astro](apps/kiruk-web/src/components/sketch/SketchNav.astro) (bottom hand-drawn nav), [SketchButton.astro](apps/kiruk-web/src/components/sketch/SketchButton.astro), and the signature [CustomCursor.tsx](apps/kiruk-web/src/components/sketch/CustomCursor.tsx) eye cursor (trailing body, pupil leads motion, blink on click, fine-pointer only). Staged for promotion into `@kiruk/design-system`.
+  - **Home reskin:** KIRUK wordmark + handwritten eyebrow/tagline + sketch CTA + bottom sketch nav, over the existing pencil cross-hatch field. Verified in-browser (fonts load, eye cursor, nav, zero console errors); `tsc --noEmit` clean. See [LEARNINGS.md](LEARNINGS.md) 2026-05-26 for the cascade-layer fix uncovered during verification.
+  - **Governance (explore-now, spec-after — founder choice):** the B&W palette, fonts, and sketch primitives are app-local for now; promotion into `@kiruk/design-system` tokens + the `design-tokens` / `brand-system` specs requires an OpenSpec proposal (non-neg #5) before ship, plus the font-license clearance above.
+  - **Why:** the founder wants the whole studio UI to match kiruk.in's hand-drawn world, end-to-end. Building the foundation (fonts + sketch system + core primitives) and proving it on the home page first de-risks the larger rework and gives a concrete base to extend route-by-route.
+
+- **`kiruk-web` landing-page hero — cursor-sketch field, black & white (iteration 1).** Scaffolded the Astro 5 app shell ([astro.config.mjs](apps/kiruk-web/astro.config.mjs), [tsconfig.json](apps/kiruk-web/tsconfig.json), [Base.astro](apps/kiruk-web/src/layouts/Base.astro), [index.astro](apps/kiruk-web/src/pages/index.astro), Tailwind v4 via `@tailwindcss/vite`). Built a GPU sketch field as a client-only React island: raw Three.js r170 ping-pong render targets; the cursor lays down a density field (minimal flow, so marks behave like drawn lines), rendered as **graphite pencil cross-hatch + paper tooth** ([InkField.ts](apps/kiruk-web/src/components/ink/InkField.ts), [shaders.ts](apps/kiruk-web/src/components/ink/shaders.ts), [InkHero.tsx](apps/kiruk-web/src/components/InkHero.tsx)). Visitor sketches with the cursor; sketching **reveals the eye motif** beneath as line-art (contour + iris ring + pupil, geometry mirrors `EyePrimary`). Palette: **monochrome only** — near-white paper + graphite ink, no accent (the founder adds colour by hand where needed; `--seal` retained for that). Verified in-browser (sketches, cross-hatch reads as pencil, reveals eye, zero console errors); `tsc --noEmit` clean; `prefers-reduced-motion` renders a static frame.
+  - **Reference, not copy:** loosely inspired by [inkField](https://github.com/ileivoivm/inkField), whose engine is closed-source and runs on p5.js (off the locked stack). The studio direction is **sketch, not ink** — reimplemented from scratch on the locked Three.js/GLSL stack as pencil hatching.
+  - **Governance flags (must clear before this ships):** (1) hero palette differs from the current B3 design tokens (light paper vs. dark void) — kept as app-local CSS vars in [global.css](apps/kiruk-web/src/styles/global.css) to honor non-negotiable #5 (no design token without a spec); promote only after a B3/B5 OpenSpec proposal. (2) `FOUNDER_DECISIONS.md` brand locks B1–B5 and website locks W1–W7 are still `[ ]` — this iteration is exploration toward those answers, not a locked surface.
+  - **Iteration 2 (deferred):** hand-jittered hatch lines (organic wobble), autonomous scribble→eye morph on load, route shell (`/kirukism`, `/ism`, …), Velite content collections, Vercel adapter, size-limit/Lighthouse budget wiring.
+  - **Why:** the founder chose to start the public site from its most expressive surface — a black-and-white sketch hero that embodies "scribbles into worlds" (kiruk = scribble). Building the real interaction early de-risks the hardest craft (the WebGL feel) and turns the open W1/W3 founder questions into something concrete to react to.
+
+- **Repo tidy + package-manager correction.** Removed the committed npm `package-lock.json` (the `tech-stack` spec explicitly forbids it; the repo is pnpm-only) so `pnpm-lock.yaml` is the sole lockfile; gitignored generated `.astro/` and `.vercel/`; fixed a CLAUDE.md §6 contradiction (kiruk-web mislabeled "Next.js 15" → **Astro 5**, portal tagged Next.js 15); moved the stray root file `Kiruk Studio Vision, System, and Claude Code Implementation Plan.md` → [docs/vision-and-system-plan.md](docs/vision-and-system-plan.md) and linked it in the docs index.
+  - **Why:** two lockfiles from two package managers is a reproducibility hazard and a direct spec violation; the framework contradiction would mislead any contributor; a space-laden root filename sat outside the navigation map. No folder restructure — the spec-governed architecture is sound and structural change is gated behind OpenSpec proposals.
+
 - **`tech-stack` capability + `lock-tech-stack` proposal** — full 2026 best-in-class envelope locked across runtime, package manager, monorepo orchestrator, lint, frameworks per app surface, styling, animation, 3D, content, database, auth, backend, validation, state, testing, performance budgets, observability, deploy targets. Spec at [openspec/specs/tech-stack/spec.md](openspec/specs/tech-stack/spec.md); proposal at [openspec/changes/lock-tech-stack/](openspec/changes/lock-tech-stack/). Validates strict.
   - **Headline picks (researched, Jan 2026):** Node 22 LTS · pnpm 10 · Turborepo 2 · TypeScript 5.7 strict · **Biome 2** for code (25× faster than ESLint+Prettier) + Prettier 3 for MD · Husky 9 + lint-staged 16 + commitlint 19 (Conventional Commits) · **Astro 5** for `kiruk-web` (content-first, islands, zero-JS-by-default — beats Next.js on LCP/TBT for this profile) · **Next.js 15 + React 19 + RSC + Server Actions + PPR** for `kiruk-portal` · **Tailwind v4** (Oxide engine) · **Motion v11 + GSAP 3** · **Three.js r170+ + R3F 9 + drei + TSL** shaders (WebGPU-ready) · **MDX 3 + Velite** (Contentlayer is unmaintained) · AVIF + WebP + Sharp · **Postgres on Neon + Drizzle ORM** (Prisma forbidden new code) · **Better-Auth** (NextAuth forbidden new code) · **Server Actions + Hono on Cloudflare Workers** for backend (Spring Boot forbidden unless JVM-only workload demanded) · **Zod 4** for validation · **Zustand 5** for client state · **Vitest 2 + Playwright 1.49+** for tests · **size-limit + Lighthouse CI** with per-route JS + Core Web Vitals budgets · **Sentry + Speed Insights** for observability · **Vercel + Cloudflare hybrid** deploy.
   - **Successor watch list** maintained inside the spec for annual year-end re-evaluation (Node 24, Bun, WebGPU, React Compiler).
@@ -43,6 +68,7 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/) with an a
 - **FOUNDER_DECISIONS.md** — STRATEGY section with four locked decisions (2026-05-18); new PRODUCTS (PR1–PR3) + AUTOMATION (AU1–AU2) question blocks.
 
 ### Added
+
 - **Monorepo scaffold** — `pnpm-workspace.yaml` (workspaces: `apps/*`, `packages/*`), `apps/kiruk-web/` stub (Next.js 15, kiruk.studio target), `apps/kiruk-portal/` stub (internal client management). Design system stays at root until `packages/design-system` migration (Phase 2 next).
   - **Why:** kiruk holds everything — website, client portal, ISM experiments, design system — in one repo, deployed independently. Monorepo is the foundation for that.
 - **Kirukism vocabulary** — `kirukism` (the movement/cult/philosophy), `kirukargals` (external collaborators), `kirukan` (studio co-workers) now encoded in [CLAUDE.md](CLAUDE.md) §1 and §3, [VISION-MISSION.md](VISION-MISSION.md) (new Kirukism section + People table), [CONTRIBUTING.md](CONTRIBUTING.md) (kirukargal framing), [TASKS.md](TASKS.md), and [ROADMAP.md](ROADMAP.md).
@@ -51,17 +77,20 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/) with an a
   - **Why:** old 4-phase roadmap didn't cover the website, client portal, social pipeline, or kirukargal collaboration model. The studio needs a real plan to see where it's going.
 
 ### Changed
-- **Creative OS docs** — [CLAUDE.md](CLAUDE.md) new §2 *Creative journey*; spec workflow renumbered and clarified as for **durable** work; exploration in inbox stays out of the OpenSpec gate until promotion. [VISION-MISSION.md](VISION-MISSION.md) principle 9, [AGENTS](AGENTS.md) *Creative rhythm*, [README](README.md), [LEARNINGS.md](LEARNINGS.md), [openspec/project.md](openspec/project.md) vocabulary, [kiruk-studio](.cursor/rules/kiruk-studio.mdc) and [lessons-learned](.cursor/rules/lessons-learned.mdc) rules aligned: **imagination and iteration are first-class; rules are scaffolding, not the ceiling.**
+
+- **Creative OS docs** — [CLAUDE.md](CLAUDE.md) new §2 _Creative journey_; spec workflow renumbered and clarified as for **durable** work; exploration in inbox stays out of the OpenSpec gate until promotion. [VISION-MISSION.md](VISION-MISSION.md) principle 9, [AGENTS](AGENTS.md) _Creative rhythm_, [README](README.md), [LEARNINGS.md](LEARNINGS.md), [openspec/project.md](openspec/project.md) vocabulary, [kiruk-studio](.cursor/rules/kiruk-studio.mdc) and [lessons-learned](.cursor/rules/lessons-learned.mdc) rules aligned: **imagination and iteration are first-class; rules are scaffolding, not the ceiling.**
   - **Why:** match the studio’s real process—multiple iterations, fail/succeed, ongoing—and avoid reading specs as a demand for day-one finality.
 - **Section renumbering** in `CLAUDE.md` (Founder → §3 … Session → §8); cross-refs updated in [brand-system](openspec/specs/brand-system/spec.md), [template-portfolio](openspec/specs/template-portfolio/spec.md), generators, [kiruk-intake](.claude/commands/kiruk-intake.md), [kiruk-artifact](.claude/commands/kiruk-artifact.md), [TASKS](TASKS.md), [CHANGELOG](CHANGELOG.md) founder line.
 
 ### Added
+
 - **`operational-learning` capability** — [LEARNINGS.md](LEARNINGS.md) (append-only mistake log with **Mistake / Root cause / Fix / Guard**), [openspec/specs/operational-learning/spec.md](openspec/specs/operational-learning/spec.md), and always-on Cursor rule [`.cursor/rules/lessons-learned.mdc`](.cursor/rules/lessons-learned.mdc). Strengthen prevention on repeat; never rewrite old entries to hide a repeat. Proposal: [openspec/archive/add-operational-learning/proposal.md](openspec/archive/add-operational-learning/proposal.md).
   - **Why:** make “learn from the mistake, don’t repeat it” a first-class studio practice for humans and AI.
 - **`repo-privacy` capability** — OpenSpec spec for keeping API keys and private client data out of git, optional `kiruk-projects/.../.local-only/` pattern, and code-review expectations. Supporting files: [CONTRIBUTING.md](CONTRIBUTING.md), [`.github/PULL_REQUEST_TEMPLATE.md`](.github/PULL_REQUEST_TEMPLATE.md), [`.env.example`](.env.example), stricter [`.gitignore`](.gitignore), Cursor rules [`.cursor/rules/privacy-secrets.mdc`](.cursor/rules/privacy-secrets.mdc) and [`.cursor/rules/code-review.mdc`](.cursor/rules/code-review.mdc).
   - **Why:** ship an open, transparent process without leaking credentials or other people’s confidential material; give humans and agents the same clear rules and PR checklist.
 
 ### Changed
+
 - **OpenSpec** — `add-repo-privacy-spec` moved from `openspec/changes/` to `openspec/archive/add-repo-privacy-spec/` after apply.
   - **Why:** match the documented propose → validate → apply → archive lifecycle.
 - **Removed Pencil MCP** from entire studio OS. Design system is now code-only.
@@ -73,6 +102,7 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/) with an a
   - **Why**: spec claims must match actual implementation.
 
 ### Added
+
 - **Studio OS bootstrap** — scaffolded repo structure, root docs, openspec skeleton, planning docs (`VISION-MISSION.md`, `ROADMAP.md`, `TASKS.md`, this file).
   - **Why**: establish spec-first, idea-capturing foundation before any brand/ISM work begins. Vision doc §6 mandates Claude Code as in-house creative engineer with OpenSpec workflow.
 - **Scope refinement** — ISM lab starts as `openspec/specs/ism/spec.md` only; no heroism/kirukism/colorism/nomadism subfolders yet. Founder will spawn them via `/kiruk-ism-new` when ready.
@@ -81,12 +111,15 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/) with an a
   - **Why**: keeps voice-sensitive artifacts (manifestos, case studies) aligned without re-briefing per session.
 
 ### Changed
+
 - _none_
 
 ### Removed
+
 - _none_
 
 ### Decisions
+
 - **Design system from scratch** — not importing from `GraviaAI` or `kiruk-in`.
   - **Why**: founder explicit preference; ensures brand spine is purposeful, not inherited.
 - **Explicit planning layer** — `VISION-MISSION.md` + `ROADMAP.md` + `TASKS.md` + `CHANGELOG.md` as top-level readable state.
