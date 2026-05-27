@@ -25,12 +25,12 @@ export class InkField {
   // under noUncheckedIndexedAccess — avoids material.uniforms[...] index access.
   private uUpdate = {
     uPrev: { value: null as THREE.Texture | null },
-    uTime: { value: 0 },
-    uDissipation: { value: 0.997 },
-    uPointer: { value: new THREE.Vector2(0.5, 0.5) },
-    uPointerVel: { value: new THREE.Vector2(0, 0) },
-    uMoving: { value: 0 },
-    uRadius: { value: 0.06 },
+    uPersist: { value: 0.997 },
+    uP0: { value: new THREE.Vector2(0.5, 0.5) },
+    uP1: { value: new THREE.Vector2(0.5, 0.5) },
+    uDraw: { value: 0 },
+    uWidth: { value: 0.018 },
+    uPressure: { value: 0.5 },
     uAspect: { value: 1 },
   };
   private uDisplay = {
@@ -50,7 +50,6 @@ export class InkField {
   private pointer = new THREE.Vector2(0.5, 0.5);
   private pointerPrev = new THREE.Vector2(0.5, 0.5);
   private pointerVel = new THREE.Vector2(0, 0);
-  private moving = 0;
 
   private clock = new THREE.Clock();
   private raf = 0;
@@ -183,13 +182,9 @@ export class InkField {
   };
 
   private step(t: number) {
-    // UPDATE: read rtA, write rtB
+    // UPDATE: read rtA, write rtB (pen-segment stamp; endpoints set in loop)
     this.quad.material = this.updateMat;
     this.uUpdate.uPrev.value = this.rtA.texture;
-    this.uUpdate.uTime.value = t;
-    this.uUpdate.uPointer.value.copy(this.pointer);
-    this.uUpdate.uPointerVel.value.copy(this.pointerVel);
-    this.uUpdate.uMoving.value = this.moving;
     this.renderer.setRenderTarget(this.rtB);
     this.renderer.render(this.scene, this.camera);
 
@@ -215,8 +210,12 @@ export class InkField {
     this.clock.getDelta();
     const t = this.clock.elapsedTime;
 
-    this.pointerVel.subVectors(this.pointer, this.pointerPrev);
-    this.moving = Math.min(this.pointerVel.length() * 90, 1);
+    // pen segment from last frame's point to this frame's point
+    const speed = this.pointerVel.subVectors(this.pointer, this.pointerPrev).length();
+    this.uUpdate.uP0.value.copy(this.pointerPrev);
+    this.uUpdate.uP1.value.copy(this.pointer);
+    this.uUpdate.uDraw.value = speed > 0.0008 ? 1 : 0; // moving = drawing
+    this.uUpdate.uPressure.value = 1 - Math.min(speed * 35, 0.7); // slower pen = darker
     this.pointerPrev.copy(this.pointer);
 
     this.step(t);
