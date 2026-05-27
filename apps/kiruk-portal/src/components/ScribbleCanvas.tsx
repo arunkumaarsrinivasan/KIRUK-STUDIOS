@@ -7,11 +7,19 @@ type Pt = { x: number; y: number; p: number };
 // The scribble-proposal surface. Pen-and-paper, on screen: sketch the idea in graphite,
 // undo/clear, export as PNG to hand to the client. Slice 1 — single user, local. Saving into
 // a universe + client mark-back come in later slices.
-export default function ScribbleCanvas() {
+export default function ScribbleCanvas({
+  heightClass = 'h-[100svh]',
+  onCapture,
+}: {
+  heightClass?: string;
+  onCapture?: (dataUrl: string) => void;
+}) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const apiRef = useRef<{ undo: () => void; clear: () => void; exportPng: () => void } | null>(
     null,
   );
+  const onCaptureRef = useRef(onCapture);
+  onCaptureRef.current = onCapture;
   const [strokeCount, setStrokeCount] = useState(0);
 
   useEffect(() => {
@@ -111,6 +119,7 @@ export default function ScribbleCanvas() {
       if (current && current.length === 1) drawStroke(current);
       current = null;
       setStrokeCount(strokes.length);
+      onCaptureRef.current?.(canvas.toDataURL('image/png'));
     };
 
     apiRef.current = {
@@ -152,7 +161,7 @@ export default function ScribbleCanvas() {
   }, []);
 
   return (
-    <div className="flex h-[100svh] flex-col gap-3 p-4 md:p-6">
+    <div className={`flex ${heightClass} flex-col gap-3 p-4 md:p-6`}>
       <div className="flex items-center justify-between gap-3">
         <p className="handwritten text-pencil text-base">
           scribble the proposal &mdash; {strokeCount} stroke{strokeCount === 1 ? '' : 's'}

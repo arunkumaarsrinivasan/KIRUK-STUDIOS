@@ -44,9 +44,12 @@ export default function Home() {
         ))}
       </nav>
 
-      <div>
+      <div className="flex flex-wrap gap-3">
+        <Link href="/onboard" className="sketch-button text-lg">
+          onboard a client <span aria-hidden="true">&rarr;</span>
+        </Link>
         <Link href="/proposals/new" className="sketch-button text-lg">
-          start a scribble proposal <span aria-hidden="true">&rarr;</span>
+          jump to a scribble proposal
         </Link>
       </div>
     </main>
