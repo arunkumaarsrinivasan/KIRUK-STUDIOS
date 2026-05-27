@@ -37,7 +37,10 @@ kiruk-projects/**/.local-only/
 # build tooling caches
 .turbo/
 .next/
+.astro/
+.vercel/
 .cache/
+*.tsbuildinfo
 dist/
 build/
 coverage/

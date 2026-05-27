@@ -46,19 +46,19 @@ Kiruk Studio is a creative studio built around the idea of transforming raw scri
 
 ### 3.1 Core Service Pillars
 
-1. **Worldbuilding Partnerships (Idea → Product)**  
+1. **Worldbuilding Partnerships (Idea → Product)**
    - Work with founders or teams from napkin sketches to shipped product – naming, narrative, UX flows, interface, and launch visuals.
    - Output: clickable prototypes, production-ready frontends, and documented design systems that capture the world’s rules.
 
-2. **Experimental Web Experiences (Awwwards-Grade)**  
+2. **Experimental Web Experiences (Awwwards-Grade)**
    - Deeply crafted, technically ambitious sites that feel like worlds: portfolio microsites, launch experiences, interactive narratives.[^2]
    - Includes WebGL/Three.js, micro-interaction systems, and custom visuals.
 
-3. **Brand Systems and "Kiruk Guidelines"**  
+3. **Brand Systems and "Kiruk Guidelines"**
    - Brand identity from scratch: logo, type, color, layout, image style, the "eye" system, and an opinionated guidelines spec.[^3]
    - Delivered as a living spec (Figma + Notion) that is updated as the brand evolves, not a static PDF.[^3]
 
-4. **Creative OS and Framework Design**  
+4. **Creative OS and Framework Design**
    - Helping other studios or teams build their own creative operating systems: workflows, templates, and documentation frameworks inspired by Kiruk Studio’s own spec-driven approach.[^2][^1]
 
 ### 3.2 Pricing Philosophy
@@ -96,16 +96,16 @@ Kiruk Studio is a creative studio built around the idea of transforming raw scri
 
 For each of the following, Kiruk Studio should maintain a reusable, opinionated template that expresses its worldbuilding and eye-centric identity.
 
-| Document Type | Purpose | Kiruk-Specific Angle |
-|---------------|---------|----------------------|
-| Portfolio | Get the meeting and show what "worldbuilding" means in practice | Emphasize before/after worlds, show sketches next to shipped interfaces, and foreground ISM experiments as proof of original thinking.[^1] |
-| Services Guide | Define offers clearly | Explicitly describe each pillar (Worldbuilding, Experimental Web, Brand Systems, Creative OS), with narrative examples instead of generic bullet lists.[^1][^2] |
-| Pitch Deck | Win the brief with story | Structure as a journey: current world → proposed universe → how Kiruk will build the portal (product/experience). |
-| Proposal | Close the deal | Spec-driven: goals, constraints, creative principles, milestones, and worldbuilding rules, not just scope and price.[^1][^2] |
-| Contract | Protect the work | Includes clauses on experimentation, creative risk, and clear IP rights for both client work and shared experiments. |
-| Invoice | Get paid cleanly | Simple, eye-branded invoices that reference the project universe name and phase names (e.g., "Portal Opening" instead of "Phase 1"). |
-| Client Onboarding | Start strong | A "Welcome to the Universe" kit explaining process, collaboration expectations, tool stack, and how scribbles become worlds.[^1] |
-| Client Offboarding | End well | Wrap-up documents summarizing learnings, a world style guide, and invitations for future expansions of the universe. |
+| Document Type      | Purpose                                                         | Kiruk-Specific Angle                                                                                                                                            |
+| ------------------ | --------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Portfolio          | Get the meeting and show what "worldbuilding" means in practice | Emphasize before/after worlds, show sketches next to shipped interfaces, and foreground ISM experiments as proof of original thinking.[^1]                      |
+| Services Guide     | Define offers clearly                                           | Explicitly describe each pillar (Worldbuilding, Experimental Web, Brand Systems, Creative OS), with narrative examples instead of generic bullet lists.[^1][^2] |
+| Pitch Deck         | Win the brief with story                                        | Structure as a journey: current world → proposed universe → how Kiruk will build the portal (product/experience).                                               |
+| Proposal           | Close the deal                                                  | Spec-driven: goals, constraints, creative principles, milestones, and worldbuilding rules, not just scope and price.[^1][^2]                                    |
+| Contract           | Protect the work                                                | Includes clauses on experimentation, creative risk, and clear IP rights for both client work and shared experiments.                                            |
+| Invoice            | Get paid cleanly                                                | Simple, eye-branded invoices that reference the project universe name and phase names (e.g., "Portal Opening" instead of "Phase 1").                            |
+| Client Onboarding  | Start strong                                                    | A "Welcome to the Universe" kit explaining process, collaboration expectations, tool stack, and how scribbles become worlds.[^1]                                |
+| Client Offboarding | End well                                                        | Wrap-up documents summarizing learnings, a world style guide, and invitations for future expansions of the universe.                                            |
 
 ### 5.2 Internal Workspace (Notion OS)
 
@@ -144,19 +144,19 @@ This prompt can be extended with the current project context, the relevant servi
 
 Each time Claude Code is used, follow a three-step pattern:
 
-1. **Intake and Clarification**  
-   - Paste rough notes, scribbles (transcribed), or a high-level idea.  
+1. **Intake and Clarification**
+   - Paste rough notes, scribbles (transcribed), or a high-level idea.
    - Ask Claude to list questions and assumptions before generating anything.
 
-2. **Spec Generation**  
+2. **Spec Generation**
    - Use a structured spec format with sections like: Goal, Audience, World / Metaphor, Scope, Constraints, Deliverables, Timeline, Risks, and Evaluation.
    - Iterate until the spec reads like a contract-ready understanding of the idea.
 
-3. **Artifact Generation**  
-   - Only after the spec is solid, ask Claude to generate:  
-     - Code scaffolds (Next.js, Three.js, Node) for prototypes.  
-     - Markdown or docx for proposals, contracts, and guides.  
-     - Notion-importable markdown or CSV for database schemas.  
+3. **Artifact Generation**
+   - Only after the spec is solid, ask Claude to generate:
+     - Code scaffolds (Next.js, Three.js, Node) for prototypes.
+     - Markdown or docx for proposals, contracts, and guides.
+     - Notion-importable markdown or CSV for database schemas.
      - Content drafts for case studies and launch pages.
 
 ### 6.4 File and Project Structure for Claude Code
@@ -180,8 +180,8 @@ The following roadmap is structured in phases; it can be compressed or expanded 
 ### 7.2 Phase 2 – Services, OS, and Workspace (Week 2)
 
 - Define the detailed service descriptions and processes for the four pillars (Worldbuilding, Experimental Web, Brand Systems, Creative OS).
-- Ask Claude Code to generate:  
-  - A Services Guide document.  
+- Ask Claude Code to generate:
+  - A Services Guide document.
   - A standard proposal template and an OpenSpec-style project brief.
 - Design the Notion workspace: create the CRM, Projects, Spec Library, Finance, and Content databases with fields tuned to alignment, universe names, and creative energy.
 - Connect each database entry type to at least one Claude Code prompt pattern (e.g., "Generate a proposal for this lead," "Turn this ISM idea into a spec").
@@ -197,8 +197,8 @@ The following roadmap is structured in phases; it can be compressed or expanded 
 
 - Build and ship the first version of the Kiruk Studio site (even if minimal) that clearly communicates the vision, showcases at least one ISM prototype, and offers a clear contact path.[^1]
 - Set up a simple content rhythm: weekly or bi-weekly devlogs, design breakdowns, or process posts related to ISM projects and client work.
-- Use Claude Code to help:  
-  - Draft LinkedIn and portfolio posts tuned to a global audience.  
+- Use Claude Code to help:
+  - Draft LinkedIn and portfolio posts tuned to a global audience.
   - Turn internal specs into shareable, redacted case studies.
 - Start targeted outreach to potential aligned clients globally, using the Services Guide and portfolio as proof of the studio’s unique value.[^1]
 
@@ -225,4 +225,3 @@ clone me all the required list for making a creative studio. To make a framework
 do a deep reserqach like how they made the framework and list me all the required things to make the studio.](https://www.perplexity.ai/search/eec8ca2f-d792-4957-ae8c-c67bd7cf28ec) - At a high level, Boring Studios didn’t just “make a studio”; they built a creative business operatin...
 
 3. [open specs for branding and creative studio article and reference](https://www.perplexity.ai/search/78769994-9a9c-4770-9f1f-4762a7acaf56) - I've opened the Open Source Brand Guidelines Template by StudioSixF in Figma — a comprehensive, free...
-

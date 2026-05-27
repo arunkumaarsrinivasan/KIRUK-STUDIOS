@@ -10,6 +10,7 @@
 1. [`/README.md`](../README.md) — what kiruk is, in one page.
 2. [`/GLOSSARY.md`](../GLOSSARY.md) — the vocabulary (kiruk, kirukism, universe, scribble, ISM, product).
 3. [`/VISION-MISSION.md`](../VISION-MISSION.md) — vision, mission, 12 principles, non-negotiables.
+   - Long-form companion: [`vision-and-system-plan.md`](./vision-and-system-plan.md) — full studio thesis, service model, ISM lab, and Claude Code implementation plan.
 4. [`/CLAUDE.md`](../CLAUDE.md) — operating instructions for Claude Code (and humans).
 
 ## Read when you contribute
@@ -70,12 +71,12 @@ pnpm doctor            # full repo health check
 
 ## Slash commands (Claude Code / Cursor)
 
-| Command | What it does |
-|---|---|
-| `/kiruk-intake` | Structured intake for a new universe |
-| `/kiruk-spec` | Turn intake → spec + change proposal |
+| Command                      | What it does                                                                                  |
+| ---------------------------- | --------------------------------------------------------------------------------------------- |
+| `/kiruk-intake`              | Structured intake for a new universe                                                          |
+| `/kiruk-spec`                | Turn intake → spec + change proposal                                                          |
 | `/kiruk-artifact <template>` | Render a template (portfolio / services / pitch / proposal / contract / invoice / onboarding) |
-| `/kiruk-capture` | Flush session decisions into `ideas/log.ndjson` |
-| `/kiruk-ism-new <name>` | Scaffold a new ISM experiment |
+| `/kiruk-capture`             | Flush session decisions into `ideas/log.ndjson`                                               |
+| `/kiruk-ism-new <name>`      | Scaffold a new ISM experiment                                                                 |
 
 See [`/.claude/commands/`](../.claude/commands/) for the source.
