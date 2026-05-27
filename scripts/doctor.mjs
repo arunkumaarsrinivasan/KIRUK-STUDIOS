@@ -126,14 +126,15 @@ const devlogFiles = fs.existsSync(devlogsDir)
       .filter((f) => /^\d{4}-\d{2}-\d{2}-.+\.mdx?$/.test(f))
       .sort()
   : [];
+// build-in-public spec: no fixed cadence floor — publish when there's material
+// progress. Report days-since as INFO only; never warn/fail/block on an interval.
 if (devlogFiles.length === 0) {
-  line('warn', 'no devlog entries yet', 'spec requires ≥1 every 14 days once studio is active');
+  line('info', 'no devlog entries yet', 'publish when there is material progress (no fixed cadence)');
 } else {
   const last = devlogFiles[devlogFiles.length - 1];
   const lastDate = new Date(last.slice(0, 10));
   const daysSince = Math.floor((Date.now() - lastDate.getTime()) / (1000 * 60 * 60 * 24));
-  const status = daysSince <= 14 ? 'ok' : daysSince <= 21 ? 'warn' : 'fail';
-  line(status, `last devlog: ${last}`, `${daysSince} day(s) ago`);
+  line('info', `last devlog: ${last}`, `${daysSince} day(s) ago`);
 }
 
 // ──────────────────────────────────────────────────────────────

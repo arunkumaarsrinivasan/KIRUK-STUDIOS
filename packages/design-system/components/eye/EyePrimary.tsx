@@ -7,7 +7,7 @@
  * All fills use CSS custom properties from design-system/build/css/tokens.css.
  * Import that stylesheet (or the Tailwind build) in your app root.
  */
-import * as React from 'react';
+import type * as React from 'react';
 
 export interface EyePrimaryProps extends React.SVGProps<SVGSVGElement> {
   /** Diameter in pixels. Default 160. */
@@ -34,32 +34,17 @@ export function EyePrimary({ size = 160, label = 'Kiruk eye mark', ...props }: E
       {...props}
     >
       {/* Sclera */}
-      <circle
-        cx={r}
-        cy={r}
-        r={r}
-        fill="var(--color-paper, #EFEADF)"
-      />
+      <circle cx={r} cy={r} r={r} fill="var(--color-paper, #FFFFFF)" />
       {/* Iris */}
-      <circle
-        cx={r}
-        cy={r}
-        r={irisR}
-        fill="var(--color-iris-core, #FF4D2E)"
-      />
+      <circle cx={r} cy={r} r={irisR} fill="var(--color-ink, #0A0A0A)" />
       {/* Pupil */}
-      <circle
-        cx={r}
-        cy={r}
-        r={pupilR}
-        fill="var(--color-void, #0A0A0B)"
-      />
+      <circle cx={r} cy={r} r={pupilR} fill="var(--color-paper, #FFFFFF)" />
       {/* Highlight */}
       <circle
         cx={r + highlightOffset}
         cy={r - highlightOffset}
         r={highlightR}
-        fill="var(--color-scribble-ink, #F5F3EE)"
+        fill="var(--color-paper, #FFFFFF)"
         opacity={0.9}
       />
     </svg>

@@ -8,8 +8,12 @@
       "padding-y": { "$type": "dimension", "$value": "{space.inline-sm}" }
     },
     "eye-mark": {
-      "iris": { "$type": "color", "$value": "{color.accent}" },
-      "pupil": { "$type": "color", "$value": "{color.bg}" },
+      "iris": {
+        "$type": "color",
+        "$value": "{color.ink}",
+        "$description": "Placeholder eye-mark is mono (B1 undesigned)."
+      },
+      "pupil": { "$type": "color", "$value": "{color.paper}" },
       "halo": { "$type": "color", "$value": "{color.halo}" },
       "sclera": { "$type": "color", "$value": "{color.paper}" }
     }

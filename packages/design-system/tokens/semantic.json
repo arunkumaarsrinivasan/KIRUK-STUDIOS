@@ -1,13 +1,25 @@
 {
   "color": {
-    "bg": { "$type": "color", "$value": "{color.void}" },
-    "fg": { "$type": "color", "$value": "{color.scribble-ink}" },
-    "fg-muted": { "$type": "color", "$value": "{color.gaze-dim}" },
-    "surface": { "$type": "color", "$value": "{color.kohl}" },
-    "accent": { "$type": "color", "$value": "{color.iris-core}", "$description": "Primary accent. Iris." },
-    "accent-alt": { "$type": "color", "$value": "{color.portal-glow}", "$description": "Secondary accent. Portal." },
-    "halo": { "$type": "color", "$value": "{color.halo-warm}" },
-    "border": { "$type": "color", "$value": "{color.kohl}" }
+    "bg": {
+      "$type": "color",
+      "$value": "{color.paper}",
+      "$description": "Page background — white paper."
+    },
+    "fg": {
+      "$type": "color",
+      "$value": "{color.ink}",
+      "$description": "Primary foreground — pen/pencil stroke."
+    },
+    "fg-muted": { "$type": "color", "$value": "{color.pencil-400}" },
+    "surface": { "$type": "color", "$value": "{color.paper}" },
+    "accent": {
+      "$type": "color",
+      "$value": "{color.ink}",
+      "$description": "UI accent stays mono (ink). Absurd color is asset-only."
+    },
+    "accent-alt": { "$type": "color", "$value": "{color.pencil-500}" },
+    "halo": { "$type": "color", "$value": "{color.pencil-200}" },
+    "border": { "$type": "color", "$value": "{color.ink}" }
   },
   "space": {
     "inline-xs": { "$type": "dimension", "$value": "{dimension.space.2}" },

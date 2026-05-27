@@ -1,6 +1,8 @@
 {
-  "font-rational": { "$type": "fontFamily", "$value": "{fontFamily.rational}" },
-  "font-expressive": { "$type": "fontFamily", "$value": "{fontFamily.expressive}" },
+  "font-wordmark": { "$type": "fontFamily", "$value": "{fontFamily.wordmark}" },
+  "font-display": { "$type": "fontFamily", "$value": "{fontFamily.display}" },
+  "font-hand": { "$type": "fontFamily", "$value": "{fontFamily.handwriting}" },
+  "font-body": { "$type": "fontFamily", "$value": "{fontFamily.body}" },
   "font-mono": { "$type": "fontFamily", "$value": "{fontFamily.mono}" },
   "scale": {
     "xs": { "$type": "dimension", "$value": "12px" },
