@@ -6,20 +6,23 @@ Universe tracker, deliverable manager, template runner, invoicing — internal t
 
 ## Status
 
-**Phase 4 — not yet scaffolded.** This stub marks the app's place in the monorepo.
-See `ROADMAP.md` Phase 4 for the full plan.
+**Phase 4 — slice 1 scaffolded.** Next.js 15 (App Router, Turbopack) + Tailwind v4, sketch B&W
+design to match kiruk-web. The headline idea: **a proposal is scribbled, not written** — sketch
+the idea on a pen-paper canvas, hand it to the client, get their marks back.
 
-## Planned features
+- `/` — scribble-desk landing + client lifecycle map (lead → handoff)
+- `/proposals/new` — **scribble-proposal canvas** (live): pen drawing, undo, clear, export PNG
 
-- Universe dashboard: active projects, phase, status
-- Deliverable state machine: spec → draft → review → shipped
-- Template runner: trigger `/kiruk-artifact` outputs from UI
-- Invoice tracker linked to `template-invoice` generator
-- Auth: NextAuth or Clerk (internal-only)
+## Roadmap (next slices)
+
+- Slice 2: universe dashboard + save scribbles into `kiruk-projects/<universe>/`, lifecycle state machine
+- Slice 3: Better-Auth + Neon/Drizzle persistence + client read-view (FOUNDER_DECISIONS P1/P2/P3)
+- Slice 4: real-time client mark-back (collaborative scribble) + deploy
+- OpenSpec: redefine the `proposal` artifact (client-lifecycle / template-proposal) from prose-doc → scribble-canvas
 
 ## Deploy target
 
-Railway or Vercel. Domain: portal.kiruk.studio.
+Vercel. Domain TBD (portal.kiruk.in or subpath).
 
 ## Related
 

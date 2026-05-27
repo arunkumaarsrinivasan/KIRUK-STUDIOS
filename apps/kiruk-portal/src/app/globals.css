@@ -1,0 +1,98 @@
+@import 'tailwindcss';
+
+/* Hand fonts (served from /public/fonts). LICENSE GATE before public deploy — see kiruk-web. */
+@font-face {
+  font-family: 'Bridges Not Walls';
+  src: url('/fonts/Bridges not walls.otf') format('opentype');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Left Hand';
+  src: url('/fonts/Left Hand.otf') format('opentype');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Magnetic Drawing';
+  src: url('/fonts/MagneticDrawing.ttf') format('truetype');
+  font-display: swap;
+}
+
+/* Black & white sketch — mirrors @kiruk/design-system direction (adopt-sketch-direction). */
+:root {
+  --paper: #ffffff;
+  --ink: #0a0a0a;
+  --pencil: #6b6b6b;
+  --rule: #e5e5e5;
+}
+
+@theme {
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-pencil: var(--pencil);
+  --color-rule: var(--rule);
+  --font-wordmark: 'Bridges Not Walls', cursive;
+  --font-display: 'Magnetic Drawing', cursive;
+  --font-hand: 'Left Hand', cursive;
+  --font-body: 'Inter', system-ui, sans-serif;
+}
+
+html,
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-hand);
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-wordmark {
+  font-family: var(--font-wordmark);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.handwritten {
+  font-family: var(--font-hand);
+  line-height: 1.45;
+}
+
+.sketch-border {
+  position: relative;
+  border: 2px solid var(--ink);
+  border-radius: 10px;
+  background: var(--paper);
+}
+.sketch-border::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border: 2px solid var(--rule);
+  border-radius: 12px;
+  transform: rotate(0.6deg);
+  z-index: -1;
+}
+
+.sketch-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--paper);
+  border: 2px solid var(--ink);
+  color: var(--ink);
+  border-radius: 14px;
+  padding: 0.55rem 1.05rem;
+  font-family: var(--font-hand);
+  transform: rotate(-0.5deg);
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  cursor: pointer;
+}
+.sketch-button:hover {
+  background: var(--ink);
+  color: var(--paper);
+  transform: rotate(0deg) scale(1.02);
+}
+
+::selection {
+  background: var(--ink);
+  color: var(--paper);
+}
