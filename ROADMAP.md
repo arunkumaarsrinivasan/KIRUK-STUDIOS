@@ -116,25 +116,42 @@ One monorepo. Everything that is kiruk lives here:
 
 ---
 
-## Phase 4 — kiruk-portal v0 (client management)
+## Phase 4 — kiruk-portal v0 (client management) [~ IN PROGRESS]
 
-**Goal**: Client universe tracking, deliverable management, invoicing — internal-facing. Deployed from `apps/kiruk-portal/`. Separate deploy (Vercel primary; Cloudflare alt).
+**Goal**: Run a client universe **from first scribble to handoff** in the browser — and reinvent the proposal as a **collaborative pen-paper scribble**, not a written doc. Deployed from `apps/kiruk-portal/`. Separate deploy (Vercel).
 
-> **Stack lock:** Next.js 15 (App Router, Turbopack) + React 19 (RSC + Server Actions + PPR) + Tailwind v4 + Motion v11 + Zod 4 + Zustand 5 + Drizzle ORM on Neon Postgres + Better-Auth + Hono on Cloudflare Workers for edge endpoints. See [`openspec/specs/tech-stack/spec.md`](openspec/specs/tech-stack/spec.md).
+> **Stack lock:** Next.js 15 (App Router, Turbopack) + React 19 + Tailwind v4 + Motion v11 + Zod 4 + Zustand 5 + Drizzle ORM on Neon Postgres + Better-Auth + Hono on Cloudflare Workers. See [`openspec/specs/tech-stack/spec.md`](openspec/specs/tech-stack/spec.md).
 
-> 🔒 **BLOCKED — needs founder direction first.**
-> Required locks: **P1, P2, P3** in [`FOUNDER_DECISIONS.md`](FOUNDER_DECISIONS.md)
+> ✅ **Unblocked 2026-05-26** — P1/P2/P3 answered (Arun + client read-view · Better-Auth · full done-record). Building in slices; **no DB until the architecture is locked** (founder call 2026-05-27).
 
-- [ ] **[needs P2 locked]** Next.js 15 App Router scaffold + auth
-- [ ] Universe dashboard: list active client projects, status, phase
-- [ ] `/kiruk-intake` slash command output → portal intake form (mirrors `kiruk-projects/<universe>/intake.md`)
-- [ ] Deliverable tracker: spec → draft → review → shipped state machine
-- [ ] Template runner: trigger `/kiruk-artifact <template>` outputs from portal UI
-- [ ] Invoice tracker linked to `template-invoice` generator
-- [ ] Secret guard: portal never stores API keys or client secrets in DB; env-only
-- [ ] Deploy + auth flow
+**Slice 1 — scribble surface [x done]**
 
-**Exit**: Arun can create a new universe, track it to completion, and generate all 7 docs from portal without leaving a browser.
+- [x] Next.js 15 + Tailwind v4 scaffold, B&W sketch design (matches kiruk-web)
+- [x] `/proposals/new` — scribble-proposal canvas (pen draw, pressure, undo, clear, export PNG)
+- [x] `/onboard` — client onboarding flow: detail → kirukal archetype quiz → company vibe sliders → scribble-the-energy → product vision → summary (book-call + start-scribble CTAs). Hybrid test.
+
+**Slice 2 — lifecycle + file persistence [ ]**
+
+- [ ] Universe dashboard: list `kiruk-projects/<universe>/`, show lifecycle state, advance states
+- [ ] Server actions write onboarding → `intake.md` + `state.md`; scribbles → universe `scribble/`
+- [ ] Lifecycle state machine UI (lead → intake → proposal → engaged → shipping → archived)
+
+**Slice 3 — auth + DB [ ] (needs architecture lock)**
+
+- [ ] Better-Auth (magic-link/OAuth) + Neon Postgres + Drizzle schema
+- [ ] Client **read-only view** of their own universe (P1)
+- [ ] Persist onboarding + scribbles + lifecycle to DB (replace localStorage/file)
+- [ ] Secret guard: never store API keys/client secrets in DB; env-only
+
+**Slice 4 — collaboration + deploy [ ]**
+
+- [ ] Real-time collaborative scribble — client marks back on the proposal canvas
+- [ ] Collaborative-call hook (Cal.com or request-call → inbox)
+- [ ] Deploy to Vercel; domain (portal.kiruk.in or subpath)
+
+**Spec debt:** redefine the `proposal` artifact in `client-lifecycle` / `template-proposal` from prose-doc → collaborative scribble-canvas (OpenSpec change, explore-now-spec-after).
+
+**Exit**: Arun onboards a client, scribbles a proposal collaboratively, runs the universe to handoff, all in the browser; client sees a read-only view.
 
 ---
 

@@ -48,9 +48,20 @@
 - [ ] (P2) "Leave a note on the desk" contact (W5)
 - [ ] (P0) Vercel deploy under kiruk.in/studio
 
-## Later — Phase 4+ (portal, ISM, kirukargals)
+## Active — Phase 4 (kiruk-portal: scribble → handoff) [~ in progress]
 
-See `ROADMAP.md` Phases 4–7.
+- [x] (P0) Next.js 15 + Tailwind v4 scaffold, B&W sketch design
+- [x] (P0) `/proposals/new` scribble-proposal canvas (pen draw, undo, clear, export)
+- [x] (P0) `/onboard` client onboarding — detail → archetype quiz → vibe sliders → scribble → product vision → summary
+- [ ] (P0) **Slice 2:** universe dashboard + lifecycle state machine; server actions write onboarding → `intake.md`/`state.md`, scribbles → universe `scribble/`
+- [ ] (P0) **Slice 3 [needs architecture lock]:** Better-Auth + Neon/Drizzle; client read-only view; replace localStorage/file persistence with DB
+- [ ] (P1) **Slice 4:** real-time collaborative scribble (client marks back) + collaborative-call hook + Vercel deploy
+- [ ] (P1) OpenSpec: redefine `proposal` artifact (client-lifecycle / template-proposal) prose-doc → scribble-canvas
+- [ ] (P2) Font-license clearance before portal goes public (shared with kiruk-web)
+
+## Later — Phase 4.5+ (automation, ISM, kirukargals)
+
+See `ROADMAP.md` Phases 4.5–7.
 
 ---
 
