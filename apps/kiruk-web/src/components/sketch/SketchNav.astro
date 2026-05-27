@@ -1,0 +1,40 @@
+---
+// Bottom hand-drawn nav (kiruk-in parity). Active route = bold ink; others = pencil.
+// NOTE: `.sketch-border` is unlayered and sets position:relative, which would override
+// Tailwind's layered `fixed`. So positioning lives on the OUTER wrapper, decoration on the inner nav.
+import { href, stripBase } from '../../lib/base';
+const items = [
+  { href: '/', label: 'home' },
+  { href: '/kirukism', label: 'kirukism' },
+  { href: '/ism', label: 'ism' },
+  { href: '/products', label: 'products' },
+  { href: '/services', label: 'services' },
+  { href: '/about', label: 'about' },
+  { href: '/devlog', label: 'devlog' },
+];
+const path = stripBase(Astro.url.pathname);
+---
+
+<div class="fixed bottom-5 left-1/2 z-30 -translate-x-1/2">
+  <nav
+    class="sketch-border flex max-w-[92vw] items-center gap-1 px-3 py-2 backdrop-blur-sm"
+    style="background: color-mix(in srgb, var(--paper) 88%, transparent);"
+    aria-label="Primary"
+  >
+    {
+      items.map((it) => {
+        const active = path === (it.href.replace(/\/$/, '') || '/');
+        return (
+          <a
+            href={href(it.href)}
+            class="handwritten rounded-md px-2.5 py-1 text-base transition-colors hover:text-ink"
+            style={`color: ${active ? 'var(--ink)' : 'var(--pencil)'}; font-weight: ${active ? 600 : 400}; transform: rotate(${active ? -0.6 : 0.3}deg);`}
+            aria-current={active ? 'page' : undefined}
+          >
+            {it.label}
+          </a>
+        );
+      })
+    }
+  </nav>
+</div>
