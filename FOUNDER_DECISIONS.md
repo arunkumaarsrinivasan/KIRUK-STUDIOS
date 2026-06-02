@@ -57,6 +57,22 @@
 
 ---
 
+## PORTAL DATA ARCHITECTURE — proposed 2026-06-02 (needs founder lock to go live)
+
+### DA1 — auth + DB architecture for kiruk-portal Slice 3
+
+`[~]` **Proposed (scaffolded, awaiting your `[x]` + provisioning).** The roadmap gated Slice 3 on an "architecture lock" (founder call 2026-05-27: no DB until locked). Proposed lock, matching the tech-stack envelope:
+
+- **DB:** Neon Postgres (serverless driver) · **ORM:** Drizzle (`0.45`, drizzle-kit `0.31`).
+- **Auth:** Better-Auth, **magic-link primary** (OAuth optional later). Sessions in DB.
+- **Schema:** Better-Auth core (`user/session/account/verification`) + app tables that **mirror the file lifecycle** — `universe`, `transition`, `client_access`. The DB is the eventual source of truth; files (`kiruk-projects/<slug>/`) stay the source until migrated (dual-read during transition).
+- **Client read-only view (P1):** a client `user` is granted `client_access(role: client-read)` to their own `universe` only.
+- **Secret guard:** no client API keys / payment data in the DB (money stays in `.local-only/`); app secrets env-only; `.env*` gitignored.
+
+**Status:** code scaffolded on this branch (`src/db/`, `src/lib/auth.ts`, `drizzle.config.ts`, `.env.example`) and **fully env-guarded** — `next build` is green with no DB. **Not live.** To activate: provision Neon + set env + `pnpm db:generate && pnpm db:migrate` (see `apps/kiruk-portal/src/db/README.md`). Flip this to `[x]` once you've confirmed the shape.
+
+---
+
 ## BRAND — blocks Phase 3 + all visual work
 
 ### B1 — Primary eye mark: final design?

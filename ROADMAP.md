@@ -130,18 +130,18 @@ One monorepo. Everything that is kiruk lives here:
 - [x] `/proposals/new` — scribble-proposal canvas (pen draw, pressure, undo, clear, export PNG)
 - [x] `/onboard` — client onboarding flow: detail → kirukal archetype quiz → company vibe sliders → scribble-the-energy → product vision → summary (book-call + start-scribble CTAs). Hybrid test.
 
-**Slice 2 — lifecycle + file persistence [ ]**
+**Slice 2 — lifecycle + file persistence [x done 2026-06-02]**
 
-- [ ] Universe dashboard: list `kiruk-projects/<universe>/`, show lifecycle state, advance states
-- [ ] Server actions write onboarding → `intake.md` + `state.md`; scribbles → universe `scribble/`
-- [ ] Lifecycle state machine UI (lead → intake → proposal → engaged → shipping → archived)
+- [x] Universe dashboard: list `kiruk-projects/<universe>/`, show lifecycle state, advance states (`/universes` board + cockpit)
+- [x] Server actions write onboarding → `intake.md` + `state.md`; scribbles → universe `scribble/` (file-backed engine `src/lib/lifecycle.ts`)
+- [x] Lifecycle state machine UI (lead → intake → proposal → engaged → shipping → archived) — full per-phase builder screens, precondition gates, transparency gate, `.local-only/` for figures, Vitest. Shipped on `feat/portal-eye-system-and-lifecycle`.
 
-**Slice 3 — auth + DB [ ] (needs architecture lock)**
+**Slice 3 — auth + DB [~] scaffolded 2026-06-02 (architecture proposed `DA1`; awaiting Neon provisioning)**
 
-- [ ] Better-Auth (magic-link/OAuth) + Neon Postgres + Drizzle schema
-- [ ] Client **read-only view** of their own universe (P1)
-- [ ] Persist onboarding + scribbles + lifecycle to DB (replace localStorage/file)
-- [ ] Secret guard: never store API keys/client secrets in DB; env-only
+- [~] Better-Auth (magic-link) + Neon + **Drizzle schema authored** — `src/db/schema.ts` (auth core + `universe`/`transition`/`client_access`), lazy env-guarded client `src/db/index.ts`, `src/lib/auth.ts`, `drizzle.config.ts`, `.env.example`, `/api/auth/[...all]`. **Build green with no DB.** Activation = provision Neon + `pnpm db:generate && db:migrate` (`src/db/README.md`).
+- [ ] Client **read-only view** of their own universe (P1) — lands after the DB is live
+- [ ] Persist onboarding + scribbles + lifecycle to DB (replace file) — dual-read during migration
+- [x] Secret guard: no API keys/client secrets in DB; env-only; `.env*` gitignored
 
 **Slice 4 — collaboration + deploy [ ]**
 
