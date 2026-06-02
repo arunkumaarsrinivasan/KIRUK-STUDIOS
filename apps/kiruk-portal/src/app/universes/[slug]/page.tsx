@@ -37,6 +37,30 @@ export default async function UniverseCockpit({ params }: { params: Promise<{ sl
 
         {/* phase actions — builders for the artifacts relevant to where the universe is now */}
         <div className="flex flex-wrap gap-3">
+          {u.state === 'lead' ? (
+            <Link
+              href={`/universes/${u.slug}/lead`}
+              className="eye-btn eye-next gap-3 px-5 py-2.5"
+              aria-label="capture the lead"
+            >
+              <span className="handwritten text-ink text-base">
+                {u.artifacts['lead.md'] ? 're-capture lead' : 'capture lead'}
+              </span>
+              <RiggedGlyph pattern="ring" look="right" size={26} />
+            </Link>
+          ) : null}
+          {stateIndex(u.state) <= stateIndex('intake') ? (
+            <Link
+              href={`/universes/${u.slug}/intake`}
+              className="eye-btn eye-next gap-3 px-5 py-2.5"
+              aria-label="structured intake"
+            >
+              <span className="handwritten text-ink text-base">
+                {u.artifacts['intake.md'] ? 're-do intake' : 'structured intake'}
+              </span>
+              <RiggedGlyph pattern="solid" look="right" size={26} />
+            </Link>
+          ) : null}
           {stateIndex(u.state) <= stateIndex('proposal') ? (
             <Link
               href={`/universes/${u.slug}/proposal`}

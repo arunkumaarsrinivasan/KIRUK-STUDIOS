@@ -377,3 +377,69 @@ export async function saveHandoffAction(slug: string, input: HandoffInput): Prom
   revalidatePath(`/universes/${slug}`);
   return { archived: true, transparency, caseStudy, caseStudyPath };
 }
+
+// ── front of funnel: lead + intake ───────────────────────────────────────
+export type LeadInput = { source: string; contact: string; notes: string };
+
+// capture first-contact notes → lead.md, then move lead → intake.
+export async function saveLeadAction(slug: string, input: LeadInput): Promise<{ error?: string }> {
+  if (!isValidSlug(slug)) return { error: 'invalid slug' };
+  const u = await readUniverse(slug);
+  if (!u) return { error: 'unknown universe' };
+  const now = new Date().toISOString();
+  await writeArtifact(
+    slug,
+    'lead.md',
+    `---\nuniverse: ${slug}\ntitle: ${u.title}\nartifact: lead\ncreated: ${now}\n---\n\n# ${u.title} — first contact\n\n## Source\n${input.source.trim() || '_where this lead came from_'}\n\n## Contact\n${input.contact.trim() || '_name / handle (no private data)_'}\n\n## Notes\n${input.notes.trim() || '_what they want, first impressions_'}\n`,
+  );
+  if (stateIndex(u.state) < stateIndex('intake')) {
+    await appendTransition(slug, 'intake', 'first contact captured');
+  }
+  revalidatePath('/universes');
+  revalidatePath(`/universes/${slug}`);
+  redirect(`/universes/${slug}`);
+}
+
+export type Transparency = 'open' | 'partial' | 'closed';
+export type IntakeInput = {
+  goal: string;
+  audience: string;
+  world: string;
+  scope: string;
+  constraints: string;
+  deliverables: string;
+  risks: string;
+  evaluation: string;
+  transparency: Transparency;
+};
+
+// structured intake → intake.md. The transparency field gates the case study at handoff (P5).
+export async function saveIntakeAction(
+  slug: string,
+  input: IntakeInput,
+): Promise<{ error?: string }> {
+  if (!isValidSlug(slug)) return { error: 'invalid slug' };
+  const u = await readUniverse(slug);
+  if (!u) return { error: 'unknown universe' };
+  const now = new Date().toISOString();
+  const t = (['open', 'partial', 'closed'] as const).includes(input.transparency)
+    ? input.transparency
+    : 'closed';
+  const sec = (label: string, v: string) => `## ${label}\n${v.trim() || '_…_'}\n`;
+  await writeArtifact(
+    slug,
+    'intake.md',
+    `---\nuniverse: ${slug}\ntitle: ${u.title}\ncreated: ${now}\nstatus: intake-complete\ntransparency: ${t}\nnext: /kiruk-spec ${slug}\n---\n\n# ${u.title} — intake\n\n` +
+      sec('Goal', input.goal) +
+      sec('Audience', input.audience) +
+      sec('World / Metaphor', input.world) +
+      sec('Scope', input.scope) +
+      sec('Constraints', input.constraints) +
+      sec('Deliverables', input.deliverables) +
+      sec('Risks', input.risks) +
+      sec('Evaluation', input.evaluation),
+  );
+  revalidatePath('/universes');
+  revalidatePath(`/universes/${slug}`);
+  redirect(`/universes/${slug}`);
+}
