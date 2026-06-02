@@ -1,0 +1,58 @@
+---
+import EyeMark from '../components/sketch/EyeMark.astro';
+import SketchNav from '../components/sketch/SketchNav.astro';
+import Base from '../layouts/Base.astro';
+
+const values = [
+  ['innovation', 'over convention'],
+  ['crazy ideas', 'over safe briefs'],
+  ['openness', 'over secrecy'],
+  ['rebellious, weird minds', 'over solo genius'],
+  ['honest iteration', 'over polished highlights'],
+];
+---
+
+<Base title="kirukism — the movement" description="Kirukism: scribble without permission, build without a template.">
+  <main class="bg-paper text-ink relative min-h-[100svh] w-full px-6 py-20 md:px-10">
+    <section class="mx-auto flex max-w-3xl flex-col gap-9 pb-28">
+      <header class="flex items-center gap-3">
+        <EyeMark size={48} />
+        <div class="leading-none">
+          <p class="handwritten text-pencil text-sm">the cult · the philosophy · the fuel</p>
+          <h1 class="font-wordmark text-6xl leading-none md:text-8xl">kirukism</h1>
+        </div>
+      </header>
+
+      <p class="handwritten text-2xl leading-snug md:text-3xl">
+        The belief that the most interesting things in the world come from
+        <em>scribbling without permission</em> and <em>building without a template</em>.
+      </p>
+
+      <ul class="flex flex-col gap-3">
+        {
+          values.map(([a, b]) => (
+            <li class="sketch-border flex flex-wrap items-baseline gap-x-3 px-5 py-3">
+              <span class="handwritten text-ink text-2xl">{a}</span>
+              <span class="handwritten text-pencil text-lg">{b}</span>
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="handwritten text-pencil flex flex-col gap-2 text-lg">
+        <p>
+          <strong class="text-ink">kirukargals</strong> carry this — collaborators who co-create on
+          universes. Not clients; believers in the work.
+        </p>
+        <p>
+          <strong class="text-ink">kirukan</strong> build the studio from the inside, alongside Arun.
+        </p>
+      </div>
+
+      <p class="handwritten text-ink text-xl">
+        If your idea is too weird for a normal agency &mdash; come here. Bring the scribble.
+      </p>
+    </section>
+    <SketchNav />
+  </main>
+</Base>

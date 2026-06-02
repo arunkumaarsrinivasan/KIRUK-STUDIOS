@@ -1,0 +1,43 @@
+---
+import EyeMark from '../components/sketch/EyeMark.astro';
+import SketchNav from '../components/sketch/SketchNav.astro';
+import Base from '../layouts/Base.astro';
+import { href } from '../lib/base';
+---
+
+<Base title="about — kiruk" description="kiruk is a lab-led creative studio. For now, just Arun.">
+  <main class="bg-paper text-ink relative min-h-[100svh] w-full px-6 py-20 md:px-10">
+    <section class="mx-auto flex max-w-3xl flex-col gap-9 pb-28">
+      <header class="flex items-center gap-3">
+        <EyeMark size={48} />
+        <div class="leading-none">
+          <p class="handwritten text-pencil text-sm">the studio behind the scribbles</p>
+          <h1 class="font-wordmark text-6xl leading-none md:text-8xl">about</h1>
+        </div>
+      </header>
+
+      <p class="handwritten text-2xl leading-snug md:text-3xl">
+        kiruk turns scribbles into worlds &mdash; products, brands, and experiences that didn&rsquo;t
+        exist yet, each rooted in its own universe, each threaded with the eye.
+      </p>
+
+      <div class="sketch-border flex flex-col gap-2 p-6">
+        <p class="handwritten text-pencil text-sm">who&rsquo;s here</p>
+        <p class="handwritten text-ink text-2xl">For now, kiruk is just Arun.</p>
+        <p class="handwritten text-pencil text-lg">
+          Arun Kumaar Srinivasan &mdash; AX designer + software systems engineer. Bridges maker and
+          manager; builds visuals in code; runs a spec-driven creative OS in the open.
+        </p>
+      </div>
+
+      <div class="handwritten text-pencil flex flex-col gap-2 text-lg">
+        <p><strong class="text-ink">Lab-led.</strong> The <a class="text-ink underline underline-offset-2" href={href('/ism')}>ISM lab</a> and in-house <a class="text-ink underline underline-offset-2" href={href('/products')}>products</a> are the front door; client work chases the work, not the other way around.</p>
+        <p><strong class="text-ink">Open.</strong> Process, decisions, dead ends &mdash; public. Numbers and client internals &mdash; private.</p>
+        <p><strong class="text-ink">The ten-year scribble:</strong> the studio founders come to when their idea is &ldquo;too weird for a normal agency&rdquo; &mdash; and a living movement, <a class="text-ink underline underline-offset-2" href={href('/kirukism')}>kirukism</a>, with kirukargals across disciplines.</p>
+      </div>
+
+      <p class="handwritten text-ink text-xl">Bring the scribble. We&rsquo;ll build the world.</p>
+    </section>
+    <SketchNav />
+  </main>
+</Base>

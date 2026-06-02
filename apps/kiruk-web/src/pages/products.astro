@@ -1,0 +1,49 @@
+---
+import EyeMark from '../components/sketch/EyeMark.astro';
+import SketchNav from '../components/sketch/SketchNav.astro';
+import Base from '../layouts/Base.astro';
+
+const tiers = [
+  ['tool', 'a sharp utility for makers'],
+  ['micro-app', 'one idea, done well'],
+  ['extension', 'lives where you work'],
+  ['saas', 'AI-augmented, creative-first'],
+  ['toy', 'play with no agenda'],
+];
+---
+
+<Base title="products — kiruk" description="kiruk-owned digital products: tools, micro-apps, extensions, toys.">
+  <main class="bg-paper text-ink relative min-h-[100svh] w-full px-6 py-20 md:px-10">
+    <section class="mx-auto flex max-w-3xl flex-col gap-9 pb-28">
+      <header class="flex items-center gap-3">
+        <EyeMark size={48} />
+        <div class="leading-none">
+          <p class="handwritten text-pencil text-sm">kiruk-owned, for repeated outside use</p>
+          <h1 class="font-wordmark text-6xl leading-none md:text-8xl">products</h1>
+        </div>
+      </header>
+
+      <p class="handwritten text-2xl leading-snug md:text-3xl">
+        Digital artifacts we build for the world, not a single client. Each picks one tier at birth.
+      </p>
+
+      <ul class="grid gap-3 sm:grid-cols-2">
+        {
+          tiers.map(([t, d]) => (
+            <li class="sketch-border flex flex-col gap-1 px-5 py-4">
+              <span class="handwritten text-ink text-2xl">{t}</span>
+              <span class="handwritten text-pencil text-base">{d}</span>
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="sketch-border flex flex-col gap-1 p-6">
+        <p class="handwritten text-pencil text-sm">shelf status</p>
+        <p class="handwritten text-ink text-2xl">first product is in the oven.</p>
+        <p class="handwritten text-pencil text-lg">Lab-led: products fuel the reputation that brings the work.</p>
+      </div>
+    </section>
+    <SketchNav />
+  </main>
+</Base>

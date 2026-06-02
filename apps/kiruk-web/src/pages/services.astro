@@ -1,0 +1,51 @@
+---
+import EyeMark from '../components/sketch/EyeMark.astro';
+import SketchButton from '../components/sketch/SketchButton.astro';
+import SketchNav from '../components/sketch/SketchNav.astro';
+import Base from '../layouts/Base.astro';
+import { href } from '../lib/base';
+
+const chain = ['naming', 'narrative', 'UX', 'code', 'motion', 'launch'];
+---
+
+<Base title="services — kiruk" description="Spec-first, toolbending, end-to-end client universes. 2–3 at a time.">
+  <main class="bg-paper text-ink relative min-h-[100svh] w-full px-6 py-20 md:px-10">
+    <section class="mx-auto flex max-w-3xl flex-col gap-9 pb-28">
+      <header class="flex items-center gap-3">
+        <EyeMark size={48} />
+        <div class="leading-none">
+          <p class="handwritten text-pencil text-sm">client universes, built end-to-end</p>
+          <h1 class="font-wordmark text-6xl leading-none md:text-8xl">services</h1>
+        </div>
+      </header>
+
+      <p class="handwritten text-2xl leading-snug md:text-3xl">
+        We take <strong>2&ndash;3 clients at a time</strong>. Budgets flex. Ambition does not.
+      </p>
+
+      <div class="flex flex-col gap-3">
+        <p class="handwritten text-pencil text-lg">we ship the whole chain &mdash; not a UI layer on someone else&rsquo;s thinking:</p>
+        <div class="flex flex-wrap items-center gap-x-2 gap-y-2">
+          {
+            chain.map((c, i) => (
+              <>
+                <span class="sketch-border handwritten text-ink px-3 py-1.5 text-lg">{c}</span>
+                {i < chain.length - 1 ? <span class="text-pencil" aria-hidden="true">&rarr;</span> : null}
+              </>
+            ))
+          }
+        </div>
+      </div>
+
+      <div class="handwritten text-pencil flex flex-col gap-2 text-lg">
+        <p><strong class="text-ink">Spec-first.</strong> Every artifact lives in a written spec before it reaches the world. We write it with you.</p>
+        <p><strong class="text-ink">Toolbending.</strong> Three.js, WebGL, Blender, code, words &mdash; used in ways they weren&rsquo;t designed for. The eye component <em>is</em> the design.</p>
+      </div>
+
+      <p class="handwritten text-ink text-xl">If your idea is too weird for a normal agency &mdash; come here.</p>
+
+      <SketchButton href={href('/about')} label="start with a scribble" class="self-start" />
+    </section>
+    <SketchNav />
+  </main>
+</Base>

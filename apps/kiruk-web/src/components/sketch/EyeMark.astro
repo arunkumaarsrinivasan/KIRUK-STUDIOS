@@ -1,0 +1,32 @@
+---
+// EyeMark — a small static sketch eye for content-page headers (brand eye-motif, B&W).
+// Mirrors the portal's `solid` glyph art; no rig (static SVG).
+interface Props {
+  size?: number;
+  class?: string;
+}
+const { size = 44, class: cls = '' } = Astro.props;
+---
+
+<svg
+  class={cls}
+  width={size}
+  height={size}
+  viewBox="0 0 48 48"
+  fill="none"
+  stroke="var(--ink)"
+  stroke-width="1.6"
+  stroke-linejoin="round"
+  stroke-linecap="round"
+  aria-hidden="true"
+>
+  <path d="M6.5 25 Q15 11.5 24 11 Q34 11 41.5 22.5 Q33 34.5 24 35.4 Q14 34.2 6.5 25 Z" fill="var(--paper)" stroke="none"></path>
+  <path d="M6.5 25 Q15 11.5 24 11 Q34 11 41.5 22.5" stroke-width="2.3"></path>
+  <path d="M6.5 25 Q14 34.2 24 35.4 Q33 34.5 41.5 22.5" stroke-width="1.7"></path>
+  <path d="M10 18 Q23 9.8 37.5 15.5" stroke-width="0.9" opacity="0.4"></path>
+  <path d="M41.5 18.5 l3.2 -2 M38.5 15 l2.4 -2.6 M34.5 12.8 l1.4 -2.8" stroke-width="1.1" opacity="0.7"></path>
+  <circle cx="24" cy="23.6" r="8.6" stroke-width="2"></circle>
+  <circle cx="24" cy="23.6" r="5.4" stroke-width="0.9" opacity="0.5"></circle>
+  <circle cx="24" cy="23.6" r="3" fill="var(--ink)" stroke="none"></circle>
+  <circle cx="27.4" cy="20.4" r="1.3" fill="var(--paper)" stroke="none"></circle>
+</svg>
