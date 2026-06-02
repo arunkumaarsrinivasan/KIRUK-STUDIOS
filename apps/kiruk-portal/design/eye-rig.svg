@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  kiruk eye rig template — draw YOUR scribble eye into the named layers.
+
+  HOW TO USE (Figma + tablet):
+   1. Figma → drag this file in (or File ▸ Place image). It becomes a frame with named layers.
+   2. Draw each part with your tablet ON ITS OWN LAYER. Keep the layer NAMES exactly:
+        sclera, iris, pupil, highlight, lid, lashes, sparks
+      (these names become the SVG ids the code rigs).
+   3. Conventions:
+        - Canvas is 200×200. Eye centre / pupil centre = (100,100) — see the crosshair.
+        - Draw in BLACK & WHITE only. Code paints the iris + sparks by emotion at runtime.
+        - PUPIL must sit centred on the crosshair, as its own group, no baked transform.
+        - IRIS = the ring/fill around the pupil (within the ~r55 dashed circle).
+        - SPARKS = loose doodles in the outer ring (r70–95) — your "creativity". As many as you like.
+        - LID = a top-eyelid shape covering the eye (used for blink). Optional.
+        - HIGHLIGHT = catchlight; rides with the pupil. Optional.
+   4. DELETE / hide the "guides" layer before export.
+   5. Export the frame as SVG with "Include id attribute" ON → save to
+        apps/kiruk-portal/public/eye/hero.svg
+   6. Also save your raw paper/tablet sketch into a scribble/ folder (pen-and-paper spec).
+
+  data-eye-* tells the loader the gaze geometry — keep them if you change the canvas.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200"
+     data-eye-cx="100" data-eye-cy="100" data-eye-travel="11">
+
+  <!-- ───────── your layers (draw here) ───────── -->
+  <g id="sparks" fill="none" stroke="#0a0a0a" stroke-width="1.4" stroke-linecap="round">
+    <!-- draw loose doodles radiating from the eye -->
+  </g>
+
+  <g id="lashes" fill="none" stroke="#0a0a0a" stroke-width="2" stroke-linecap="round">
+    <!-- optional lashes / accents -->
+  </g>
+
+  <g id="sclera" fill="#ffffff" stroke="#0a0a0a" stroke-width="2.4" stroke-linejoin="round">
+    <!-- the eye shape (white + outline) -->
+  </g>
+
+  <g id="iris" fill="none" stroke="#0a0a0a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+    <!-- iris ring / fill — recoloured by emotion -->
+  </g>
+
+  <g id="pupil" fill="#0a0a0a">
+    <!-- pupil, CENTRED on the crosshair, its own group -->
+  </g>
+
+  <g id="highlight" fill="#ffffff">
+    <!-- catchlight (optional) -->
+  </g>
+
+  <g id="lid" fill="#ffffff" stroke="#0a0a0a" stroke-width="2.4">
+    <!-- top eyelid for blink (optional) -->
+  </g>
+
+  <!-- ───────── guides (HIDE / DELETE before export) ───────── -->
+  <g id="guides" stroke="#18E0FF" stroke-width="0.8" fill="none" opacity="0.8">
+    <!-- pupil-centre crosshair -->
+    <line x1="92" y1="100" x2="108" y2="100" />
+    <line x1="100" y1="92" x2="100" y2="108" />
+    <!-- gaze-travel bound -->
+    <circle cx="100" cy="100" r="11" stroke-dasharray="2 3" />
+    <!-- iris radius -->
+    <circle cx="100" cy="100" r="55" stroke-dasharray="4 4" />
+    <!-- spark zone -->
+    <circle cx="100" cy="100" r="70" stroke-dasharray="2 6" opacity="0.5" />
+    <circle cx="100" cy="100" r="95" stroke-dasharray="2 6" opacity="0.5" />
+  </g>
+</svg>

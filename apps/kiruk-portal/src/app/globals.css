@@ -1,11 +1,7 @@
 @import 'tailwindcss';
 
-/* Hand fonts (served from /public/fonts). LICENSE GATE before public deploy — see kiruk-web. */
-@font-face {
-  font-family: 'Bridges Not Walls';
-  src: url('/fonts/Bridges not walls.otf') format('opentype');
-  font-display: swap;
-}
+/* Local hand fonts (served from /public/fonts). LICENSE GATE before public deploy — see kiruk-web.
+   Gochi Hand is self-hosted via next/font (layout.tsx) → --font-gochi. */
 @font-face {
   font-family: 'Left Hand';
   src: url('/fonts/Left Hand.otf') format('opentype');
@@ -30,10 +26,10 @@
   --color-ink: var(--ink);
   --color-pencil: var(--pencil);
   --color-rule: var(--rule);
-  --font-wordmark: 'Bridges Not Walls', cursive;
+  --font-wordmark: 'Magnetic Drawing', cursive;
   --font-display: 'Magnetic Drawing', cursive;
-  --font-hand: 'Left Hand', cursive;
-  --font-body: 'Inter', system-ui, sans-serif;
+  --font-hand: var(--font-gochi), 'Gochi Hand', 'Left Hand', cursive;
+  --font-body: var(--font-gochi), 'Gochi Hand', 'Inter', system-ui, sans-serif;
 }
 
 html,
@@ -104,11 +100,157 @@ body {
    The look is kiruk's hand-drawn pencil/sketch system. Light paper, hand fonts.
    ──────────────────────────────────────────────────────────────── */
 
-/* soft paper ground with faint ruled notebook lines (not a hard grid) */
-.grid-paper {
+/* ── absurd grid ── full-bleed background layer whose STATE changes per screen.
+   Mono only (founder rule: absurd color on assets, never chrome). Re-keyed per step
+   so it re-draws on each transition. */
+.bg-grid {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
   background-color: var(--paper);
+  animation: gridIn 0.55s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+@keyframes gridIn {
+  from {
+    opacity: 0;
+    transform: scale(1.04);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.bg-dots {
+  background-image: radial-gradient(var(--rule) 1.4px, transparent 1.5px);
+  background-size: 26px 26px;
+}
+.bg-rule {
   background-image: linear-gradient(transparent 31px, var(--rule) 32px);
   background-size: 100% 32px;
+}
+.bg-rays {
+  background-image: repeating-conic-gradient(
+    from 0deg at 50% 46%,
+    var(--rule) 0deg 0.5deg,
+    transparent 0.5deg 11deg
+  );
+  opacity: 0.55;
+}
+.bg-vert {
+  background-image: repeating-linear-gradient(90deg, var(--rule) 0 1px, transparent 1px 40px);
+}
+.bg-sparse {
+  background-image: radial-gradient(var(--rule) 1px, transparent 1.5px);
+  background-size: 62px 62px;
+  opacity: 0.5;
+}
+.bg-horizon {
+  background-image:
+    repeating-linear-gradient(0deg, var(--rule) 0 1px, transparent 1px 46px),
+    radial-gradient(130% 90% at 50% 118%, transparent 58%, var(--rule) 100%);
+}
+.bg-graph {
+  background-image:
+    linear-gradient(var(--rule) 1px, transparent 1px),
+    linear-gradient(90deg, var(--rule) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* live "reading you" chip under the hero eye */
+.reading-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  border: 1.5px dashed var(--rule);
+  border-radius: 9999px;
+  padding: 0.25rem 0.85rem;
+}
+
+/* progress eyeball = a button (revisit a seen step) */
+.eye-step {
+  display: inline-grid;
+  place-items: center;
+  background: none;
+  border: 0;
+  padding: 2px;
+  line-height: 0;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+.eye-step:hover {
+  transform: scale(1.12);
+}
+/* the eye notices you — pupil dilates on hover (interest widens the pupil) */
+.eye-step:hover .eye-pupil {
+  transform: scale(1.2);
+}
+
+/* idle blink — squash the iris group (default scaleY(1) = open; safe if unanimated).
+   Staggered per eye via inline animation-delay, so they desync like real eyes. */
+.eye-blinker {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: eyeblink 6.5s ease-in-out infinite;
+}
+@keyframes eyeblink {
+  0%,
+  93%,
+  100% {
+    transform: scaleY(1);
+  }
+  96.5% {
+    transform: scaleY(0.08);
+  }
+}
+/* blink for a RiggedGlyph host <div> (no fill-box; reuses the eyeblink keyframe) */
+.glyph-blink {
+  animation: eyeblink 6.5s ease-in-out infinite;
+  transform-origin: center;
+}
+
+/* active step eye — gentle breathing so "you are here" reads as alive */
+.eye-active {
+  animation: eyebreathe 3.2s ease-in-out infinite;
+  transform-origin: center;
+}
+@keyframes eyebreathe {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.07);
+  }
+}
+
+/* UX law — visible keyboard focus on every eye control (was missing) */
+.eye-step:focus-visible,
+.eye-btn:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bg-grid,
+  .eye-blinker,
+  .glyph-blink,
+  .eye-active,
+  .eye-scan .eye-pupil,
+  .eye-pop,
+  .eye-shake,
+  .eye-doze,
+  .hero-iris-spin {
+    animation: none;
+  }
+  .eye-iris {
+    transition: none;
+  }
+  .eye-step,
+  .eye-pupil {
+    transition: none;
+  }
 }
 
 /* big hand-drawn heading (was brutal grotesque — now the display hand face) */
@@ -167,20 +309,44 @@ body {
   transform: rotate(-3deg);
 }
 
-/* progress dots — hand-drawn pebbles */
-.dots {
+/* progress = a row of eyes (EyeGlyph) */
+.eye-row {
   display: flex;
+  align-items: center;
   gap: 0.4rem;
 }
-.dot {
-  width: 0.55rem;
-  height: 0.55rem;
-  border: 1.5px solid var(--ink);
+
+/* every button is an eye — round sketch socket, pupil reacts on hover */
+.eye-btn {
+  display: inline-grid;
+  grid-auto-flow: column;
+  place-items: center;
+  background: var(--paper);
+  border: 2px solid var(--ink);
   border-radius: 9999px;
-  transform: rotate(8deg);
+  color: var(--ink);
+  padding: 0.5rem 0.7rem;
+  cursor: pointer;
+  transform: rotate(-2deg);
+  transition: transform 0.2s ease, background 0.2s ease;
 }
-.dot.on {
-  background: var(--ink);
+.eye-btn:hover {
+  transform: rotate(0deg) scale(1.06);
+}
+.eye-btn:disabled {
+  opacity: 0.25;
+  cursor: not-allowed;
+}
+.eye-pupil {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.eye-next:hover .eye-pupil {
+  transform: translateX(2.5px);
+}
+.eye-back:hover .eye-pupil {
+  transform: translateX(-2.5px);
 }
 
 /* pick tile — sketch box, inks in on select */
@@ -205,4 +371,119 @@ body {
   background: var(--ink);
   color: var(--paper);
   transform: rotate(1.2deg) scale(1.03);
+}
+
+/* ── EyeStatus moods ── one eye, four expressions (loading / success / error / empty) */
+/* loading — pupil sweeps side to side like it's scanning the work */
+.eye-scan .eye-pupil {
+  animation: eyescan 1.4s ease-in-out infinite;
+}
+@keyframes eyescan {
+  0%,
+  100% {
+    transform: translateX(-2.5px);
+  }
+  50% {
+    transform: translateX(2.5px);
+  }
+}
+/* success — quick sparkle pop */
+.eye-pop {
+  animation: eyepop 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  transform-origin: center;
+}
+@keyframes eyepop {
+  0% {
+    transform: scale(0.6) rotate(-8deg);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.15) rotate(3deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+/* error — shut eye gives a small "no" shake */
+.eye-shake {
+  animation: eyeshake 0.45s ease-in-out both;
+  transform-origin: center;
+}
+@keyframes eyeshake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-3px) rotate(-2deg);
+  }
+  60% {
+    transform: translateX(3px) rotate(2deg);
+  }
+}
+/* empty — sleeping eye, slow breathe at low opacity */
+.eye-doze {
+  opacity: 0.5;
+  animation: eyedoze 4.5s ease-in-out infinite;
+  transform-origin: center;
+}
+@keyframes eyedoze {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.04);
+  }
+}
+
+/* EyeCheckbox / eye controls — visible keyboard focus + hover notice */
+.eye-check {
+  background: none;
+  border: 0;
+  padding: 2px 4px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+.eye-check:hover {
+  transform: translateY(-1px);
+}
+.eye-check:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+.eye-check:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* footer chrome — a row of small watching eyes */
+.eye-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  opacity: 0.7;
+}
+
+/* hero iris striations turn slowly — the iris feels alive even at rest */
+.hero-iris-spin {
+  animation: irisTurn 24s linear infinite;
+}
+@keyframes irisTurn {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* glyph micro-interaction — the iris "focuses" (widens) when its control is hovered */
+.eye-iris {
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.eye-step:hover .eye-iris,
+.eye-btn:hover .eye-iris,
+.eye-check:hover .eye-iris {
+  transform: scale(1.07);
 }

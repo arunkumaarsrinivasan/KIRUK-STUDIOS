@@ -2,7 +2,31 @@
 
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
+import type { EyePattern } from './EyeBall';
+import EyeField from './EyeField';
+import EyeStatus from './EyeStatus';
+import ReactiveEye, { type Emotion } from './ReactiveEye';
+import RiggedGlyph from './RiggedGlyph';
 import ScribbleCanvas from './ScribbleCanvas';
+
+// one distinct eye per step (aligned to STEPS order) — no two the same.
+// chrome eyes are NEUTRAL ink — only the hero ReactiveEye shows emotion (color).
+const STEP_EYES: EyePattern[] = [
+  'ring', // intro
+  'solid', // client
+  'slit', // personality
+  'portal', // vibe
+  'hatch', // scribble
+  'star', // product
+  'constellation', // summary
+];
+
+const EMOTION_READ: Record<Emotion, string> = {
+  focus: 'still. focused.',
+  calm: 'calm. steady.',
+  curiosity: 'curious. wandering.',
+  anticipation: 'driven. eager.',
+};
 
 // Client onboarding — kiruk SKETCH style, interaction-first (Absurdly = interaction ref only).
 // No question lists. You ACT: drag a token across a compass to find your archetype, drag chunky
@@ -63,6 +87,17 @@ const EMPTY: State = {
 
 const STEPS = ['intro', 'client', 'personality', 'vibe', 'scribble', 'product', 'summary'] as const;
 const KEY = 'kiruk-onboard';
+
+// absurd grid — mono, but its STATE changes per screen to hint the content ahead.
+const GRID: Record<(typeof STEPS)[number], string> = {
+  intro: 'bg-dots', // potential — scattered points
+  client: 'bg-rule', // a ledger — who's here
+  personality: 'bg-rays', // a compass — directions pulling
+  vibe: 'bg-vert', // gauges — vertical poles
+  scribble: 'bg-sparse', // near-blank — room to draw
+  product: 'bg-horizon', // a horizon — what's ahead
+  summary: 'bg-graph', // assembled — the full read
+};
 
 function nearest(p: { x: number; y: number }): Archetype {
   let best: Archetype = 'Dreamer';
@@ -242,6 +277,7 @@ function Gauge({
 export default function OnboardingWizard() {
   const [step, setStep] = useState(0);
   const [s, setS] = useState<State>(EMPTY);
+  const [read, setRead] = useState<Emotion>('focus');
 
   useEffect(() => {
     try {
@@ -264,33 +300,79 @@ export default function OnboardingWizard() {
   const archetype = s.pick;
 
   return (
-    <main className="grid-paper relative min-h-[100svh] w-full">
-      <header className="flex items-center gap-3 px-6 pt-6 md:px-10">
-        <span className="face-mark" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
-            <circle cx="11" cy="11" r="8" stroke="currentColor" strokeWidth="1.6" />
-            <line x1="8" y1="13" x2="14" y2="13" stroke="currentColor" strokeWidth="1.6" />
-          </svg>
+    <main className="bg-paper relative min-h-[100svh] w-full">
+      <div key={name} className={`bg-grid ${GRID[name ?? 'intro']}`} aria-hidden="true" />
+      <header className="relative flex items-center gap-3 px-6 pt-6 md:px-10">
+        <span className="face-mark border-none" aria-hidden="true">
+          <RiggedGlyph pattern="solid" size={32} blink blinkDelay={1.5} />
         </span>
         <div className="leading-none">
           <p className="brutal text-ink text-xl">kiruk</p>
           <p className="handwritten text-pencil text-[0.7rem]">believe in absurdism</p>
         </div>
-        <div className="dots ml-auto">
-          {STEPS.map((st, i) => (
-            <span key={st} className={`dot ${i <= step ? 'on' : ''}`} />
-          ))}
-        </div>
+        {/* progress = a row of DIFFERENT eyeballs; visited ones are clickable to revisit. */}
+        <nav className="eye-row ml-auto" aria-label={`step ${step + 1} of ${STEPS.length}`}>
+          {STEPS.map((st, i) => {
+            const seen = i <= step;
+            const eye = (
+              // biome-ignore lint/correctness/useJsxKeyInIterable: rendered inside the keyed button/span returned below
+              <RiggedGlyph
+                pattern={STEP_EYES[i]}
+                open={seen}
+                size={i === step ? 28 : 22}
+                blink={seen}
+                blinkDelay={i * 0.9}
+                className={i === step ? 'eye-active' : undefined}
+                style={{ opacity: i < step ? 0.8 : 1 }}
+              />
+            );
+            return seen ? (
+              <button
+                key={st}
+                type="button"
+                className="eye-step"
+                aria-label={`go to ${st}`}
+                aria-current={i === step ? 'step' : undefined}
+                onClick={() => setStep(i)}
+              >
+                {eye}
+              </button>
+            ) : (
+              <span key={st} aria-hidden="true">
+                {eye}
+              </span>
+            );
+          })}
+        </nav>
       </header>
 
-      <section className="mx-auto flex w-full max-w-3xl flex-1 flex-col justify-center px-6 py-10 md:px-10">
+      <section className="relative mx-auto flex w-full max-w-3xl flex-1 flex-col justify-center px-6 py-10 md:px-10">
         {name === 'intro' && (
-          <div className="flex flex-col gap-5">
-            <h1 className="brutal text-ink text-6xl md:text-8xl">before we scribble.</h1>
-            <p className="handwritten text-pencil max-w-lg text-xl">
-              No form. A few moves to read you, your company&rsquo;s vibe, and what you want to
-              make. Drag, scribble, lean. Then we sketch it together and jump on a call.
-            </p>
+          <div className="flex flex-col items-center gap-7 text-center">
+            <div className="flex flex-col items-center gap-3">
+              <ReactiveEye size={300} onEmotion={(e) => setRead(e.emotion)} />
+              <span className="reading-chip handwritten text-pencil text-sm">
+                reading you &mdash; <span className="text-ink">{EMOTION_READ[read]}</span>
+              </span>
+            </div>
+            <div className="flex flex-col items-center gap-4">
+              <h1 className="brutal text-ink text-6xl leading-none md:text-8xl">
+                before we scribble.
+              </h1>
+              <p className="handwritten text-pencil max-w-md text-lg md:text-xl">
+                No form. The eye is already reading you. Move, drag, scribble &mdash; it learns who
+                you are. Then we sketch it together.
+              </p>
+            </div>
+            <button
+              type="button"
+              className="eye-btn eye-next gap-3 px-6 py-3"
+              aria-label="begin"
+              onClick={() => setStep(1)}
+            >
+              <span className="handwritten text-ink text-lg">let the eye begin</span>
+              <RiggedGlyph pattern="solid" look="right" size={34} />
+            </button>
           </div>
         )}
 
@@ -299,23 +381,20 @@ export default function OnboardingWizard() {
             <h2 className="brutal text-ink mb-2 text-4xl">who&rsquo;s scribbling?</h2>
             {(
               [
-                ['name', 'your name'],
-                ['company', 'company / studio'],
-                ['role', 'your role'],
-                ['email', 'email'],
-                ['links', 'website / socials'],
+                ['name', 'your name', 'ring'],
+                ['company', 'company / studio', 'solid'],
+                ['role', 'your role', 'slit'],
+                ['email', 'email', 'portal'],
+                ['links', 'website / socials', 'hatch'],
               ] as const
-            ).map(([k, ph]) => (
-              <div key={k} className="sketch-border flex items-stretch">
-                <span className="handwritten text-pencil flex w-40 shrink-0 items-center px-3 text-sm">
-                  {ph}
-                </span>
-                <input
-                  value={s.client[k]}
-                  onChange={(e) => setS({ ...s, client: { ...s.client, [k]: e.target.value } })}
-                  className="ink-block handwritten w-full px-4 py-3 text-lg outline-none"
-                />
-              </div>
+            ).map(([k, ph, pat]) => (
+              <EyeField
+                key={k}
+                label={ph}
+                pattern={pat}
+                value={s.client[k]}
+                onValueChange={(v) => setS({ ...s, client: { ...s.client, [k]: v } })}
+              />
             ))}
           </div>
         )}
@@ -454,35 +533,45 @@ export default function OnboardingWizard() {
                 book a collaborative call
               </button>
             </div>
-            <p className="handwritten text-pencil text-xs">
-              Saved locally only (no account yet). A real intake record comes with the auth+DB
-              slice.
-            </p>
+            <div className="flex items-center gap-2">
+              <EyeStatus mood="success" size={26} label="saved locally" />
+              <span className="handwritten text-pencil text-xs">
+                — no account yet. A real intake record comes with the auth+DB slice.
+              </span>
+            </div>
           </div>
         )}
       </section>
 
-      <footer className="flex items-center justify-between px-6 pb-8 md:px-10">
+      <footer className="relative flex items-center justify-between px-6 pb-8 md:px-10">
         <button
           type="button"
-          className="dashed handwritten text-ink rounded-lg px-4 py-2 text-base"
+          className="eye-btn eye-back handwritten text-ink gap-2 px-4"
           style={{ visibility: step === 0 ? 'hidden' : 'visible' }}
+          aria-label="back"
           onClick={() => setStep((n) => Math.max(0, n - 1))}
         >
-          &larr; back
+          <RiggedGlyph pattern="solid" look="left" size={30} />
+          <span className="text-base">back</span>
         </button>
         {step < last ? (
-          <button
-            type="button"
-            className="arrow-btn"
-            aria-label="next"
-            onClick={() => setStep((n) => n + 1)}
-          >
-            &rarr;
-          </button>
+          name === 'intro' ? (
+            // intro's proceed is the centered "begin" button — no duplicate corner arrow
+            <span aria-hidden="true" />
+          ) : (
+            <button
+              type="button"
+              className="eye-btn eye-next"
+              aria-label="next"
+              onClick={() => setStep((n) => n + 1)}
+            >
+              <RiggedGlyph pattern="solid" look="right" size={44} />
+            </button>
+          )
         ) : (
-          <Link href="/" className="dashed handwritten text-ink rounded-lg px-4 py-2 text-base">
-            done
+          <Link href="/" className="eye-btn eye-next gap-2 px-4" aria-label="done">
+            <RiggedGlyph pattern="star" size={30} />
+            <span className="handwritten text-ink text-base">done</span>
           </Link>
         )}
       </footer>

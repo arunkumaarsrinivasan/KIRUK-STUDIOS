@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- kiruk chrome eye — arrow (directional pupil for next/back). AG1 2026-06-01.
+     #pupil triangle points RIGHT; code offsets it by look=left/right. Cleaner iris for clarity. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48"
+     data-eye-cx="24" data-eye-cy="23.6" data-eye-travel="3.5">
+  <g id="eye" fill="none" stroke="#0a0a0a" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M6.5 25 Q15 11.5 24 11 Q34 11 41.5 22.5 Q33 34.5 24 35.4 Q14 34.2 6.5 25 Z" fill="#ffffff" stroke="none"/>
+    <path d="M6.5 25 Q15 11.5 24 11 Q34 11 41.5 22.5" stroke-width="2.3"/>
+    <path d="M8 24.2 Q15.5 12.6 24 12 Q33 12 40 22.6" stroke-width="0.9" opacity="0.3"/>
+    <path d="M6.5 25 Q14 34.2 24 35.4 Q33 34.5 41.5 22.5" stroke-width="1.7"/>
+    <path d="M10 18 Q23 9.8 37.5 15.5" stroke-width="0.9" opacity="0.4"/>
+    <path d="M6.5 25 q-1.8 0.2 -2.6 1.3" stroke-width="1.1" opacity="0.55"/>
+    <g class="eye-iris" style="transform-box:fill-box;transform-origin:center">
+      <circle cx="24" cy="23.6" r="8.4" stroke-width="1.9"/>
+    </g>
+    <circle cx="27.4" cy="20.2" r="1.1" fill="#ffffff" stroke="none"/>
+  </g>
+  <g id="pupil" fill="#0a0a0a" stroke="none">
+    <path d="M20.4 19.4 L29 23.6 L20.4 27.8 Z"/>
+  </g>
+</svg>

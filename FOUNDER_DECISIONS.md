@@ -37,6 +37,26 @@
 
 ---
 
+## ASSET GENERATION — locked 2026-06-01 (overrides Non-Negotiables #4/#7 for portal eye assets)
+
+### AG1 — AI may generate the eye _look_ (was: founder hand-art only)
+
+`[x]` **Override.** Tooling (Figma MCP, Blender MCP, code-authored SVG) MAY now generate the eye's visual form for `kiruk-portal` assets — not only rig/animate founder-drawn art. This relaxes:
+
+- **CLAUDE.md Non-Negotiable #4** (eye-motif test) — motif requirement stands; the _who-draws-it_ constraint is lifted.
+- **CLAUDE.md Non-Negotiable #7** ("no work without a scribble") — for these generated portal eye assets only.
+- **Memory** `feedback_handdrawn_assets` / `feedback_sketch_aesthetic` — updated: code/AI may originate the look; B&W sketch aesthetic still holds.
+
+**Scope:** `apps/kiruk-portal` eye assets (vector glyphs in `/public/eye/`, hero eye, R3F/glTF 3D eye). Does NOT touch `kiruk-web` brand mark or the canonical logo — those remain founder hand-art until a separate decision.
+**Why:** founder wants a working, full-coverage eye system across the portal now, authored via Figma + Blender + code, rather than gated on hand-drawing every variant.
+**Reversible:** delete generated files under `/public/eye/`; rigs already fall back to procedural eyes.
+
+### AG2 — Portal gets a 3D eye via R3F + glTF
+
+`[x]` Add `three` + `@react-three/fiber` + `@react-three/drei` (locked-stack approved) to `kiruk-portal`. Build the R3F scene first with a procedural fallback; author the `.glb` in Blender and swap it in. 3D is additive — the 2D pencil aesthetic remains the default surface.
+
+---
+
 ## BRAND — blocks Phase 3 + all visual work
 
 ### B1 — Primary eye mark: final design?
