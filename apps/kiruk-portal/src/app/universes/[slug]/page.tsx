@@ -2,8 +2,15 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import LifecycleRail from '@/components/LifecycleRail';
 import RiggedGlyph from '@/components/RiggedGlyph';
+import ShareReview from '@/components/ShareReview';
 import TransitionControls from '@/components/TransitionControls';
-import { LIFECYCLE, readUniverse, STATES, stateIndex } from '@/lib/lifecycle';
+import {
+  LIFECYCLE,
+  latestProposalScribble,
+  readUniverse,
+  STATES,
+  stateIndex,
+} from '@/lib/lifecycle';
 
 export const dynamic = 'force-dynamic';
 
@@ -13,6 +20,8 @@ export default async function UniverseCockpit({ params }: { params: Promise<{ sl
   if (!u) notFound();
 
   const cur = LIFECYCLE[u.state];
+  const reviewable = latestProposalScribble(u.scribbles);
+  const marksCount = u.scribbles.filter((s) => s.includes('marks')).length;
 
   return (
     <main className="bg-paper relative min-h-[100svh] w-full px-6 py-10 md:px-10">
@@ -124,6 +133,8 @@ export default async function UniverseCockpit({ params }: { params: Promise<{ sl
             </Link>
           ) : null}
         </div>
+
+        {reviewable ? <ShareReview slug={u.slug} marksCount={marksCount} /> : null}
 
         <div className="grid gap-8 lg:grid-cols-2">
           {/* advance */}

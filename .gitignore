@@ -33,6 +33,7 @@ service-account*.json
 secrets/
 **/local-only/
 kiruk-projects/**/.local-only/
+kiruk-projects/_inbox/
 
 # build tooling caches
 .turbo/

@@ -10,6 +10,12 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/) with an a
 
 ### Added
 
+- **`kiruk-portal` — Slice 4: collaborative mark-back + call-inbox + deploy-readiness.**
+  - **Async proposal mark-back** — `/universes/[slug]/review` ([ReviewBuilder](apps/kiruk-portal/src/components/ReviewBuilder.tsx)): the original proposal scribble sits behind a transparent canvas; the client marks in a distinct colour (orange); save writes a marks-only PNG into `scribble/` via `saveMarksAction`. A new `/api/scribble/[slug]/[name]` route serves scribble images (path-traversal-validated). Cockpit gets a [ShareReview](apps/kiruk-portal/src/components/ShareReview.tsx) link + mark-back count. ScribbleCanvas extended with `transparent` / `inkColor` / `backgroundSrc`. Real-time (live cursors) deferred.
+  - **Request-a-call → inbox** — `/call` ([CallForm](apps/kiruk-portal/src/components/CallForm.tsx)) writes a request to the file-backed `kiruk-projects/_inbox/calls.ndjson` (gitignored — client PII). Replaces the onboarding `alert()` stub. No Cal.com.
+  - **Vercel deploy-readiness** — `vercel.json` + [DEPLOY.md](apps/kiruk-portal/DEPLOY.md). Honest caveat documented: file-backed writes don't persist on serverless, so a real hosted instance needs Slice 3 (DB) live.
+  - Engine: `scribbles[]` on `UniverseDetail`, `readScribbleBytes`, `latestProposalScribble`, `appendCallRequest`. Smoke-tested (mark-back layering, traversal blocked, inbox JSON); `tsc` + Biome + `build` green.
+
 - **`kiruk-portal` — Slice 3 scaffold: auth + DB (Better-Auth + Neon + Drizzle), env-guarded, not yet live.** Architecture proposed in [FOUNDER_DECISIONS DA1](FOUNDER_DECISIONS.md) (awaiting founder lock + Neon provisioning — DB account + secrets can't be created by the agent). Roadmap Slice 2 (lifecycle + file persistence) marked **done**; this scaffolds Slice 3 without a live database:
   - [schema.ts](apps/kiruk-portal/src/db/schema.ts): Drizzle (Postgres) — Better-Auth core (`user/session/account/verification`) + app tables mirroring the file lifecycle (`universe`/`transition`/`client_access`, the last for the P1 client read-only view).
   - Lazy, **env-guarded** client [db/index.ts](apps/kiruk-portal/src/db/index.ts) (`getDb`/`isDbConfigured`) + Better-Auth [auth.ts](apps/kiruk-portal/src/lib/auth.ts) (magic-link, `getAuth`/`isAuthConfigured`) — neither connects at import, so `next build` is green with no `DATABASE_URL`. `/api/auth/[...all]` returns `501` until configured.

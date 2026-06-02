@@ -95,4 +95,5 @@ export type UniverseDetail = UniverseSummary & {
   transitions: Transition[];
   artifacts: Record<string, boolean>;
   scribbleCount: number;
+  scribbles: string[]; // filenames under scribble/, sorted
 };

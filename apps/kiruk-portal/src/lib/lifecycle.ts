@@ -3,7 +3,7 @@
 // Server-only: uses node:fs. Never import from a 'use client' module.
 
 import { existsSync } from 'node:fs';
-import { mkdir, readdir, readFile, stat, writeFile } from 'node:fs/promises';
+import { appendFile, mkdir, readdir, readFile, stat, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import {
   isValidSlug,
@@ -110,18 +110,55 @@ export async function readUniverse(slug: string): Promise<UniverseDetail | null>
     if (meta.artifact) artifacts[meta.artifact] = existsSync(path.join(dir, meta.artifact));
   }
 
-  let scribbleCount = 0;
+  let scribbles: string[] = [];
   const scribbleDir = path.join(dir, 'scribble');
   if (existsSync(scribbleDir)) {
     const entries = await readdir(scribbleDir).catch(() => []);
-    scribbleCount = entries.filter((e) => !e.startsWith('.')).length;
+    scribbles = entries.filter((e) => !e.startsWith('.')).sort();
   }
+  const scribbleCount = scribbles.length;
 
   const created = data.created || (await safeBirth(dir));
   const updated = data.updated || created;
   const title = data.title || titleFromSlug(slug);
 
-  return { slug, title, state, created, updated, needsInit, transitions, artifacts, scribbleCount };
+  return {
+    slug,
+    title,
+    state,
+    created,
+    updated,
+    needsInit,
+    transitions,
+    artifacts,
+    scribbleCount,
+    scribbles,
+  };
+}
+
+// append a call request to the file-backed inbox (kiruk-projects/_inbox/calls.ndjson).
+export async function appendCallRequest(payload: Record<string, string>): Promise<void> {
+  const dir = path.join(projectsDir(), '_inbox');
+  await mkdir(dir, { recursive: true });
+  const safe: Record<string, string> = {};
+  for (const [k, v] of Object.entries(payload)) safe[k] = String(v).slice(0, 2000);
+  const line = `${JSON.stringify({ ts: new Date().toISOString(), ...safe })}\n`;
+  await appendFile(path.join(dir, 'calls.ndjson'), line, 'utf8');
+}
+
+// read raw bytes of a scribble image for serving (validated; no path traversal).
+export async function readScribbleBytes(slug: string, name: string): Promise<Buffer | null> {
+  if (!isValidSlug(slug)) return null;
+  if (!/^[a-z0-9][a-z0-9._-]*\.(png|jpe?g|svg)$/i.test(name)) return null;
+  const p = path.join(universeDir(slug), 'scribble', name);
+  if (!existsSync(p)) return null;
+  return readFile(p);
+}
+
+// the most recent proposal scribble filename (the original to mark on), if any.
+export function latestProposalScribble(scribbles: string[]): string | null {
+  const props = scribbles.filter((s) => s.startsWith('proposal-') && !s.includes('marks'));
+  return props.length ? props[props.length - 1]! : null;
 }
 
 export async function listUniverses(): Promise<UniverseSummary[]> {

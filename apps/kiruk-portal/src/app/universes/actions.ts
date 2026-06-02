@@ -4,6 +4,7 @@ import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import {
   addTextualScribble,
+  appendCallRequest,
   appendTransition,
   createUniverse,
   isValidSlug,
@@ -376,6 +377,41 @@ export async function saveHandoffAction(slug: string, input: HandoffInput): Prom
   revalidatePath('/universes');
   revalidatePath(`/universes/${slug}`);
   return { archived: true, transparency, caseStudy, caseStudyPath };
+}
+
+// ── Slice 4b: request a collaborative call → file-backed inbox ─────────────
+export type CallInput = { name: string; contact: string; when: string; note: string };
+export async function requestCallAction(
+  input: CallInput,
+): Promise<{ saved?: boolean; error?: string }> {
+  if (!input.contact.trim()) return { error: 'add a way to reach you (email / handle)' };
+  await appendCallRequest({
+    name: input.name,
+    contact: input.contact,
+    when: input.when,
+    note: input.note,
+  });
+  return { saved: true };
+}
+
+// ── Slice 4a: collaborative proposal mark-back ────────────────────────────
+// A reviewer (client) marks on the proposal scribble; their marks layer is saved into scribble/.
+// No state change, no redirect (the reviewer may be external and stays on the page).
+export async function saveMarksAction(
+  slug: string,
+  dataUrl: string,
+): Promise<{ error?: string; saved?: boolean }> {
+  if (!isValidSlug(slug)) return { error: 'invalid slug' };
+  const u = await readUniverse(slug);
+  if (!u) return { error: 'unknown universe' };
+  try {
+    await saveScribblePng(slug, dataUrl, `proposal-marks-${Date.now()}.png`);
+  } catch (e) {
+    return { error: e instanceof Error ? e.message : 'could not save marks' };
+  }
+  revalidatePath(`/universes/${slug}`);
+  revalidatePath(`/universes/${slug}/review`);
+  return { saved: true };
 }
 
 // ── front of funnel: lead + intake ───────────────────────────────────────

@@ -143,11 +143,11 @@ One monorepo. Everything that is kiruk lives here:
 - [ ] Persist onboarding + scribbles + lifecycle to DB (replace file) — dual-read during migration
 - [x] Secret guard: no API keys/client secrets in DB; env-only; `.env*` gitignored
 
-**Slice 4 — collaboration + deploy [ ]**
+**Slice 4 — collaboration + deploy [~] in progress 2026-06-02**
 
-- [ ] Real-time collaborative scribble — client marks back on the proposal canvas
-- [ ] Collaborative-call hook (Cal.com or request-call → inbox)
-- [ ] Deploy to Vercel; domain (portal.kiruk.in or subpath)
+- [~] Collaborative scribble — **async mark-back done** (`/universes/[slug]/review`: client marks on the proposal scribble in a 2nd colour → saved to `scribble/`; shareable link + mark-back count in the cockpit). Real-time (live cursors) deferred — needs a transport service or the live DB.
+- [x] Collaborative-call hook — **request-call → file-backed inbox** (`/call` → `kiruk-projects/_inbox/calls.ndjson`, gitignored; replaces the onboarding `alert()`). Cal.com deferred.
+- [~] Deploy to Vercel — **config + runbook done** (`vercel.json`, `DEPLOY.md`). Live deploy needs your Vercel account **and** Slice 3 DB live (file writes don't persist on serverless).
 
 **Spec debt:** redefine the `proposal` artifact in `client-lifecycle` / `template-proposal` from prose-doc → collaborative scribble-canvas (OpenSpec change, explore-now-spec-after).
 

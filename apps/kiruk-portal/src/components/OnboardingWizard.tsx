@@ -525,13 +525,12 @@ export default function OnboardingWizard() {
               <Link href="/proposals/new" className="sketch-button handwritten text-lg">
                 start the scribble proposal <span aria-hidden="true">&rarr;</span>
               </Link>
-              <button
-                type="button"
+              <Link
+                href="/call"
                 className="dashed handwritten text-ink rounded-xl px-5 py-3 text-lg"
-                onClick={() => alert('Collaborative call booking lands with the auth+DB slice.')}
               >
                 book a collaborative call
-              </button>
+              </Link>
             </div>
             <div className="flex items-center gap-2">
               <EyeStatus mood="success" size={26} label="saved locally" />

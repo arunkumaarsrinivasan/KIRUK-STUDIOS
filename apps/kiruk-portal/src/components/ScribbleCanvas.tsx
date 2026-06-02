@@ -10,9 +10,18 @@ type Pt = { x: number; y: number; p: number };
 export default function ScribbleCanvas({
   heightClass = 'h-[100svh]',
   onCapture,
+  inkColor,
+  transparent = false,
+  backgroundSrc,
 }: {
   heightClass?: string;
   onCapture?: (dataUrl: string) => void;
+  /** stroke colour override (review marks use a distinct colour) */
+  inkColor?: string;
+  /** transparent canvas — captured PNG holds only the strokes (for mark-back layers) */
+  transparent?: boolean;
+  /** image drawn behind the canvas (the original proposal scribble to mark on) */
+  backgroundSrc?: string;
 }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const apiRef = useRef<{ undo: () => void; clear: () => void; exportPng: () => void } | null>(
@@ -29,7 +38,7 @@ export default function ScribbleCanvas({
     if (!ctx) return;
 
     const css = getComputedStyle(document.documentElement);
-    const ink = css.getPropertyValue('--ink').trim() || '#0a0a0a';
+    const ink = inkColor || css.getPropertyValue('--ink').trim() || '#0a0a0a';
     const paper = css.getPropertyValue('--paper').trim() || '#ffffff';
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
@@ -40,8 +49,12 @@ export default function ScribbleCanvas({
     const fillPaper = () => {
       ctx.save();
       ctx.setTransform(1, 0, 0, 1, 0, 0);
-      ctx.fillStyle = paper;
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      if (transparent) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      } else {
+        ctx.fillStyle = paper;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+      }
       ctx.restore();
     };
 
@@ -191,8 +204,20 @@ export default function ScribbleCanvas({
         </div>
       </div>
 
-      <div className="sketch-border min-h-0 flex-1 overflow-hidden">
-        <canvas ref={canvasRef} className="h-full w-full touch-none" style={{ display: 'block' }} />
+      <div className="sketch-border relative min-h-0 flex-1 overflow-hidden">
+        {backgroundSrc ? (
+          // biome-ignore lint/performance/noImgElement: local scribble served from our own route, not a CDN image
+          <img
+            src={backgroundSrc}
+            alt="proposal scribble"
+            className="pointer-events-none absolute inset-0 h-full w-full object-contain opacity-90"
+          />
+        ) : null}
+        <canvas
+          ref={canvasRef}
+          className="relative h-full w-full touch-none"
+          style={{ display: 'block' }}
+        />
       </div>
     </div>
   );
