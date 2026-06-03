@@ -27,6 +27,27 @@ export default function Home() {
         <span className="brutal text-ink text-xl">kiruk</span>
       </header>
 
+      <nav aria-label="portal" className="absolute right-6 top-6 flex items-center gap-4 md:gap-5">
+        <Link
+          href="/sign-in"
+          className="handwritten text-pencil hover:text-ink text-base underline-offset-4 hover:underline"
+        >
+          sign in
+        </Link>
+        <Link
+          href="/dashboard"
+          className="handwritten text-pencil hover:text-ink text-base underline-offset-4 hover:underline"
+        >
+          dashboard
+        </Link>
+        <Link
+          href="/client"
+          className="handwritten text-pencil hover:text-ink text-base underline-offset-4 hover:underline"
+        >
+          your universes
+        </Link>
+      </nav>
+
       <section className="relative flex w-full max-w-3xl flex-col items-center gap-9 py-16 text-center">
         <ReactiveEye size={300} />
 

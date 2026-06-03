@@ -1,7 +1,9 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useTransition } from 'react';
+import { saveOnboardingAction } from '@/app/onboard/actions';
+import { isValidSlug } from '@/lib/lifecycle-model';
 import type { EyePattern } from './EyeBall';
 import EyeField from './EyeField';
 import EyeStatus from './EyeStatus';
@@ -98,6 +100,16 @@ const GRID: Record<(typeof STEPS)[number], string> = {
   product: 'bg-horizon', // a horizon — what's ahead
   summary: 'bg-graph', // assembled — the full read
 };
+
+// best-effort slug from a free-text name/company (the action re-validates with isValidSlug).
+function slugify(raw: string): string {
+  return raw
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .slice(0, 60);
+}
 
 function nearest(p: { x: number; y: number }): Archetype {
   let best: Archetype = 'Dreamer';
@@ -269,6 +281,103 @@ function Gauge({
           className="border-ink bg-paper absolute top-1/2 h-16 w-7 -translate-y-1/2 border-2"
           style={{ left: `calc(${value}% - 14px)`, transform: 'translateY(-50%) rotate(-3deg)' }}
         />
+      </div>
+    </div>
+  );
+}
+
+// SAVE TO STUDIO — graduate the localStorage-only read into a tracked universe (lifecycle DB).
+// Slug + title prefill from the client step; on success the action redirects into the cockpit.
+// Defined at module scope (not inside the wizard render) so the inputs keep focus while typing.
+function SaveToStudio({
+  defaultSlug,
+  defaultTitle,
+}: {
+  defaultSlug: string;
+  defaultTitle: string;
+}) {
+  const [open, setOpen] = useState(false);
+  const [slug, setSlug] = useState(defaultSlug);
+  const [title, setTitle] = useState(defaultTitle);
+  const [error, setError] = useState<string | null>(null);
+  const [pending, start] = useTransition();
+
+  if (!open) {
+    return (
+      <button
+        type="button"
+        className="eye-btn eye-next gap-3 self-start px-6 py-3"
+        aria-label="save to the studio"
+        onClick={() => setOpen(true)}
+      >
+        <span className="handwritten text-ink text-lg">save to the studio</span>
+        <RiggedGlyph pattern="portal" look="right" size={28} />
+      </button>
+    );
+  }
+
+  return (
+    <div className="sketch-border flex flex-col gap-4 p-5">
+      <p className="handwritten text-ink flex items-center gap-2 text-lg">
+        <RiggedGlyph pattern="portal" size={24} /> name the universe
+      </p>
+      <label className="flex flex-col gap-1.5">
+        <span className="handwritten text-pencil text-sm">slug (lowercase, kebab-case)</span>
+        <input
+          value={slug}
+          onChange={(e) => setSlug(e.target.value)}
+          placeholder="acme-portal"
+          className="sketch-border handwritten text-ink px-4 py-2 text-lg outline-none"
+        />
+      </label>
+      <label className="flex flex-col gap-1.5">
+        <span className="handwritten text-pencil text-sm">title</span>
+        <input
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          placeholder="Acme Portal"
+          className="sketch-border handwritten text-ink px-4 py-2 text-lg outline-none"
+        />
+      </label>
+
+      {error ? <p className="handwritten text-ink text-sm">✕ {error}</p> : null}
+
+      <div className="flex flex-wrap items-center gap-3">
+        <button
+          type="button"
+          disabled={pending}
+          className="eye-btn eye-next gap-3 px-5 py-2.5 disabled:opacity-40"
+          aria-label="save universe"
+          onClick={() =>
+            start(async () => {
+              setError(null);
+              const s = slug.trim().toLowerCase();
+              if (!isValidSlug(s)) {
+                setError('slug must be lowercase kebab-case (a-z, 0-9, hyphens), 2–60 chars');
+                return;
+              }
+              if (!title.trim()) {
+                setError('give the universe a title');
+                return;
+              }
+              const r = await saveOnboardingAction({ slug: s, title: title.trim() });
+              if (r?.error) setError(r.error);
+            })
+          }
+        >
+          <span className="handwritten text-ink text-base">{pending ? 'saving…' : 'save'}</span>
+          <RiggedGlyph pattern="star" size={24} />
+        </button>
+        <button
+          type="button"
+          className="handwritten text-pencil text-sm underline"
+          onClick={() => {
+            setOpen(false);
+            setError(null);
+          }}
+        >
+          cancel
+        </button>
       </div>
     </div>
   );
@@ -532,10 +641,21 @@ export default function OnboardingWizard() {
                 book a collaborative call
               </Link>
             </div>
+            <div className="sketch-border flex flex-col gap-3 p-5">
+              <p className="handwritten text-pencil text-sm">
+                make it real — graduate this read into a tracked universe (starts at{' '}
+                <strong>lead</strong>).
+              </p>
+              <SaveToStudio
+                defaultSlug={slugify(s.client.company || s.client.name)}
+                defaultTitle={s.client.company || s.client.name || ''}
+              />
+            </div>
+
             <div className="flex items-center gap-2">
               <EyeStatus mood="success" size={26} label="saved locally" />
               <span className="handwritten text-pencil text-xs">
-                — no account yet. A real intake record comes with the auth+DB slice.
+                — autosaved in this browser. &ldquo;save to the studio&rdquo; persists it for real.
               </span>
             </div>
           </div>

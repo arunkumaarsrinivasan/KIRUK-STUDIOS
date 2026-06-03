@@ -140,7 +140,7 @@ One monorepo. Everything that is kiruk lives here:
 
 - [x] **DB live end-to-end** — dual driver in `src/db/index.ts`: Neon when `DATABASE_URL` is set, else embedded **pglite** (`./.pglite`, gitignored) so it runs locally with no account/secret. Auto-migrates from `drizzle/` (generated). Repo layer `src/db/repo.ts` (universes/transitions/todos/client-access), smoke-tested persisting.
 - [x] **Auth live** — Better-Auth magic-link over the DB; founder gated by `ADMIN_EMAILS`, clients scoped via `client_access`. `getSession`/`isAdmin` helpers. `/api/auth/*` migrates-then-handles.
-- [ ] Surfaces consuming it (dashboard+todo, admin CRUD, client read-view, landing+onboarding) — building next.
+- [x] Surfaces consuming it — `/dashboard`+todo, `/admin` CRUD, `/client`(+`[slug]`) read-view, `/sign-in` magic-link, landing nav + onboarding→DB. Proven running on pglite (auth gating 307→/sign-in; magic-link issues + persists). **Phase 4 exit criteria met.**
 - _Original Slice-3 sub-items below now satisfied by the above._
 
 - [~] Better-Auth (magic-link) + Neon + **Drizzle schema authored** — `src/db/schema.ts` (auth core + `universe`/`transition`/`client_access`), lazy env-guarded client `src/db/index.ts`, `src/lib/auth.ts`, `drizzle.config.ts`, `.env.example`, `/api/auth/[...all]`. **Build green with no DB.** Activation = provision Neon + `pnpm db:generate && db:migrate` (`src/db/README.md`).

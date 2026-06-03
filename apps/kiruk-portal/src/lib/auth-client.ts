@@ -1,0 +1,12 @@
+'use client';
+
+// Better-Auth browser client (magic-link). Used by sign-in / sign-out UI. baseURL defaults to
+// the current origin, so it works in dev and prod without config.
+import { magicLinkClient } from 'better-auth/client/plugins';
+import { createAuthClient } from 'better-auth/react';
+
+export const authClient = createAuthClient({
+  plugins: [magicLinkClient()],
+});
+
+export const { signIn, signOut, useSession } = authClient;
