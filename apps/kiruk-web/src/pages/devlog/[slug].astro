@@ -1,0 +1,63 @@
+---
+import { devlogs } from '../../../.velite';
+import EyeMark from '../../components/sketch/EyeMark.astro';
+import SketchNav from '../../components/sketch/SketchNav.astro';
+import Base from '../../layouts/Base.astro';
+import { href } from '../../lib/base';
+
+export function getStaticPaths() {
+  return devlogs.map((post) => ({ params: { slug: post.slug }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const fmt = (d: string) =>
+  new Date(d).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+---
+
+<Base title={`${post.title} — kiruk devlog`} description={`kiruk devlog: ${post.title}`}>
+  <main class="bg-paper text-ink relative min-h-[100svh] w-full px-6 py-20 md:px-10">
+    <section class="mx-auto flex max-w-2xl flex-col gap-7 pb-28">
+      <a href={href('/devlog')} class="handwritten text-pencil hover:text-ink text-base">
+        &larr; devlog
+      </a>
+
+      <header class="flex flex-col gap-3">
+        <div class="flex items-center gap-3">
+          <EyeMark size={40} />
+          <span class="handwritten text-pencil text-sm">
+            {fmt(post.date)}{post.state !== 'published' ? ` · ${post.state}` : ''}
+          </span>
+        </div>
+        <h1 class="font-wordmark text-ink text-5xl leading-[0.95] md:text-7xl">{post.title}</h1>
+      </header>
+
+      <article class="devlog-prose" set:html={post.body} />
+    </section>
+    <SketchNav />
+  </main>
+</Base>
+
+<style is:global>
+  .devlog-prose {
+    font-family: var(--font-hand, cursive);
+    color: var(--ink);
+    font-size: 1.2rem;
+    line-height: 1.6;
+  }
+  .devlog-prose h2 {
+    font-family: var(--font-wordmark, var(--font-display, cursive));
+    font-size: 1.9rem;
+    margin: 2rem 0 0.6rem;
+    color: var(--ink);
+  }
+  .devlog-prose p {
+    margin: 0 0 1rem;
+    color: var(--pencil);
+  }
+  .devlog-prose strong {
+    color: var(--ink);
+  }
+  .devlog-prose em {
+    font-style: italic;
+  }
+</style>

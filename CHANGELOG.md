@@ -10,6 +10,8 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/) with an a
 
 ### Added
 
+- **`kiruk-web` — `/devlog` wired via Velite (Phase 3).** [velite.config.ts](apps/kiruk-web/velite.config.ts) reads `content/devlogs/*.mdx` (repo root) into typed `.velite/` data; an Astro integration in [astro.config.mjs](apps/kiruk-web/astro.config.mjs) runs Velite on `astro:config:setup` (watches in dev). New `/devlog` index (cards: title · date · excerpt · tags) + `/devlog/[slug]` (markdown body → styled prose, wordmark title, EyeMark). `.velite/` + velite assets gitignored. `astro build` green — 8 pages, the existing entry rendered live-reviewed. The build-in-public devlog loop is live; the design-system primitive promotion + pencil-stroke hero remain.
+
 - **`kiruk-web` — route surface built out (Phase 3).** The bottom sketch-nav pointed at six routes; only `/` existed. Added on-voice pages for **`/kirukism`** (the movement + values), **`/ism`** (the lab, warming-up status), **`/products`** (tiers + "in the oven"), **`/services`** (2–3 clients, spec-first/toolbending, end-to-end chain), **`/about`** (just-Arun, lab-led, the ten-year scribble), and a **`/devlog`** stub (Velite wiring deferred). Copy drawn from `content/manifesto.md` + `VISION-MISSION.md` (founder edits welcome). Each page reuses `Base` + `SketchNav` + a new [EyeMark.astro](apps/kiruk-web/src/components/sketch/EyeMark.astro) so the **eye-motif** is present on every page (non-negotiable #4). `astro build` green — 7 static pages. (Velite `/devlog` feed + sketch-primitive→design-system promotion remain.)
 
 - **`kiruk-portal` — Slice 4: collaborative mark-back + call-inbox + deploy-readiness.**

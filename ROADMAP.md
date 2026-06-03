@@ -84,7 +84,7 @@ One monorepo. Everything that is kiruk lives here:
 - [ ] **Fix pencil-stroke feel** — current field reads like smoke; rework to stamped graphite strokes
 - [ ] **POV desk + 2.5D hands** hero (W1/W3) — the full concept; phase after launch
 - [x] Route structure built out — `/kirukism`, `/ism`, `/products`, `/services`, `/about` + `/devlog` stub, all on-voice (manifesto/vision-derived), reusing `Base` + sketch nav + new `EyeMark` (eye-motif on every page). `astro build` green (7 pages).
-- [~] Devlog index pulling from `content/devlogs/` (Velite) — route stub live; Velite/MDX wiring is the next pass
+- [x] Devlog index + post pages pulling from `content/devlogs/` via **Velite** — `velite.config.ts` + an Astro integration runs Velite on setup (watch in dev) → `.velite/` typed data; `/devlog` lists entries, `/devlog/[slug]` renders the markdown body. `astro build` green (8 pages, the one existing entry rendered). The build-in-public devlog loop is live.
 - [ ] Case studies pulling from `content/case-studies/`
 - [ ] "Leave a note on the desk" contact flow (W5) wired
 - [ ] Deploy: Vercel under `kiruk.in/studio` base

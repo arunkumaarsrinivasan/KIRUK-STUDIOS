@@ -41,6 +41,8 @@ kiruk-projects/_inbox/
 .astro/
 .vercel/
 .cache/
+.velite/
+apps/kiruk-web/public/static/
 *.tsbuildinfo
 dist/
 build/
