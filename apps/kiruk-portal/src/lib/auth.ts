@@ -1,25 +1,35 @@
-// Better-Auth instance (Slice 3). LAZY + env-guarded — constructed on first use only when
-// DATABASE_URL + BETTER_AUTH_SECRET are present, so module import is side-effect-free and the
-// build stays green pre-provisioning. Magic-link is the primary method (P-decision: Better-Auth).
-// Better-Auth reads BETTER_AUTH_SECRET / BETTER_AUTH_URL from the environment automatically.
+// Better-Auth — magic-link over the live DB (Neon in prod, pglite in local dev). Admin (founder)
+// is gated by the ADMIN_EMAILS allowlist; clients sign in by magic-link and are scoped via the
+// client_access table. A dev secret is used when BETTER_AUTH_SECRET is unset (local only).
 
 import { betterAuth } from 'better-auth';
 import { drizzleAdapter } from 'better-auth/adapters/drizzle';
 import { magicLink } from 'better-auth/plugins';
-import { getDb, isDbConfigured } from '@/db';
+import { getDb } from '@/db';
 
-/** true when both the DB and the auth secret are configured. */
-export const isAuthConfigured = isDbConfigured && Boolean(process.env.BETTER_AUTH_SECRET);
+/** Auth is always available now (a DB always exists — Neon or local pglite). */
+export const isAuthConfigured = true;
 
-// factory so the concrete Auth type is inferred (avoids the broad `ReturnType<typeof betterAuth>`).
+const adminEmails = (process.env.ADMIN_EMAILS ?? '')
+  .split(',')
+  .map((s) => s.trim().toLowerCase())
+  .filter(Boolean);
+
+/** Founder check — email in the ADMIN_EMAILS allowlist. */
+export function isAdminEmail(email?: string | null): boolean {
+  return Boolean(email) && adminEmails.includes(String(email).toLowerCase());
+}
+
 function buildAuth() {
   return betterAuth({
     database: drizzleAdapter(getDb(), { provider: 'pg' }),
+    secret: process.env.BETTER_AUTH_SECRET ?? 'kiruk-dev-secret-change-in-prod',
     baseURL: process.env.BETTER_AUTH_URL ?? 'http://localhost:3000',
     emailAndPassword: { enabled: false },
     plugins: [
       magicLink({
-        // TODO(provisioning): wire a real email sender (Resend/SES). Logged until then.
+        // TODO(prod): wire a real email sender (Resend/SES). Logged to the server console until then —
+        // in local dev, copy the magic-link URL from the terminal to sign in.
         sendMagicLink: async ({ email, url }) => {
           console.log(`[magic-link] ${email} -> ${url}`);
         },
@@ -29,13 +39,7 @@ function buildAuth() {
 }
 
 let _auth: ReturnType<typeof buildAuth> | null = null;
-
 export function getAuth(): ReturnType<typeof buildAuth> {
-  if (!isAuthConfigured) {
-    throw new Error(
-      'Auth not configured — set DATABASE_URL + BETTER_AUTH_SECRET. See src/db/README.md.',
-    );
-  }
   if (!_auth) _auth = buildAuth();
   return _auth;
 }

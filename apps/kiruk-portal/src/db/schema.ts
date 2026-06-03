@@ -17,6 +17,8 @@ export const user = pgTable('user', {
   email: text('email').notNull().unique(),
   emailVerified: boolean('email_verified').notNull().default(false),
   image: text('image'),
+  // 'admin' (founder) or 'client'. Founder is promoted via ADMIN_EMAILS env on first sign-in.
+  role: text('role').notNull().default('client'),
   createdAt: timestamp('created_at').notNull().defaultNow(),
   updatedAt: timestamp('updated_at').notNull().defaultNow(),
 });
@@ -94,4 +96,16 @@ export const clientAccess = pgTable('client_access', {
     .references(() => user.id, { onDelete: 'cascade' }),
   role: text('role').notNull().default('client-read'),
   createdAt: timestamp('created_at').notNull().defaultNow(),
+});
+
+// founder todo / task list — optionally tied to a universe.
+export const todo = pgTable('todo', {
+  id: uuid('id').primaryKey().defaultRandom(),
+  title: text('title').notNull(),
+  done: boolean('done').notNull().default(false),
+  priority: text('priority').notNull().default('p2'), // p0 | p1 | p2
+  universeId: uuid('universe_id').references(() => universe.id, { onDelete: 'set null' }),
+  dueDate: timestamp('due_date'),
+  createdAt: timestamp('created_at').notNull().defaultNow(),
+  updatedAt: timestamp('updated_at').notNull().defaultNow(),
 });

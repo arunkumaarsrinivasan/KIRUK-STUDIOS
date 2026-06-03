@@ -1,26 +1,53 @@
-// DB client (Slice 3). LAZY + env-guarded so importing this never touches the network and
-// `next build` stays green without DATABASE_URL. Provisioning steps: src/db/README.md.
+// DB client (Slice 3 → live). Picks the driver by environment:
+//   - DATABASE_URL set  → Neon (production / your provisioned DB)
+//   - otherwise          → pglite, an embedded Postgres persisted to ./.pglite (local dev)
+// Same Postgres dialect + schema either way, so nothing else changes when you switch to Neon.
 
+import path from 'node:path';
+import { PGlite } from '@electric-sql/pglite';
 import { neon } from '@neondatabase/serverless';
-import { drizzle } from 'drizzle-orm/neon-http';
+import { drizzle as drizzleNeon, type NeonHttpDatabase } from 'drizzle-orm/neon-http';
+import { migrate as migrateNeon } from 'drizzle-orm/neon-http/migrator';
+import { drizzle as drizzlePglite } from 'drizzle-orm/pglite';
+import { migrate as migratePglite } from 'drizzle-orm/pglite/migrator';
 import * as schema from './schema';
 
 const url = process.env.DATABASE_URL;
+export const dbDriver: 'neon' | 'pglite' = url ? 'neon' : 'pglite';
+/** A DB is always available now (Neon if configured, else local pglite). */
+export const isDbConfigured = true;
 
-/** true once Neon is provisioned and DATABASE_URL is set. */
-export const isDbConfigured = Boolean(url);
+type DB = NeonHttpDatabase<typeof schema>;
 
-let _db: ReturnType<typeof drizzle<typeof schema>> | null = null;
+let _db: DB | null = null;
+let _migrated: Promise<void> | null = null;
 
-/** Get the Drizzle client. Throws (does not connect at import) until DATABASE_URL is set. */
-export function getDb() {
-  if (!url) {
-    throw new Error(
-      'DATABASE_URL is not set — DB is not provisioned yet (Slice 3). See src/db/README.md.',
-    );
+function migrationsFolder() {
+  return path.join(process.cwd(), 'drizzle');
+}
+
+export function getDb(): DB {
+  if (_db) return _db;
+  if (url) {
+    _db = drizzleNeon(neon(url), { schema });
+  } else {
+    const client = new PGlite(path.join(process.cwd(), '.pglite'));
+    _db = drizzlePglite(client, { schema }) as unknown as DB;
   }
-  if (!_db) _db = drizzle(neon(url), { schema });
   return _db;
+}
+
+/** Apply migrations once per process (idempotent). Call before the first query. */
+export function ensureMigrated(): Promise<void> {
+  if (!_migrated) {
+    const db = getDb();
+    _migrated = url
+      ? // biome-ignore lint/suspicious/noExplicitAny: driver-specific migrator, db is the matching instance
+        migrateNeon(db as any, { migrationsFolder: migrationsFolder() })
+      : // biome-ignore lint/suspicious/noExplicitAny: driver-specific migrator, db is the matching instance
+        migratePglite(db as any, { migrationsFolder: migrationsFolder() });
+  }
+  return _migrated;
 }
 
 export { schema };

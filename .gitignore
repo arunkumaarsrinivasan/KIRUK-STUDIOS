@@ -43,6 +43,8 @@ kiruk-projects/_inbox/
 .cache/
 .velite/
 apps/kiruk-web/public/static/
+.pglite/
+**/.pglite/
 *.tsbuildinfo
 dist/
 build/
