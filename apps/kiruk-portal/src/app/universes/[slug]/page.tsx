@@ -177,7 +177,7 @@ export default async function UniverseCockpit({ params }: { params: Promise<{ sl
             <p className="handwritten text-pencil text-sm">no transitions recorded yet.</p>
           ) : (
             <ol className="flex flex-col gap-1.5">
-              {u.transitions.map((t, i) => (
+              {u.transitions.map((t) => (
                 <li
                   key={`${t.when}-${t.from}-${t.to}`}
                   className="handwritten text-ink flex flex-wrap gap-x-2 text-sm"

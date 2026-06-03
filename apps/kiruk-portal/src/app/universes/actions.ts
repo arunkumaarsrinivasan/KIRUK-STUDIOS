@@ -2,7 +2,7 @@
 
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
-import { createUniverse as dbCreateUniverse, getUniverse, transitionUniverse } from '@/db/repo';
+import { createUniverse as dbCreateUniverse, transitionUniverse } from '@/db/repo';
 import {
   addTextualScribble,
   appendCallRequest,

@@ -36,7 +36,6 @@ function CreateUniverse() {
     placeholder: string,
     lower = false,
   ) => (
-    // biome-ignore lint/a11y/noLabelWithoutControl: control nested in label
     <label className="sketch-border flex items-stretch">
       <span className="handwritten text-pencil flex w-40 shrink-0 items-center gap-2 px-3 text-sm">
         <RiggedGlyph pattern={pattern} size={22} open={value.length > 0} blink />
@@ -168,7 +167,6 @@ function InviteClient({ universes }: { universes: UniverseRow[] }) {
         grant read access by email — the client must have signed in at least once.
       </p>
 
-      {/* biome-ignore lint/a11y/noLabelWithoutControl: control nested in label */}
       <label className="sketch-border flex items-stretch">
         <span className="handwritten text-pencil flex w-40 shrink-0 items-center gap-2 px-3 text-sm">
           <RiggedGlyph pattern="portal" size={22} open={email.length > 0} blink />
@@ -188,7 +186,6 @@ function InviteClient({ universes }: { universes: UniverseRow[] }) {
         />
       </label>
 
-      {/* biome-ignore lint/a11y/noLabelWithoutControl: control nested in label */}
       <label className="sketch-border flex items-stretch">
         <span className="handwritten text-pencil flex w-40 shrink-0 items-center gap-2 px-3 text-sm">
           <RiggedGlyph pattern="hatch" size={22} open={slug.length > 0} blink />
