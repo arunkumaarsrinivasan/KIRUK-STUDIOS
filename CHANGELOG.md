@@ -8,6 +8,10 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/) with an a
 
 ## [Unreleased]
 
+### Changed
+
+- **`kiruk-web` — hero reworked from WebGL "smoke" to grainy graphite pencil (Phase 3).** The founder's own devlog flagged the ink-field as wrong ("looks like smoke; kiruk is a pencil that scribbles"). [InkHero.tsx](apps/kiruk-web/src/components/InkHero.tsx) is now a Canvas2D field: drag/move leaves **grainy graphite** (scatter-dot pencil tooth), hover = light ghost trail / press = dark stroke, strokes persist, and a faint eye waits underneath and surfaces as the page fills. Drops the WebGL `InkField` shader from the hero path. `astro build` green; live-verified (strokes render with authentic grain). _(The old `ink/InkField.ts` + `shaders.ts` are now unused — cleanup pending.)_
+
 ### Added
 
 - **`kiruk-portal` — magic-link email sender (Resend) + dashboard consolidation.**

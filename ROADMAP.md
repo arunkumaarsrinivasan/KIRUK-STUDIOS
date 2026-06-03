@@ -81,7 +81,7 @@ One monorepo. Everything that is kiruk lives here:
 - [x] Astro 5 scaffold + sketch design system (fonts, sketch CSS, primitives) + home hero (cursor pencil field + KIRUK wordmark)
 - [x] Eye cursor + bottom sketch nav; `/studio` base path wired (`src/lib/base.ts`)
 - [~] `@kiruk/design-system` consumed — currently app-local CSS vars; promote primitives into the package next
-- [ ] **Fix pencil-stroke feel** — current field reads like smoke; rework to stamped graphite strokes
+- [x] **Pencil-stroke feel fixed** — replaced the WebGL ink-field (read like smoke) with a Canvas2D **grainy graphite** field ([InkHero.tsx](apps/kiruk-web/src/components/InkHero.tsx)): scatter-dot tooth texture, hover-ghost + press-dark, persistent strokes, a faint eye that surfaces as the page fills. Matches the devlog. `astro build` green; live-verified.
 - [ ] **POV desk + 2.5D hands** hero (W1/W3) — the full concept; phase after launch
 - [x] Route structure built out — `/kirukism`, `/ism`, `/products`, `/services`, `/about` + `/devlog` stub, all on-voice (manifesto/vision-derived), reusing `Base` + sketch nav + new `EyeMark` (eye-motif on every page). `astro build` green (7 pages).
 - [x] Devlog index + post pages pulling from `content/devlogs/` via **Velite** — `velite.config.ts` + an Astro integration runs Velite on setup (watch in dev) → `.velite/` typed data; `/devlog` lists entries, `/devlog/[slug]` renders the markdown body. `astro build` green (8 pages, the one existing entry rendered). The build-in-public devlog loop is live.
