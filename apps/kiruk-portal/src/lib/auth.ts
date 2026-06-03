@@ -5,7 +5,33 @@
 import { betterAuth } from 'better-auth';
 import { drizzleAdapter } from 'better-auth/adapters/drizzle';
 import { magicLink } from 'better-auth/plugins';
+import { Resend } from 'resend';
 import { getDb } from '@/db';
+
+// Send the magic link by email via Resend when RESEND_API_KEY is set; otherwise log it to the
+// server console (local dev). EMAIL_FROM must be a Resend-verified sender in prod.
+async function sendMagicLinkEmail(email: string, url: string): Promise<void> {
+  const key = process.env.RESEND_API_KEY;
+  if (!key) {
+    console.log(`[magic-link] ${email} -> ${url}`);
+    return;
+  }
+  const from = process.env.EMAIL_FROM ?? 'kiruk <onboarding@resend.dev>';
+  try {
+    await new Resend(key).emails.send({
+      from,
+      to: email,
+      subject: 'Your kiruk sign-in link',
+      html: `<p style="font-family:sans-serif">Sign in to kiruk:</p>
+<p style="font-family:sans-serif"><a href="${url}">${url}</a></p>
+<p style="font-family:sans-serif;color:#6b6b6b;font-size:13px">This link expires shortly. If you didn't request it, ignore this email.</p>`,
+    });
+  } catch (e) {
+    // never crash auth on a send failure — surface in logs, still console the link as a fallback.
+    console.error('[magic-link] send failed:', e instanceof Error ? e.message : e);
+    console.log(`[magic-link:fallback] ${email} -> ${url}`);
+  }
+}
 
 /** Auth is always available now (a DB always exists — Neon or local pglite). */
 export const isAuthConfigured = true;
@@ -28,10 +54,8 @@ function buildAuth() {
     emailAndPassword: { enabled: false },
     plugins: [
       magicLink({
-        // TODO(prod): wire a real email sender (Resend/SES). Logged to the server console until then —
-        // in local dev, copy the magic-link URL from the terminal to sign in.
         sendMagicLink: async ({ email, url }) => {
-          console.log(`[magic-link] ${email} -> ${url}`);
+          await sendMagicLinkEmail(email, url);
         },
       }),
     ],

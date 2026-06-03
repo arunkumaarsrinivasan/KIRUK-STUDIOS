@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import type { EyePattern } from '@/components/EyeBall';
 import LifecycleRail from '@/components/LifecycleRail';
+import NewUniverse from '@/components/NewUniverse';
 import RiggedGlyph from '@/components/RiggedGlyph';
 import TodoList from '@/components/TodoList';
 import { listTodos, listUniverses } from '@/db/repo';
@@ -43,11 +44,7 @@ export default async function DashboardPage() {
               <div className="dashed flex flex-col items-center gap-3 p-10 text-center">
                 <RiggedGlyph pattern="ring" open={false} size={40} />
                 <p className="handwritten text-pencil text-lg">
-                  no universes yet.{' '}
-                  <Link href="/universes" className="text-ink underline">
-                    open one
-                  </Link>{' '}
-                  to start the flow.
+                  no universes yet — open one on the right <span aria-hidden="true">→</span>
                 </p>
               </div>
             ) : (
@@ -105,10 +102,13 @@ export default async function DashboardPage() {
           </section>
         </div>
 
-        {/* ── todo ────────────────────────────────────────────────────── */}
-        <aside className="flex flex-col gap-4">
-          <h2 className="brutal text-ink text-2xl">todo</h2>
-          <TodoList initial={todos} />
+        {/* ── create + todo ───────────────────────────────────────────── */}
+        <aside className="flex flex-col gap-8">
+          <NewUniverse />
+          <div className="flex flex-col gap-4">
+            <h2 className="brutal text-ink text-2xl">todo</h2>
+            <TodoList initial={todos} />
+          </div>
         </aside>
       </div>
     </main>

@@ -105,11 +105,11 @@ export default function Home() {
             <RiggedGlyph pattern="solid" look="right" size={30} />
           </Link>
           <Link
-            href="/universes"
+            href="/dashboard"
             className="eye-btn eye-next gap-3 px-6 py-3"
-            aria-label="open the universes board"
+            aria-label="open the studio dashboard"
           >
-            <span className="handwritten text-ink text-lg">universes</span>
+            <span className="handwritten text-ink text-lg">dashboard</span>
             <RiggedGlyph pattern="slit" look="right" size={30} />
           </Link>
           <Link

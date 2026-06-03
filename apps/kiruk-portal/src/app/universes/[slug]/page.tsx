@@ -22,7 +22,7 @@ export default async function UniverseCockpit({ params }: { params: Promise<{ sl
       <div className="bg-grid bg-dots" aria-hidden="true" />
 
       <header className="relative mb-8 flex items-center gap-3">
-        <Link href="/universes" className="face-mark border-none" aria-label="all universes">
+        <Link href="/dashboard" className="face-mark border-none" aria-label="back to dashboard">
           <RiggedGlyph pattern="arrow" look="left" size={30} />
         </Link>
         <div className="leading-none">
