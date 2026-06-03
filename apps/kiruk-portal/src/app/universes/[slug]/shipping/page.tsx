@@ -3,13 +3,13 @@ import { notFound } from 'next/navigation';
 import LifecycleRail from '@/components/LifecycleRail';
 import RiggedGlyph from '@/components/RiggedGlyph';
 import ShippingPanel from '@/components/ShippingPanel';
-import { readUniverse } from '@/lib/lifecycle';
+import { getView } from '@/lib/lifecycle';
 
 export const dynamic = 'force-dynamic';
 
 export default async function ShippingPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const u = await readUniverse(slug);
+  const u = await getView(slug);
   if (!u) notFound();
 
   return (

@@ -4,19 +4,13 @@ import LifecycleRail from '@/components/LifecycleRail';
 import RiggedGlyph from '@/components/RiggedGlyph';
 import ShareReview from '@/components/ShareReview';
 import TransitionControls from '@/components/TransitionControls';
-import {
-  LIFECYCLE,
-  latestProposalScribble,
-  readUniverse,
-  STATES,
-  stateIndex,
-} from '@/lib/lifecycle';
+import { getView, LIFECYCLE, latestProposalScribble, STATES, stateIndex } from '@/lib/lifecycle';
 
 export const dynamic = 'force-dynamic';
 
 export default async function UniverseCockpit({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const u = await readUniverse(slug);
+  const u = await getView(slug);
   if (!u) notFound();
 
   const cur = LIFECYCLE[u.state];

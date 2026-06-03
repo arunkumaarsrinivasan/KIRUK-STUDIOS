@@ -3,7 +3,7 @@ import EyeStatus from '@/components/EyeStatus';
 import LifecycleRail from '@/components/LifecycleRail';
 import NewUniverse from '@/components/NewUniverse';
 import RiggedGlyph from '@/components/RiggedGlyph';
-import { LIFECYCLE, listUniverses } from '@/lib/lifecycle';
+import { LIFECYCLE, listView } from '@/lib/lifecycle';
 
 // reads the filesystem each request — never statically cache.
 export const dynamic = 'force-dynamic';
@@ -11,7 +11,7 @@ export const dynamic = 'force-dynamic';
 export const metadata = { title: 'universes — kiruk portal' };
 
 export default async function UniversesPage() {
-  const universes = await listUniverses();
+  const universes = await listView();
 
   return (
     <main className="bg-paper relative min-h-[100svh] w-full px-6 py-10 md:px-10">

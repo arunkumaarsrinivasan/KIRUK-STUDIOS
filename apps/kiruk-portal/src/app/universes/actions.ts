@@ -2,15 +2,13 @@
 
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
+import { createUniverse as dbCreateUniverse, getUniverse, transitionUniverse } from '@/db/repo';
 import {
   addTextualScribble,
   appendCallRequest,
-  appendTransition,
-  createUniverse,
   isValidSlug,
   nextInvoiceNumber,
   readTransparency,
-  readUniverse,
   STATES,
   type State,
   saveScribblePng,
@@ -19,6 +17,7 @@ import {
   writeCaseStudyDraft,
   writeLocalOnly,
 } from '@/lib/lifecycle';
+import { getView } from '@/lib/universe-view';
 
 export type CreateState = { error?: string };
 
@@ -35,7 +34,7 @@ export async function createUniverseAction(
     return { error: 'slug must be lowercase kebab-case (a-z, 0-9, hyphens), 2–60 chars' };
   }
   try {
-    await createUniverse(slug, title || undefined);
+    await dbCreateUniverse(slug, title || slug);
   } catch (e) {
     return { error: e instanceof Error ? e.message : 'could not create universe' };
   }
@@ -46,7 +45,7 @@ export async function createUniverseAction(
 // advance (or move) a universe to a new state, recording the transition + why.
 export async function transitionAction(slug: string, to: State, why: string): Promise<void> {
   if (!STATES.includes(to)) throw new Error(`invalid target state: ${to}`);
-  await appendTransition(slug, to, why);
+  await transitionUniverse(slug, to, why);
   revalidatePath('/universes');
   revalidatePath(`/universes/${slug}`);
 }
@@ -110,7 +109,7 @@ export async function saveProposalAction(
   input: ProposalInput,
 ): Promise<{ error?: string }> {
   if (!isValidSlug(slug)) return { error: 'invalid slug' };
-  const u = await readUniverse(slug);
+  const u = await getView(slug);
   if (!u) return { error: 'unknown universe' };
 
   let scribbleRef: string | undefined;
@@ -122,7 +121,7 @@ export async function saveProposalAction(
     }
   }
 
-  const fresh = await readUniverse(slug);
+  const fresh = await getView(slug);
   if (!scribbleRef && (fresh?.scribbleCount ?? 0) === 0) {
     return { error: 'A scribble is required before a proposal (pen-and-paper). Sketch one first.' };
   }
@@ -130,7 +129,7 @@ export async function saveProposalAction(
   await writeArtifact(slug, 'proposal.md', renderProposal(slug, u.title, input, scribbleRef));
 
   if (stateIndex(u.state) < stateIndex('proposal')) {
-    await appendTransition(slug, 'proposal', 'scribble proposal drafted');
+    await transitionUniverse(slug, 'proposal', 'scribble proposal drafted');
   }
 
   revalidatePath('/universes');
@@ -224,7 +223,7 @@ export async function saveContractAction(
   input: ContractInput,
 ): Promise<{ error?: string }> {
   if (!isValidSlug(slug)) return { error: 'invalid slug' };
-  const u = await readUniverse(slug);
+  const u = await getView(slug);
   if (!u) return { error: 'unknown universe' };
 
   const ref = await writeLocalOnly(
@@ -252,7 +251,7 @@ export async function saveInvoiceAction(
   input: InvoiceInput,
 ): Promise<{ error?: string }> {
   if (!isValidSlug(slug)) return { error: 'invalid slug' };
-  const u = await readUniverse(slug);
+  const u = await getView(slug);
   if (!u) return { error: 'unknown universe' };
   if (stateIndex(u.state) < stateIndex('engaged')) {
     return { error: 'invoice after the contract is signed (state: engaged or later)' };
@@ -306,7 +305,7 @@ Payment instructions shared with the client directly.
 // flow isn't CLI-blocked; the founder is expected to flesh it out (or run /kiruk-spec).
 export async function scaffoldSpecAction(slug: string): Promise<{ error?: string }> {
   if (!isValidSlug(slug)) return { error: 'invalid slug' };
-  const u = await readUniverse(slug);
+  const u = await getView(slug);
   if (!u) return { error: 'unknown universe' };
   if (u.artifacts['spec.md']) return { error: 'spec.md already exists' };
   const now = new Date().toISOString();
@@ -337,7 +336,7 @@ export type HandoffResult = {
 
 export async function saveHandoffAction(slug: string, input: HandoffInput): Promise<HandoffResult> {
   if (!isValidSlug(slug)) return { error: 'invalid slug' };
-  const u = await readUniverse(slug);
+  const u = await getView(slug);
   if (!u) return { error: 'unknown universe' };
   if (stateIndex(u.state) < stateIndex('shipping')) {
     return { error: 'handoff happens from shipping. advance there first.' };
@@ -373,7 +372,7 @@ export async function saveHandoffAction(slug: string, input: HandoffInput): Prom
     caseStudy = 'drafted';
   }
 
-  await appendTransition(slug, 'archived', 'handoff complete');
+  await transitionUniverse(slug, 'archived', 'handoff complete');
   revalidatePath('/universes');
   revalidatePath(`/universes/${slug}`);
   return { archived: true, transparency, caseStudy, caseStudyPath };
@@ -402,7 +401,7 @@ export async function saveMarksAction(
   dataUrl: string,
 ): Promise<{ error?: string; saved?: boolean }> {
   if (!isValidSlug(slug)) return { error: 'invalid slug' };
-  const u = await readUniverse(slug);
+  const u = await getView(slug);
   if (!u) return { error: 'unknown universe' };
   try {
     await saveScribblePng(slug, dataUrl, `proposal-marks-${Date.now()}.png`);
@@ -420,7 +419,7 @@ export type LeadInput = { source: string; contact: string; notes: string };
 // capture first-contact notes → lead.md, then move lead → intake.
 export async function saveLeadAction(slug: string, input: LeadInput): Promise<{ error?: string }> {
   if (!isValidSlug(slug)) return { error: 'invalid slug' };
-  const u = await readUniverse(slug);
+  const u = await getView(slug);
   if (!u) return { error: 'unknown universe' };
   const now = new Date().toISOString();
   await writeArtifact(
@@ -429,7 +428,7 @@ export async function saveLeadAction(slug: string, input: LeadInput): Promise<{ 
     `---\nuniverse: ${slug}\ntitle: ${u.title}\nartifact: lead\ncreated: ${now}\n---\n\n# ${u.title} — first contact\n\n## Source\n${input.source.trim() || '_where this lead came from_'}\n\n## Contact\n${input.contact.trim() || '_name / handle (no private data)_'}\n\n## Notes\n${input.notes.trim() || '_what they want, first impressions_'}\n`,
   );
   if (stateIndex(u.state) < stateIndex('intake')) {
-    await appendTransition(slug, 'intake', 'first contact captured');
+    await transitionUniverse(slug, 'intake', 'first contact captured');
   }
   revalidatePath('/universes');
   revalidatePath(`/universes/${slug}`);
@@ -455,7 +454,7 @@ export async function saveIntakeAction(
   input: IntakeInput,
 ): Promise<{ error?: string }> {
   if (!isValidSlug(slug)) return { error: 'invalid slug' };
-  const u = await readUniverse(slug);
+  const u = await getView(slug);
   if (!u) return { error: 'unknown universe' };
   const now = new Date().toISOString();
   const t = (['open', 'partial', 'closed'] as const).includes(input.transparency)

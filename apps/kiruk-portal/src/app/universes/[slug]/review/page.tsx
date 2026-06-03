@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import ReviewBuilder from '@/components/ReviewBuilder';
 import RiggedGlyph from '@/components/RiggedGlyph';
-import { latestProposalScribble, readUniverse } from '@/lib/lifecycle';
+import { getView, latestProposalScribble } from '@/lib/lifecycle';
 
 export const dynamic = 'force-dynamic';
 
@@ -11,7 +11,7 @@ export const metadata = { title: 'review the scribble — kiruk' };
 // on the proposal scribble.
 export default async function ReviewPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const u = await readUniverse(slug);
+  const u = await getView(slug);
   if (!u) notFound();
 
   const original = latestProposalScribble(u.scribbles);

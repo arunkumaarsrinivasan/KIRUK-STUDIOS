@@ -26,6 +26,7 @@ export {
   type UniverseDetail,
   type UniverseSummary,
 } from './lifecycle-model';
+export { getView, listView } from './universe-view';
 
 // --- repo location -------------------------------------------------------
 

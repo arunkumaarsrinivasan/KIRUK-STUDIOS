@@ -3,13 +3,13 @@ import { notFound } from 'next/navigation';
 import HandoffBuilder from '@/components/HandoffBuilder';
 import LifecycleRail from '@/components/LifecycleRail';
 import RiggedGlyph from '@/components/RiggedGlyph';
-import { readUniverse, stateIndex } from '@/lib/lifecycle';
+import { getView, stateIndex } from '@/lib/lifecycle';
 
 export const dynamic = 'force-dynamic';
 
 export default async function HandoffPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const u = await readUniverse(slug);
+  const u = await getView(slug);
   if (!u) notFound();
 
   const tooEarly = stateIndex(u.state) < stateIndex('shipping');
