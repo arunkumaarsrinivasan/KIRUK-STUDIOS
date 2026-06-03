@@ -8,7 +8,10 @@
       "outputs": [".next/**", "!.next/cache/**", "dist/**"]
     },
     "tokens:build": {
-      "inputs": ["packages/design-system/tokens/**", "packages/design-system/style-dictionary.config.cjs"],
+      "inputs": [
+        "packages/design-system/tokens/**",
+        "packages/design-system/style-dictionary.config.cjs"
+      ],
       "outputs": ["packages/design-system/build/**"],
       "cache": true
     },
@@ -19,8 +22,11 @@
     "lint": {
       "dependsOn": ["^lint"]
     },
-    "check-types": {
-      "dependsOn": ["^check-types"]
+    "typecheck": {
+      "dependsOn": ["^typecheck"]
+    },
+    "test": {
+      "outputs": []
     }
   }
 }
