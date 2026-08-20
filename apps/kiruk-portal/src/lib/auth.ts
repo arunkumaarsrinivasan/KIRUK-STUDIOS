@@ -11,14 +11,18 @@ import { getDb } from '@/db';
 // Send the magic link by email via Resend when RESEND_API_KEY is set; otherwise log it to the
 // server console (local dev). EMAIL_FROM must be a Resend-verified sender in prod.
 async function sendMagicLinkEmail(email: string, url: string): Promise<void> {
+  const isDev = process.env.NODE_ENV === 'development';
+  const logLink = () => console.log(`[magic-link] ${email} -> ${url}`);
+
   const key = process.env.RESEND_API_KEY;
   if (!key) {
-    console.log(`[magic-link] ${email} -> ${url}`);
+    logLink();
     return;
   }
+
   const from = process.env.EMAIL_FROM ?? 'kiruk <onboarding@resend.dev>';
   try {
-    await new Resend(key).emails.send({
+    const { data, error } = await new Resend(key).emails.send({
       from,
       to: email,
       subject: 'Your kiruk sign-in link',
@@ -26,10 +30,20 @@ async function sendMagicLinkEmail(email: string, url: string): Promise<void> {
 <p style="font-family:sans-serif"><a href="${url}">${url}</a></p>
 <p style="font-family:sans-serif;color:#6b6b6b;font-size:13px">This link expires shortly. If you didn't request it, ignore this email.</p>`,
     });
+    if (error) {
+      console.error('[magic-link] send failed:', error.message);
+      logLink();
+      return;
+    }
+    if (isDev) {
+      // Resend may succeed only for verified senders — always surface the link locally.
+      console.log(`[magic-link:sent id=${data?.id ?? 'unknown'}] ${email}`);
+      logLink();
+    }
   } catch (e) {
     // never crash auth on a send failure — surface in logs, still console the link as a fallback.
     console.error('[magic-link] send failed:', e instanceof Error ? e.message : e);
-    console.log(`[magic-link:fallback] ${email} -> ${url}`);
+    logLink();
   }
 }
 

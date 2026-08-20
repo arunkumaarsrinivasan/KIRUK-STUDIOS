@@ -1,0 +1,2 @@
+{"event":"session.started","session_id":"b642ab410a34d697","project":"KIRUK-STUDIOS","voice":"af_heart","ts":1785910469.1790233}
+{"event":"utterance.final","session_id":"b642ab410a34d697","text":"Hello, hello, hello, hello.","duration_ms":201,"audio_seconds":4.64,"ts":1785910874.906177}

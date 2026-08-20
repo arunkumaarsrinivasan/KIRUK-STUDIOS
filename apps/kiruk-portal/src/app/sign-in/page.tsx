@@ -54,7 +54,8 @@ export default function SignInPage() {
               A magic link is on its way to <strong>{email.trim()}</strong>. Click it to land.
             </p>
             <p className="handwritten text-pencil text-sm">
-              In local dev, the link is printed in the server console — copy it from the terminal.
+              In local dev, the link is also printed in the server terminal — copy it from there if
+              email does not arrive.
             </p>
             <button
               type="button"
