@@ -1,0 +1,16 @@
+---
+description: File 17 Day Brand / brand-strategy thinking into ideas/brand-thinking. Capture, don't lock.
+globs: ideas/brand-thinking/**
+alwaysApply: false
+---
+
+# Brand thinking knowledge base
+
+When these files are in play, follow [ideas/brand-thinking/method.md](ideas/brand-thinking/method.md).
+
+- Founder = orchestrator. Dumps = document-creation.
+- Route to chapter + topic files. Seeds → `ideas.md`. Moves → `task.md`.
+- Do not rewrite `VISION-MISSION.md` or specs unless asked to lock.
+- Do not copy the workbook PDF or clone Boring Studio.
+- No secrets or fees in this folder.
+- After a dump: `/kiruk-capture`. One chapter at a time.

@@ -98,7 +98,7 @@ From the founder's manifesto (`content/manifesto.md`) + vision doc §1.3:
 - `packages/design-system/tokens/` — DTCG JSON, single source for brand tokens.
 - `packages/design-system/build/` — generated, do not hand-edit.
 - `packages/design-system/components/` — React SVG components for Eye/\* marks + Kirukal/Scribble. Edit directly.
-- `ideas/` — inbox + append-only log (with `scribble` field) + promoted stubs.
+- `ideas/` — inbox + append-only log (with `scribble` field) + promoted stubs. Brand-strategy **thinking** (17 Day Brand pass) lives in `ideas/brand-thinking/` until locked.
 - `content/devlogs/` — public devlogs (≥1 every 14 days). Derivatives co-located in same folder per `content-pipeline`.
 - `content/case-studies/` — shipped universe case studies (consent-gated per `build-in-public`).
 - `content/story-drops/` — quarterly qualitative retrospectives (only public revenue surface).

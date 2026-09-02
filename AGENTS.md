@@ -11,6 +11,7 @@ Terse navigation for any AI coding agent (Claude Code, Cursor, etc.) working in 
 5. Read `openspec/AGENTS.md` for OpenSpec lifecycle rules.
 6. Read `openspec/specs/repo-privacy/spec.md` for **secrets, private data, and review** expectations (pair with [CONTRIBUTING.md](CONTRIBUTING.md) and [`.github/PULL_REQUEST_TEMPLATE.md`](.github/PULL_REQUEST_TEMPLATE.md)).
 7. Read [LEARNINGS.md](LEARNINGS.md) and `openspec/specs/operational-learning/spec.md` for **recorded mistakes and guards** so you do not repeat known failure modes.
+8. For **brand-strategy thinking** (17 Day Brand pass, not locked vision): [ideas/brand-thinking/README.md](ideas/brand-thinking/README.md). Dump via `/kiruk-brand-thinking`. Do not treat that folder as `VISION-MISSION.md`.
 
 ## Cursor & Composer
 
@@ -59,4 +60,4 @@ Terse navigation for any AI coding agent (Claude Code, Cursor, etc.) working in 
 - `npx openspec validate` / `npm run spec:validate` — spec gate
 - `npm run tokens:build` — regenerate packages/design-system/build/
 - `npm run session:capture` — manual `capture-session.mjs` (optional; see Cursor & Composer)
-- `/kiruk-intake`, `/kiruk-spec`, `/kiruk-artifact`, `/kiruk-capture`, `/kiruk-ism-new` — in Claude Code as slash commands; in Cursor, use the same definitions under `.claude/commands/`
+- `/kiruk-intake`, `/kiruk-spec`, `/kiruk-artifact`, `/kiruk-capture`, `/kiruk-brand-thinking`, `/kiruk-ism-new` — in Claude Code as slash commands; in Cursor, use the same definitions under `.claude/commands/`

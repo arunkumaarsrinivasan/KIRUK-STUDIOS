@@ -34,6 +34,7 @@ Cursor has no built-in `/kiruk-*` commands. When the user types `/kiruk-…` or 
 | `/kiruk-spec` — intake → spec + draft OpenSpec change | [.claude/commands/kiruk-spec.md](.claude/commands/kiruk-spec.md) |
 | `/kiruk-artifact` — render a client template for a universe | [.claude/commands/kiruk-artifact.md](.claude/commands/kiruk-artifact.md) |
 | `/kiruk-capture` — append session decisions to `ideas/log.ndjson` | [.claude/commands/kiruk-capture.md](.claude/commands/kiruk-capture.md) |
+| `/kiruk-brand-thinking` — file a 17 Day Brand / strategy dump into `ideas/brand-thinking/` | [.claude/commands/kiruk-brand-thinking.md](.claude/commands/kiruk-brand-thinking.md) |
 | `/kiruk-ism-new` — scaffold a new ISM experiment | [.claude/commands/kiruk-ism-new.md](.claude/commands/kiruk-ism-new.md) |
 
 ## Non-negotiables (reminder)
